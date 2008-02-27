@@ -12,3 +12,4 @@ pyrtf-ng.
 * Added TODO file.
 * Updated examples to use the new package name and replaced the tabs with
 spaces.
+* Whitespace cleanup.
