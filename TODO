@@ -64,6 +64,8 @@ Plan
         indices
             Index
             Table of Contents
+* Add support for a small subset of the API that does most of what people need,
+  letting users types as few lines as possible to create RTF docs.
 * Increment to version 1.0.0.
 
 * Make classes new-style.
