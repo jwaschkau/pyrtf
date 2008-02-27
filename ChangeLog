@@ -4,3 +4,5 @@
 pyrtf-ng.
 * Added ChangeLog.
 * Added admin directory and scripts.
+* Renamed package to pyrtf-ng.
+* Updated setup.py.
