@@ -12,6 +12,8 @@
 * Renamed pyrtfng package to rtfng.
 * Added test runner for doctests.
 * Added test runner for all tests, and added doctest suite to the runner.
+* Added a utility module.
+* Added code for recursively adding tests.
 
 2008.02.26
 

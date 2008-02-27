@@ -1,9 +1,13 @@
 #!/usr/bin/env python
-
-import sys
-sys.path.append( '../' )
+from unittest import TestCase
 
 from rtfng import *
+
+class SimpleSectionsTestCase(TestCase):
+    def test_trueTest(self):
+        self.assertEqual(1,1)
+    def test_falseTest(self):
+        self.assertEqual(0,1)
 
 def MakeExample1() :
     doc     = Document()
