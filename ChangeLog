@@ -6,3 +6,4 @@ pyrtf-ng.
 * Added admin directory and scripts.
 * Renamed package to pyrtf-ng.
 * Updated setup.py.
+* Added software license.
