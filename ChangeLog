@@ -5,6 +5,10 @@
 * Added TextEdit test RTF files from Mac OS X.
 * Updated TODO.
 * Fixed remaining whitespace issue in setup.py.
+* Created exceptions file.
+* Split grammar into its own file.
+* Made grammar module-level variable (singleton) instead of instantiated class.
+* Updated TODO.
 
 2008.02.26
 
