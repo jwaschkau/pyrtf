@@ -9,3 +9,6 @@ pyrtf-ng.
 * Added software license.
 * Added a placeholder test directory.
 * Added placeholders for parsing and writing code.
+* Added TODO file.
+* Updated examples to use the new package name and replaced the tabs with
+spaces.
