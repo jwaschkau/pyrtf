@@ -16,3 +16,5 @@ spaces.
 * Updated TODO.
 * Fixed name in setup.py.
 * Added gzipped specs for reference.
+* Bumped the version number down until the API changes.
+* TODO reorg and updates.
