@@ -1,0 +1,6 @@
+2008.02.26
+
+* Copied Simon Cusack's PyRTF code from version 0.45 as the starting point of
+pyrtf-ng.
+* Added ChangeLog.
+* Added admin directory and scripts.
