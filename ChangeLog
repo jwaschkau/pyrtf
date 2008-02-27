@@ -7,3 +7,5 @@ pyrtf-ng.
 * Renamed package to pyrtf-ng.
 * Updated setup.py.
 * Added software license.
+* Added a placeholder test directory.
+* Added placeholders for parsing and writing code.

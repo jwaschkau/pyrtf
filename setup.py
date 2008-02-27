@@ -27,6 +27,8 @@ setup(name = 'PyRTF',
                             'word' ),
     packages = [
         'pyrtfng',
+        'pyrtfng.parser',
+        'pyrtfng.writer',
         ],
     package_dir = { i
         'pyrtfng' : 'pyrtfng'
