@@ -2,7 +2,7 @@ import os
 import sys
 sys.path.append( '../' )
 
-from pyrtfng import *
+from rtfng import *
 
 def MakeExample1() :
     doc     = Document()
@@ -24,7 +24,7 @@ def MakeExample1() :
                     'save it to a raw code element that can be included later.' )
 
     fout = file( 'image_tmp.py', 'w' )
-    print >> fout, 'from pyrtfng import RawCode'
+    print >> fout, 'from rtfng import RawCode'
     print >> fout
     fout.write( image.ToRawCode( 'TEST_IMAGE' ) )
     fout.close()

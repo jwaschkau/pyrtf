@@ -3,7 +3,7 @@
 import sys
 sys.path.append( '../' )
 
-from pyrtfng import *
+from rtfng import *
 
 SAMPLE_PARA = """The play opens one year after the death of Richard II, and
 King Henry is making plans for a crusade to the Holy Land to cleanse himself

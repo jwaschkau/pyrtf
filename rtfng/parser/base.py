@@ -1,4 +1,4 @@
-from pyrtfng.parser.grammar import grammar
+from rtfng.parser.grammar import grammar
 
 class RTFParser(object):
 

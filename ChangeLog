@@ -9,6 +9,9 @@
 * Split grammar into its own file.
 * Made grammar module-level variable (singleton) instead of instantiated class.
 * Updated TODO.
+* Renamed pyrtfng package to rtfng.
+* Added test runner for doctests.
+* Added test runner for all tests, and added doctest suite to the runner.
 
 2008.02.26
 

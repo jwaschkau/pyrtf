@@ -5,6 +5,7 @@ Plan
 * DONE - Add prototype parsing code and test sources.
 * DONE - Move exceptions out of parser code into dedicated exceptions file.
 * DONE - Split grammar out of parser base and into its own module.
+* DONE - Rename package from pyrtfng to rtfng.
 * Increment to version 0.9.1
 
 * Rename varaibles to remove underscores (convert to camelCase).
@@ -19,7 +20,7 @@ Plan
 * Increment to version 0.9.3
 
 * Reorganize package to something along the following lines:
-    pyrtfng
+    rtfng
         header
             Version
             Character Set

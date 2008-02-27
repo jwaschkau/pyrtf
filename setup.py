@@ -21,12 +21,12 @@ setup(name = 'pyrtf-ng',
     keywords = ('RTF', 'Rich Text', 'Rich Text Format', 'documents',
         'word'),
     packages = [
-        'pyrtfng',
-        'pyrtfng.parser',
-        'pyrtfng.writer',
+        'rtfng',
+        'rtfng.parser',
+        'rtfng.writer',
         ],
     package_dir = {
-        'pyrtfng': 'pyrtfng'
+        'rtfng': 'rtfng'
         },
     classifiers = [f.strip() for f in """
         Development Status :: 4 - Beta

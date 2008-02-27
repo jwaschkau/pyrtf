@@ -3,7 +3,7 @@
 import sys
 sys.path.append( '../' )
 
-from pyrtfng import *
+from rtfng import *
 
 
 #
