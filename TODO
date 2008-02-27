@@ -68,8 +68,18 @@ Plan
 
 * Make classes new-style.
 * Unify the codes in constants.Languages to eliminate redundancy.
-* Figure out a better way to do rendering than is currently done.
 * Increment to version 1.0.1.
+
+* Simplify rendering along the lines of the "write" idiom.
+* Increment to version 1.0.2.
+
+* Get parser to the point where it can parse everything the current code can
+  generate.
+* Increment to version 1.1.0.
+
+* Add more RTF-spec support to both the writer and the parser.
+* Increment to version 1.2.0.
+
 
 Completed
 ---------
