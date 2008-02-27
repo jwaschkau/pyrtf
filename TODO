@@ -5,7 +5,10 @@ Plan
     DOS characters, etc.)
 * DONE - Increment to version 0.9.0
 
-* Migrate examples to test code.
+* Migrate examples to unit tests.
+* Add prototype parsing code and test sources.
+* Move exceptions out of parser code into dedicated exceptions file.
+* Split grammar out of parser base and into its own module.
 * Increment to version 0.9.1
 
 * Rename varaibles to remove underscores (convert to camelCase).

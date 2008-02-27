@@ -1,6 +1,9 @@
 2008.02.27
 
 * Moved examples into test dir to serve as the basis for unit tests.
+* Added prototype RTF parsing code from Pecha project.
+* Added TextEdit test RTF files from Mac OS X.
+* Updated TODO.
 
 2008.02.26
 
