@@ -4,6 +4,7 @@
 * Added prototype RTF parsing code from Pecha project.
 * Added TextEdit test RTF files from Mac OS X.
 * Updated TODO.
+* Fixed remaining whitespace issue in setup.py.
 
 2008.02.26
 
