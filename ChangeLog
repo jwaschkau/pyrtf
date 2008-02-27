@@ -13,3 +13,6 @@ pyrtf-ng.
 * Updated examples to use the new package name and replaced the tabs with
 spaces.
 * Whitespace cleanup.
+* Updated TODO.
+* Fixed name in setup.py.
+* Added gzipped specs for reference.

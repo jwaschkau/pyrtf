@@ -5,34 +5,29 @@ text format documents. Supports styles, tables, cell merging, jpg and png
 images and tries to maintain compatibility with as many RTF readers as
 possible. """
 
-import    sys
 from distutils.core import setup
-
 
 doclines = __doc__.split("\n")
 
-setup(name = 'PyRTF',
-       version = '1.0.0',
+setup(name = 'pyrtf-ng',
+       version = open('VERSION').read().strip(),
        author = 'Duncan McGreggor',
        author_email = 'oubiwann@adytum.us',
        url = 'http://code.google.com/p/pyrtf-ng/',
-       license = 'MIT'
-       platforms    = [ 'Any' ],
-       description    = doclines[0],
-       long_description = '\n'.join( doclines[2:] ),
-       keywords         = ( 'RTF',
-                            'Rich Text',
-                            'Rich Text Format',
-                            'documents',
-                            'word' ),
+       license = 'MIT',
+       platforms = ['Any'],
+       description = doclines[0],
+       long_description = '\n'.join( doclines[2:]),
+       keywords = ('RTF', 'Rich Text', 'Rich Text Format', 'documents',
+            'word'),
     packages = [
         'pyrtfng',
         'pyrtfng.parser',
         'pyrtfng.writer',
         ],
-    package_dir = { i
-        'pyrtfng' : 'pyrtfng'
-    },
+    package_dir = {
+        'pyrtfng': 'pyrtfng'
+        },
     classifiers = [f.strip() for f in """
         Development Status :: 4 - Beta
         Topic :: Text Editors :: Text Processing
@@ -40,5 +35,5 @@ setup(name = 'PyRTF',
         Intended Audience :: Developers
         Programming Language :: Python
         License :: OSI Approved :: MIT
-    """]
+        """]
     )

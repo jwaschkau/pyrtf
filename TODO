@@ -1,2 +1,21 @@
+Plan
+----
+* Migrate examples to test code.
+* Rename modules to accord with PEP-8/Twisted coding standard.
+* Rename class methods to accord with PEP-8/Twisted coding standard.
+* Rename varaibles to remove underscores (convert to camelCase).
+* Remove extraneous spaces between operators, parens, etc.
+* Add new lines where they should be (no run-ons after colons).
+* Standardize indents to be 4 spaces.
+* Increment to version 1.0.0.
+* Move Table and Cell out of Elements and into their own module.
+* Increment to version 1.0.1.
+* Make classes new-style.
+* Unify the codes in constants.Languages to eliminate redundancy.
+* Figure out a better way to do rendering than is currently done.
+* Increment to version 1.0.2.
+
+Issues
+------
 Tested the initial examples; they don't seem to render properly for TextEdit on
 Mac OS X.
