@@ -41,3 +41,4 @@ if __name__ == '__main__' :
     DR.Write( doc1, OpenFile( '1' ) )
 
     print "Finished"
+
