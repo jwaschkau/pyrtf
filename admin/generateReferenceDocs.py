@@ -3,15 +3,19 @@
 This script introspects the RTF unit tests and generates the files that are
 used for comparison when running those tests.
 
-WARNING! Only run this script after manually verifying that the documents
-created by the tests are correct, otherwise the tests will be useless.
+Note that this script intentionally only writes to a pending directory. You
+must manually verify that the generated files are what you expect (I recommend
+using OpenOffice for this). Aftwards, copy the good files over to the
+sources/rtfng directory.
 
-Once verified and generated, these docs will be used in the unit tests as the
-correct output. Thus any changes introduced into the code base that affect how
-these docs are rendered may cause the tests to fail. For buggy code, this is
-exactly what we want. For new features, we need to update the unit tests,
-verify that they create the correct output, and then regenerate the reference
-docs.
+Once verified and copied, the docs generated will be used in the unit tests
+against which test output will be checked. Thus any changes introduced into the
+codebase that affect how these generated RTF files are rendered may cause the
+tests to fail. For buggy code, this is exactly what we want, so that we can see
+the error(s) happening in our tests and write new ones when our fixes are in
+place. For new features, we need to update the unit tests, verify that they
+create the correct output, and then regenerate the reference RTF files with
+this script.
 """
 import os
 from unittest import TestCase
@@ -44,11 +48,8 @@ for startDir in searchDirs:
                 for attrName in dir(obj):
                     if attrName.startswith('make_'):
                         filename = attrName.split('make_')[1] + '.rtf'
-                        #import pdb;pdb.set_trace()
                         doc, ign = getattr(obj, attrName)()
                         fh = open(os.path.join(pendingDir, filename), 'w+')
                         doc.write(fh)
                         fh.close()
 
-# write to the review directory if in validate mode, write to the sources dir
-# if in generate mode

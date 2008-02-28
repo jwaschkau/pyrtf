@@ -6,6 +6,9 @@ Plan
 * DONE - Move exceptions out of parser code into dedicated exceptions file.
 * DONE - Split grammar out of parser base and into its own module.
 * DONE - Rename package from pyrtfng to rtfng.
+* Update the generate script to accept file names as parameters, thus only
+  generating RTF files for the make_() methods in those files (as opposed to
+  traversing the whole tree).
 * Increment to version 0.9.1
 
 * Rename varaibles to remove underscores (convert to camelCase).

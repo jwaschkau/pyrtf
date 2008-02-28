@@ -18,6 +18,7 @@ test case.
 * Cleaned up some whitespace in the paragraph file.
 * Started on the paragraph tests.
 * Did some more RTFTestCase abstraction.
+* Updated the generate script.
 
 2008.02.27
 
