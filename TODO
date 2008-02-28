@@ -98,8 +98,12 @@ Completed
 
 Issues
 ------
-Tested the initial examples; they don't seem to render properly for TextEdit on
-Mac OS X.
+* Tested the initial examples; they don't seem to render properly for TextEdit
+  on Mac OS X.
+* RTF docs should not create any more structure by default than is absolutely
+  necessary:
+    o the auto-creation of the header needs to go;
+    o 
 
 Fixed
 -----

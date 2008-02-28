@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 from rtfng.utils import RTFTestCase
 from rtfng.Elements import Document
+from rtfng.PropertySets import ParagraphPropertySet, TabPropertySet
+
 from rtfng.document.section import Section
 from rtfng.document.paragraph import Paragraph
 
@@ -27,14 +29,18 @@ def initializeDoc():
 
 class ParagraphTestCase(RTFTestCase):
 
-    def make_():
+    def make_paraHeading():
         doc, section, styles = initializeDoc()
         p = Paragraph(styles.ParagraphStyles.Heading1)
         p.append('Heading 1')
         section.append(p)
         return doc
+    make_paraHeading = staticmethod(make_paraHeading)
 
-    def make_():
+    def test_paraHeading(self):
+        self.doTest()
+
+    def make_para():
         doc, section, styles = initializeDoc()
         p = Paragraph(styles.ParagraphStyles.Normal)
         p.append(
@@ -42,8 +48,9 @@ class ParagraphTestCase(RTFTestCase):
             'marked with the Heading1 style.')
         section.append(p)
         return doc
+    make_para = staticmethod(make_para)
 
-    def make_():
+    def make_para():
         doc, section, styles = initializeDoc()
         p = Paragraph()
         p.append(
@@ -52,8 +59,9 @@ class ParagraphTestCase(RTFTestCase):
             'typing and is the default behaviour for RTF documents.')
         section.append(p)
         return doc
+    make_para = staticmethod(make_para)
 
-    def make_():
+    def make_para():
         doc, section, styles = initializeDoc()
         p = Paragraph()
         p.append('It is also postylesible to provide overrides for element of a style. ',
@@ -64,8 +72,9 @@ class ParagraphTestCase(RTFTestCase):
                   '.')
         section.append(p)
         return doc
+    make_para = staticmethod(make_para)
 
-    def make_():
+    def make_para():
         doc, section, styles = initializeDoc()
         p = Paragraph()
         p.append('The paragraph itself can also be overridden in lots of ways, tabs, '
@@ -75,8 +84,9 @@ class ParagraphTestCase(RTFTestCase):
                   'carriage returns, ie new line markers that do not cause a paragraph break.')
         section.append(p)
         return doc
+    make_para = staticmethod(make_para)
 
-    def make_():
+    def make_para():
         doc, section, styles = initializeDoc()
         para_props = ParagraphPropertySet(tabs = [ TabPropertySet(width=TabPropertySet.DEFAULT_WIDTH    ),
                                        TabPropertySet(width=TabPropertySet.DEFAULT_WIDTH * 2),
@@ -90,8 +100,9 @@ class ParagraphTestCase(RTFTestCase):
                         'The following paragraph demonstrates how to use flush right tabs'
                         'and leader dots.')
         return doc
+    make_para = staticmethod(make_para)
 
-    def make_():
+    def make_para():
         doc, section, styles = initializeDoc()
         para_props = ParagraphPropertySet(tabs = [ TabPropertySet(section.TwipsToRightMargin(),
                                                   alignment = TabPropertySet.RIGHT,
@@ -109,8 +120,9 @@ class ParagraphTestCase(RTFTestCase):
 
         section.append('The following text was copied from http://www.shakespeare-online.com/plots/1kh4ps.html.')
         return doc
+    make_para = staticmethod(make_para)
 
-    def make_():
+    def make_para():
         doc, section, styles = initializeDoc()
         para_props = ParagraphPropertySet()
         para_props.SetLeftIndent(TabPropertySet.DEFAULT_WIDTH *  3)
@@ -118,8 +130,9 @@ class ParagraphTestCase(RTFTestCase):
         p.append(sampleParagraph)
         section.append(p)
         return doc
+    make_para = staticmethod(make_para)
 
-    def make_():
+    def make_para():
         doc, section, styles = initializeDoc()
         para_props = ParagraphPropertySet()
         para_props.SetFirstLineIndent(TabPropertySet.DEFAULT_WIDTH * -2)
@@ -128,8 +141,9 @@ class ParagraphTestCase(RTFTestCase):
         p.append(sampleParagraph)
         section.append(p)
         return doc
+    make_para = staticmethod(make_para)
 
-    def make_():
+    def make_para():
         doc, section, styles = initializeDoc()
         # do a page
         para_props = ParagraphPropertySet()
@@ -139,4 +153,6 @@ class ParagraphTestCase(RTFTestCase):
         p = Paragraph(styles.ParagraphStyles.Normal, para_props)
         p.append(sampleParagraph)
         section.append(p)
+        return doc
+    make_para = staticmethod(make_para)
 

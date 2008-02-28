@@ -48,7 +48,7 @@ for startDir in searchDirs:
                 for attrName in dir(obj):
                     if attrName.startswith('make_'):
                         filename = attrName.split('make_')[1] + '.rtf'
-                        doc, ign = getattr(obj, attrName)()
+                        doc = getattr(obj, attrName)()
                         fh = open(os.path.join(pendingDir, filename), 'w+')
                         doc.write(fh)
                         fh.close()
