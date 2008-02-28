@@ -2,7 +2,8 @@
 from unittest import TestCase
 from StringIO import StringIO
 
-from rtfng.Elements import Document, Section
+from rtfng.Elements import Document
+from rtfng.document.section import Section
 
 class SectionTestCase(TestCase) :
 

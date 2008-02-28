@@ -1,3 +1,4 @@
+from rtfng.PropertySets import StandardPaper, MarginsPropertySet
  
 class Section( list ) :
     NONE   = 1

@@ -18,6 +18,8 @@ Plan
 * Increment to version 0.9.1
 
 * Rename varaibles to remove underscores (convert to camelCase).
+* Rename instance variables in PropertySets from UpperCamelCase to
+  lowerCamelCase.
 * Remove extraneous spaces between operators, parens, etc.
 * Add new lines where they should be (no run-ons after colons).
 * Standardize indents to be 4 spaces.
@@ -40,6 +42,7 @@ Plan
             Revisions
         document
             section
+                DONE - Section
                 Section Formatting
                 Header/Footer
             paragraph
@@ -47,7 +50,7 @@ Plan
                 Bullets/Numbering
                 Borders/Shading
                 Objects/Frames
-                Table/Cell
+                DONE - Table/Cell
             character
                 Font/Formatting/Properties
                 Borders/Shading

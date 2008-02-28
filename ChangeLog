@@ -19,6 +19,9 @@
 * Added a write method to Document as a temp fix until the refactor.
 * Started moving some code into the new API in order to avoid circular imports.
 * Removed * imports from rtfng.__init__.py.
+* Removed code from Elements that was copied into the new API.
+* Moved Elements.Standard* into PropertySets (which they all instantiate
+anyway) as part of avoiding circular imports.
 
 2008.02.26
 

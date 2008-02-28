@@ -486,3 +486,119 @@ FramePS        = FramePropertySet
 TabPS        = TabPropertySet
 TextPS        = TextPropertySet
 ParagraphPS    = ParagraphPropertySet
+
+#                                               red green blue
+StandardColours = Colours()
+StandardColours.append( Colour( 'Black',         0,    0,   0 ) )
+StandardColours.append( Colour( 'Blue',          0,    0, 255 ) )
+StandardColours.append( Colour( 'Turquoise',     0,  255, 255 ) )
+StandardColours.append( Colour( 'Green',         0,  255,   0 ) )
+StandardColours.append( Colour( 'Pink',        255,    0, 255 ) )
+StandardColours.append( Colour( 'Red',         255,    0,   0 ) )
+StandardColours.append( Colour( 'Yellow',      255,  255,   0 ) )
+StandardColours.append( Colour( 'White',       255,  255, 255 ) )
+StandardColours.append( Colour( 'Blue Dark',     0,    0, 128 ) )
+StandardColours.append( Colour( 'Teal',          0,  128, 128 ) )
+StandardColours.append( Colour( 'Green Dark',    0,  128,   0 ) )
+StandardColours.append( Colour( 'Violet',      128,    0, 128 ) )
+StandardColours.append( Colour( 'Red Dark',    128,    0,   0 ) )
+StandardColours.append( Colour( 'Yellow Dark', 128,  128,   0 ) )
+StandardColours.append( Colour( 'Grey Dark',   128,  128, 128 ) )
+StandardColours.append( Colour( 'Grey',        192,  192, 192 ) )
+
+StandardFonts = Fonts()
+StandardFonts.append( Font( 'Arial'                   , 'swiss' , 0, 2, '020b0604020202020204' ) )
+StandardFonts.append( Font( 'Arial Black'             , 'swiss' , 0, 2, '020b0a04020102020204' ) )
+StandardFonts.append( Font( 'Arial Narrow'            , 'swiss' , 0, 2, '020b0506020202030204' ) )
+StandardFonts.append( Font( 'Bitstream Vera Sans Mono', 'modern', 0, 1, '020b0609030804020204' ) )
+StandardFonts.append( Font( 'Bitstream Vera Sans'     , 'swiss' , 0, 2, '020b0603030804020204' ) )
+StandardFonts.append( Font( 'Bitstream Vera Serif'    , 'roman' , 0, 2, '02060603050605020204' ) )
+StandardFonts.append( Font( 'Book Antiqua'            , 'roman' , 0, 2, '02040602050305030304' ) )
+StandardFonts.append( Font( 'Bookman Old Style'       , 'roman' , 0, 2, '02050604050505020204' ) )
+StandardFonts.append( Font( 'Castellar'               , 'roman' , 0, 2, '020a0402060406010301' ) )
+StandardFonts.append( Font( 'Century Gothic'          , 'swiss' , 0, 2, '020b0502020202020204' ) )
+StandardFonts.append( Font( 'Comic Sans MS'           , 'script', 0, 2, '030f0702030302020204' ) )
+StandardFonts.append( Font( 'Courier New'             , 'modern', 0, 1, '02070309020205020404' ) )
+StandardFonts.append( Font( 'Franklin Gothic Medium'  , 'swiss' , 0, 2, '020b0603020102020204' ) )
+StandardFonts.append( Font( 'Garamond'                , 'roman' , 0, 2, '02020404030301010803' ) )
+StandardFonts.append( Font( 'Georgia'                 , 'roman' , 0, 2, '02040502050405020303' ) )
+StandardFonts.append( Font( 'Haettenschweiler'        , 'swiss' , 0, 2, '020b0706040902060204' ) )
+StandardFonts.append( Font( 'Impact'                  , 'swiss' , 0, 2, '020b0806030902050204' ) )
+StandardFonts.append( Font( 'Lucida Console'          , 'modern', 0, 1, '020b0609040504020204' ) )
+StandardFonts.append( Font( 'Lucida Sans Unicode'     , 'swiss' , 0, 2, '020b0602030504020204' ) )
+StandardFonts.append( Font( 'Microsoft Sans Serif'    , 'swiss' , 0, 2, '020b0604020202020204' ) )
+StandardFonts.append( Font( 'Monotype Corsiva'        , 'script', 0, 2, '03010101010201010101' ) )
+StandardFonts.append( Font( 'Palatino Linotype'       , 'roman' , 0, 2, '02040502050505030304' ) )
+StandardFonts.append( Font( 'Papyrus'                 , 'script', 0, 2, '03070502060502030205' ) )
+StandardFonts.append( Font( 'Sylfaen'                 , 'roman' , 0, 2, '010a0502050306030303' ) )
+StandardFonts.append( Font( 'Symbol'                  , 'roman' , 2, 2, '05050102010706020507' ) )
+StandardFonts.append( Font( 'Tahoma'                  , 'swiss' , 0, 2, '020b0604030504040204' ) )
+StandardFonts.append( Font( 'Times New Roman'         , 'roman' , 0, 2, '02020603050405020304' ) )
+StandardFonts.append( Font( 'Trebuchet MS'            , 'swiss' , 0, 2, '020b0603020202020204' ) )
+StandardFonts.append( Font( 'Verdana'                 , 'swiss' , 0, 2, '020b0604030504040204' ) )
+
+StandardFonts.Castellar.SetAlternate( StandardFonts.Georgia )
+
+"""
+Found the following definition at http://www.pbdr.com/vbtips/gen/convtwip.htm
+
+Twips are screen-independent units used to ensure that the placement and
+proportion of screen elements in your screen application are the same on all
+display systems. A twip is a unit of screen measurement equal to 1/20 of a
+printer's point. The conversion between twips and
+inches/centimeters/millimeters is as follows:
+
+There are approximately 1440 twips to a inch (the length of a screen item
+measuring one inch when printed).
+
+As there are 2.54 centimeters to 1 inch, then there are approximately 567
+twips to a centimeter (the length of a screen item measuring one centimeter
+when printed).
+
+Or in millimeters, as there are 25.4 millimeters to 1 inch, therefore there
+are approximately 56.7 twips to a millimeter (the length of a screen item
+measuring one millimeter when printed)."""
+
+# Width default is 12240, Height default is 15840
+StandardPaper = Papers()
+StandardPaper.append( Paper( 'LETTER'             ,  1,  'Letter 8 1/2 x 11 in'               ,   12240,  15840 ) )
+StandardPaper.append( Paper( 'LETTERSMALL'        ,  2,  'Letter Small 8 1/2 x 11 in'         ,   12240,  15840 ) )
+StandardPaper.append( Paper( 'TABLOID'            ,  3,  'Tabloid 11 x 17 in'                 ,   15840,  24480 ) )
+StandardPaper.append( Paper( 'LEDGER'             ,  4,  'Ledger 17 x 11 in'                  ,   24480,  15840 ) )
+StandardPaper.append( Paper( 'LEGAL'              ,  5,  'Legal 8 1/2 x 14 in'                ,   12240,  20160 ) )
+StandardPaper.append( Paper( 'STATEMENT'          ,  6,  'Statement 5 1/2 x 8 1/2 in'         ,    7920,  12240 ) )
+StandardPaper.append( Paper( 'EXECUTIVE'          ,  7,  'Executive 7 1/4 x 10 1/2 in'        ,   10440,  15120 ) )
+StandardPaper.append( Paper( 'A3'                 ,  8,  'A3 297 x 420 mm'                    ,   16838,  23811 ) )
+StandardPaper.append( Paper( 'A4'                 ,  9,  'A4 210 x 297 mm'                    ,   11907,  16838 ) )
+StandardPaper.append( Paper( 'A4SMALL'            , 10,  'A4 Small 210 x 297 mm'              ,   11907,  16838 ) )
+StandardPaper.append( Paper( 'A5'                 , 11,  'A5 148 x 210 mm'                    ,    8391,  11907 ) )
+StandardPaper.append( Paper( 'B4'                 , 12,  'B4 (JIS) 250 x 354'                 ,   14175,  20072 ) )
+StandardPaper.append( Paper( 'B5'                 , 13,  'B5 (JIS) 182 x 257 mm'              ,   10319,  14572 ) )
+StandardPaper.append( Paper( 'FOLIO'              , 14,  'Folio 8 1/2 x 13 in'                ,   12240,  18720 ) )
+StandardPaper.append( Paper( 'QUARTO'             , 15,  'Quarto 215 x 275 mm'                ,   12191,  15593 ) )
+StandardPaper.append( Paper( '10X14'              , 16,  '10x14 in'                           ,   14400,  20160 ) )
+StandardPaper.append( Paper( '11X17'              , 17,  '11x17 in'                           ,   15840,  24480 ) )
+StandardPaper.append( Paper( 'NOTE'               , 18,  'Note 8 1/2 x 11 in'                 ,   12240,  15840 ) )
+StandardPaper.append( Paper( 'ENV_9'              , 19,  'Envelope #9 3 7/8 x 8 7/8'          ,    5580,  12780 ) )
+StandardPaper.append( Paper( 'ENV_10'             , 20,  'Envelope #10 4 1/8 x 9 1/2'         ,    5940,  13680 ) )
+StandardPaper.append( Paper( 'ENV_11'             , 21,  'Envelope #11 4 1/2 x 10 3/8'        ,    6480,  14940 ) )
+StandardPaper.append( Paper( 'ENV_12'             , 22,  'Envelope #12 4 3/4 x 11'            ,    6840,  15840 ) )
+StandardPaper.append( Paper( 'ENV_14'             , 23,  'Envelope #14 5 x 11 1/2'            ,    7200,  16560 ) )
+StandardPaper.append( Paper( 'CSHEET'             , 24,  'C size sheet 18 x 24 in'            ,   29520,  34560 ) )
+StandardPaper.append( Paper( 'DSHEET'             , 25,  'D size sheet 22 x 34 in'            ,   31680,  48960 ) )
+StandardPaper.append( Paper( 'ESHEET'             , 26,  'E size sheet 34 x 44 in'            ,   48960,  63360 ) )
+StandardPaper.append( Paper( 'ENV_DL'             , 27,  'Envelope DL 110 x 220mm'            ,    6237,  12474 ) )
+StandardPaper.append( Paper( 'ENV_C5'             , 28,  'Envelope C5 162 x 229 mm'           ,    9185,  12984 ) )
+StandardPaper.append( Paper( 'ENV_C3'             , 29,  'Envelope C3  324 x 458 mm'          ,   18371,  25969 ) )
+StandardPaper.append( Paper( 'ENV_C4'             , 30,  'Envelope C4  229 x 324 mm'          ,   12984,  18371 ) )
+StandardPaper.append( Paper( 'ENV_C6'             , 31,  'Envelope C6  114 x 162 mm'          ,    6464,   9185 ) )
+StandardPaper.append( Paper( 'ENV_C65'            , 32,  'Envelope C65 114 x 229 mm'          ,    6464,  12984 ) )
+StandardPaper.append( Paper( 'ENV_B4'             , 33,  'Envelope B4  250 x 353 mm'          ,   14175,  20015 ) )
+StandardPaper.append( Paper( 'ENV_B5'             , 34,  'Envelope B5  176 x 250 mm'          ,    9979,  14175 ) )
+StandardPaper.append( Paper( 'ENV_B6'             , 35,  'Envelope B6  176 x 125 mm'          ,    9979,   7088 ) )
+StandardPaper.append( Paper( 'ENV_ITALY'          , 36,  'Envelope 110 x 230 mm'              ,    6237,  13041 ) )
+StandardPaper.append( Paper( 'ENV_MONARCH'        , 37,  'Envelope Monarch 3.875 x 7.5 in'    ,    5580,  10800 ) )
+StandardPaper.append( Paper( 'ENV_PERSONAL'       , 38,  '6 3/4 Envelope 3 5/8 x 6 1/2 in'    ,    5220,   9360 ) )
+StandardPaper.append( Paper( 'FANFOLD_US'         , 39,  'US Std Fanfold 14 7/8 x 11 in'      ,   21420,  15840 ) )
+StandardPaper.append( Paper( 'FANFOLD_STD_GERMAN' , 40,  'German Std Fanfold 8 1/2 x 12 in'   ,   12240,  17280 ) )
+StandardPaper.append( Paper( 'FANFOLD_LGL_GERMAN' , 41,  'German Legal Fanfold 8 1/2 x 13 in' ,   12240,  18720 ) )
