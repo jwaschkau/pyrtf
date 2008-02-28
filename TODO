@@ -2,15 +2,6 @@ Plan
 ----
 
 * Migrate examples to unit tests.
-    o add an object to rtfgen.utils for
-        . creating temp dirs
-        . saving temp files to those dir
-        . reading those temp files
-        . deleting all of it when needed
-    o monkey patch TestCase in rtfgen.utils with the temp object, maybe with
-      predefined setUp() and tearDown() methods
-    o have tests create RTF files in the temp dirs and then compare to files in
-      sources/generated
 * DONE - Add prototype parsing code and test sources.
 * DONE - Move exceptions out of parser code into dedicated exceptions file.
 * DONE - Split grammar out of parser base and into its own module.
@@ -46,6 +37,7 @@ Plan
                 Section Formatting
                 Header/Footer
             paragraph
+                DONE - Paragraph
                 Formatting/Tabs
                 Bullets/Numbering
                 Borders/Shading
