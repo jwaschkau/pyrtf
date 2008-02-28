@@ -1,6 +1,13 @@
 from types import StringType, ListType, TupleType
 from copy import deepcopy
-from Elements import *
+
+from PropertySets import (
+    ParagraphPropertySet, TabPropertySet, ShadingPropertySet,
+    BorderPropertySet)
+from Constants import Languages, ViewKind, ViewZoomKind, ViewScale
+
+from rtfng.document.section import Section
+from rtfng.document.paragraph import Table, Cell
 
 DEFAULT_TAB_WIDTH = 720
 

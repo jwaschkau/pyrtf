@@ -1,44 +1,41 @@
 #!/usr/bin/env python
 from unittest import TestCase
+from StringIO import StringIO
 
-from rtfng import *
+from rtfng.Elements import Document, Section
 
-class SimpleSectionsTestCase(TestCase):
-    def test_trueTest(self):
-        self.assertEqual(1,1)
-    def test_falseTest(self):
-        self.assertEqual(0,1)
+class SectionTestCase(TestCase) :
 
-def MakeExample1() :
-    doc     = Document()
-    ss      = doc.StyleSheet
-    section = Section()
-    doc.Sections.append( section )
+    def getDocAndFirstSection(self):
+        doc = Document()
+        section = Section()
+        doc.Sections.append(section)
+        return (doc, section)
 
-    #    text can be added directly to the section
-    #    a paragraph object is create as needed
-    section.append( 'Example 1' )
+    def test_sectionEmpty(self):
+        doc, section = self.getDocAndFirstSection()
+        result = StringIO()
+        doc.write(result)
+        self.assertEqual('', result.getvalue())
 
-    #    blank paragraphs are just empty strings
-    section.append( '' )
+    def test_sectionWithSmallPara(self):
+        doc, section = self.getDocAndFirstSection()
+        # text can be added directly to the section a paragraph object is
+        # create as needed
+        section.append('Small paragraph.')
 
-    #    a lot of useful documents can be created
-    #    with little more than this
-    section.append( 'A lot of useful documents can be created '
-                    'in this way, more advance formating is available '
-                    'but a lot of users just want to see their data come out '
-                    'in something other than a text file.' )
-    return doc
+    def test_sectionWithBlankPara(self):
+        doc, section = self.getDocAndFirstSection()
+        section.append('Small paragraph.')
+        # blank paragraphs are just empty strings
+        section.append('')
 
-def OpenFile( name ) :
-    return file( '%s.rtf' % name, 'w' )
-
-if __name__ == '__main__' :
-    DR = Renderer()
-
-    doc1 = MakeExample1()
-
-    DR.Write( doc1, OpenFile( '1' ) )
-
-    print "Finished"
-
+    def test_sectionWithParas(self):
+        doc, section = self.getDocAndFirstSection()
+        section.append('Small paragraph.')
+        section.append('')
+        # a lot of useful documents can be created with little more than this
+        section.append(
+            'A lot of useful documents can be created in this way, more '
+            'advance formating is available but a lot of users just want to '
+            'see their data come out in something other than a text file.')

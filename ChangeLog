@@ -17,6 +17,8 @@
 * Added images to be used in tests to test/resources.
 * Updated TODO.
 * Added a write method to Document as a temp fix until the refactor.
+* Started moving some code into the new API in order to avoid circular imports.
+* Removed * imports from rtfng.__init__.py.
 
 2008.02.26
 

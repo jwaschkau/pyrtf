@@ -75,6 +75,11 @@ Plan
 * Simplify rendering along the lines of the "write" idiom.
 * Increment to version 1.0.2.
 
+* Add append() method to doc that is a dispatcher, appending to appropriate
+  attrs based on type (e.g., instead of doc.Sections.append(section), one would
+  only need to do doc.append(section)).
+* Increment to version 1.0.3.
+
 * Get parser to the point where it can parse everything the current code can
   generate.
 * Increment to version 1.1.0.
