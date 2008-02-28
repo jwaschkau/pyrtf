@@ -88,12 +88,17 @@ class SectionTestCase(TestCase) :
     def test_sectionWithBlankPara(self):
         self.doTest()
 
-    def test_sectionWithParas(self):
+    def make_sectionWithParas():
         doc, section = getDocAndFirstSection()
         section.append('Small paragraph.')
         section.append('')
         # a lot of useful documents can be created with little more than this
         section.append(
-            'A lot of useful documents can be created in this way, more '
-            'advance formating is available but a lot of users just want to '
-            'see their data come out in something other than a text file.')
+            'A lot of useful documents can be created in this way. More '
+            'advanced formatting is available, but a lot of users just want '
+            'to see their data in something other than a text file.')
+        return (doc, section)
+    make_sectionWithParas = staticmethod(make_sectionWithParas)
+
+    def test_sectionWithParas(self):
+        self.doTest()
