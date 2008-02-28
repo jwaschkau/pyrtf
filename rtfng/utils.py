@@ -2,6 +2,8 @@
 Utility functions for rtf-ng.
 """
 import os
+from unittest import TestCase
+from StringIO import StringIO
 
 def importModule(name):
     mod = __import__(name)
@@ -29,3 +31,37 @@ def find(start, func, skip=[]):
 
 def findTests(startDir, skipFiles=[]):
     return find(startDir, fileIsTest, skipFiles)
+
+class RTFTestCase(TestCase):
+
+    def setUp(self):
+        base = ('test', 'sources', 'rtfng')
+        self.sourceDir = os.path.join(*base)
+
+    def getReferenceData(self, name):
+        fh = open(os.path.join(self.sourceDir, name + '.rtf'))
+        data = fh.read()
+        fh.close()
+        return data
+
+    def getTestName(self):
+        return self._TestCase__testMethodName.split('test_')[1]
+
+    def getTestData(self, doc):
+        result = StringIO()
+        doc.write(result)
+        testData = result.getvalue()
+        result.close()
+        return testData
+
+    def getData(self):
+        """
+        Each TestCase needs to implement this, returning the
+        (testData, refData) tuple.
+        """
+        raise NotImplemented
+
+    def doTest(self):
+        testData, refData = self.getData()
+        self.assertEqual(testData, refData)
+

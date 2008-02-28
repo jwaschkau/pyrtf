@@ -12,6 +12,8 @@ usability/reusablity.
 * Updated section unit tests.
 * Removed Paragraph from Elements.
 * Added the next reference RTF file and finished up the last section test.
+* Moved common test case code into utils.RTFTestCase and updated the sections
+test case.
 
 2008.02.27
 

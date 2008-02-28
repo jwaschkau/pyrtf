@@ -3,6 +3,7 @@ import os
 from unittest import TestCase
 from StringIO import StringIO
 
+from rtfng.utils import RTFTestCase
 from rtfng.Elements import Document
 from rtfng.document.section import Section
 
@@ -12,7 +13,7 @@ def getDocAndFirstSection():
     doc.Sections.append(section)
     return (doc, section)
 
-class SectionTestCase(TestCase) :
+class SectionTestCase(RTFTestCase) :
     """
     This class may look like it's doing a bit of magic, so let me explain:
 
@@ -33,22 +34,10 @@ class SectionTestCase(TestCase) :
           same call (the only thing that changes is the name, and only the name
           is needed to generate/get the necessary data).
     """
-    def setUp(self):
-        base = ('test', 'sources', 'rtfng')
-        self.sourceDir = os.path.join(*base)
-
-    def getReferenceData(self, name):
-        fh = open(os.path.join(self.sourceDir, name + '.rtf'))
-        data = fh.read()
-        fh.close()
-        return data
-
     def getData(self):
-        name = self._TestCase__testMethodName.split('test_')[1]
+        name = self.getTestName()
         doc, section = getattr(self, 'make_%s' % name)()
-        result = StringIO()
-        doc.write(result)
-        testData = result.getvalue()
+        testData = self.getTestData(doc)
         refData = self.getReferenceData(name)
         return (testData, refData)
 
@@ -58,10 +47,6 @@ class SectionTestCase(TestCase) :
         """
         return getDocAndFirstSection()
     make_sectionEmpty = staticmethod(make_sectionEmpty)
-
-    def doTest(self):
-        testData, refData = self.getData()
-        self.assertEqual(testData, refData)
 
     def test_sectionEmpty(self):
         self.doTest()
