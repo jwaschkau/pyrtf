@@ -16,6 +16,7 @@
 * Added code for recursively adding tests.
 * Added images to be used in tests to test/resources.
 * Updated TODO.
+* Added a write method to Document as a temp fix until the refactor.
 
 2008.02.26
 
