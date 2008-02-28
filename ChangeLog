@@ -6,6 +6,11 @@
 * Made generalizations to test_all, reducing redundancy and increasing
 usability/reusablity.
 * Generated and checked the first reference RTF file.
+* Had to move Paragraph class into new API to avoid circular imports.
+* Renamed all *PS variables to *PropertySet and removed the short names.
+* Added two more test reference RTF files.
+* Updated section unit tests.
+* Removed Paragraph from Elements.
 
 2008.02.27
 

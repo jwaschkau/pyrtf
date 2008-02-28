@@ -7,7 +7,7 @@ from PropertySets import (
 from Constants import Languages, ViewKind, ViewZoomKind, ViewScale
 
 from rtfng.document.section import Section
-from rtfng.document.paragraph import Table, Cell
+from rtfng.document.paragraph import Paragraph, Table, Cell
 
 DEFAULT_TAB_WIDTH = 720
 

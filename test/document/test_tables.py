@@ -28,9 +28,9 @@ def MakeExample3() :
                     'The widths chosen are arbitrary, they do not have to be '
                     'multiples of tab widths.' )
 
-    table = Table( TabPS.DEFAULT_WIDTH * 7,
-                   TabPS.DEFAULT_WIDTH * 3,
-                   TabPS.DEFAULT_WIDTH * 3 )
+    table = Table( TabPropertySet.DEFAULT_WIDTH * 7,
+                   TabPropertySet.DEFAULT_WIDTH * 3,
+                   TabPropertySet.DEFAULT_WIDTH * 3 )
     c1 = Cell( Paragraph( 'Row One, Cell One'   ) )
     c2 = Cell( Paragraph( 'Row One, Cell Two'   ) )
     c3 = Cell( Paragraph( 'Row One, Cell Three' ) )
@@ -50,14 +50,14 @@ def MakeExample3() :
     section.append( 'Different frames can also be specified for each cell in the table '
                     'and each frame can have a different width and style for each border.' )
 
-    thin_edge  = BorderPS( width=20, style=BorderPS.SINGLE )
-    thick_edge = BorderPS( width=80, style=BorderPS.SINGLE )
+    thin_edge  = BorderPropertySet( width=20, style=BorderPropertySet.SINGLE )
+    thick_edge = BorderPropertySet( width=80, style=BorderPropertySet.SINGLE )
 
-    thin_frame  = FramePS( thin_edge,  thin_edge,  thin_edge,  thin_edge )
-    thick_frame = FramePS( thick_edge, thick_edge, thick_edge, thick_edge )
-    mixed_frame = FramePS( thin_edge,  thick_edge, thin_edge,  thick_edge )
+    thin_frame  = FramePropertySet( thin_edge,  thin_edge,  thin_edge,  thin_edge )
+    thick_frame = FramePropertySet( thick_edge, thick_edge, thick_edge, thick_edge )
+    mixed_frame = FramePropertySet( thin_edge,  thick_edge, thin_edge,  thick_edge )
 
-    table = Table( TabPS.DEFAULT_WIDTH * 3, TabPS.DEFAULT_WIDTH * 3, TabPS.DEFAULT_WIDTH * 3 )
+    table = Table( TabPropertySet.DEFAULT_WIDTH * 3, TabPropertySet.DEFAULT_WIDTH * 3, TabPropertySet.DEFAULT_WIDTH * 3 )
     c1 = Cell( Paragraph( 'R1C1' ), thin_frame )
     c2 = Cell( Paragraph( 'R1C2' ) )
     c3 = Cell( Paragraph( 'R1C3' ), thick_frame )

@@ -478,14 +478,6 @@ class ParagraphPropertySet :
         if value : self.PageBreakBefore = True
         return self
 
-#    Some short cuts to make the code a bit easier to read
-MarginsPS    = MarginsPropertySet
-ShadingPS    = ShadingPropertySet
-BorderPS    = BorderPropertySet
-FramePS        = FramePropertySet
-TabPS        = TabPropertySet
-TextPS        = TextPropertySet
-ParagraphPS    = ParagraphPropertySet
 
 #                                               red green blue
 StandardColours = Colours()
@@ -602,3 +594,4 @@ StandardPaper.append( Paper( 'ENV_PERSONAL'       , 38,  '6 3/4 Envelope 3 5/8 x
 StandardPaper.append( Paper( 'FANFOLD_US'         , 39,  'US Std Fanfold 14 7/8 x 11 in'      ,   21420,  15840 ) )
 StandardPaper.append( Paper( 'FANFOLD_STD_GERMAN' , 40,  'German Std Fanfold 8 1/2 x 12 in'   ,   12240,  17280 ) )
 StandardPaper.append( Paper( 'FANFOLD_LGL_GERMAN' , 41,  'German Legal Fanfold 8 1/2 x 13 in' ,   12240,  18720 ) )
+

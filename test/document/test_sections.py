@@ -77,11 +77,16 @@ class SectionTestCase(TestCase) :
     def test_sectionWithSmallPara(self):
         self.doTest()
 
-    def test_sectionWithBlankPara(self):
+    def make_sectionWithBlankPara():
         doc, section = getDocAndFirstSection()
         section.append('Small paragraph.')
         # blank paragraphs are just empty strings
         section.append('')
+        return (doc, section)
+    make_sectionWithBlankPara = staticmethod(make_sectionWithBlankPara)
+
+    def test_sectionWithBlankPara(self):
+        self.doTest()
 
     def test_sectionWithParas(self):
         doc, section = getDocAndFirstSection()

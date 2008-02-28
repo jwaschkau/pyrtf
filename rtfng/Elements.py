@@ -71,9 +71,9 @@ def MakeDefaultStyleSheet( ) :
     result.ParagraphStyles.append( normal_numbered2 )
 
     ## LIST STYLES
-    for idx, indent in [ (1, TabPS.DEFAULT_WIDTH    ),
-                         (2, TabPS.DEFAULT_WIDTH * 2),
-                         (3, TabPS.DEFAULT_WIDTH * 3) ] :
+    for idx, indent in [ (1, TabPropertySet.DEFAULT_WIDTH    ),
+                         (2, TabPropertySet.DEFAULT_WIDTH * 2),
+                         (3, TabPropertySet.DEFAULT_WIDTH * 3) ] :
         indent = TabPropertySet.DEFAULT_WIDTH
         ps = ParagraphStyle( 'List %s' % idx,
                              TextStyle( TextPropertySet( result.Fonts.Arial, 22 ) ),
@@ -241,8 +241,8 @@ class Text :
 
         for param in params :
             if   isinstance( param, TextStyle  ) : self.Style      = param
-            elif isinstance( param, TextPS     ) : self.Properties = param
-            elif isinstance( param, ShadingPS  ) : self.Shading    = param
+            elif isinstance( param, TextPropertySet     ) : self.Properties = param
+            elif isinstance( param, ShadingPropertySet  ) : self.Shading    = param
             else :
                 #    otherwise let the rendering custom handler sort it out itself
                 self.Data = param
@@ -262,8 +262,8 @@ class Inline( list ) :
 
         for param in params :
             if   isinstance( param, TextStyle  ) : self.Style      = param
-            elif isinstance( param, TextPS     ) : self.Properties = param
-            elif isinstance( param, ShadingPS  ) : self.Shading    = param
+            elif isinstance( param, TextPropertySet     ) : self.Properties = param
+            elif isinstance( param, ShadingPropertySet  ) : self.Shading    = param
             else :
                 #    otherwise we add to it to our list of elements and let
                 #    the rendering custom handler sort it out itself.
@@ -272,35 +272,6 @@ class Inline( list ) :
     def append( self, *params ) :
         #    filter out any that are explicitly None
         [ self._append( param ) for param in params if param is not None ]
-
-class Paragraph( list ) :
-    def __init__( self, *params ) :
-        super( Paragraph, self ).__init__()
-
-        self.Style      = None
-        self.Properties = None
-        self.Frame      = None
-        self.Shading    = None
-
-        self._append = super( Paragraph, self ).append
-
-        for param in params :
-            if   isinstance( param, ParagraphStyle ) : self.Style      = param
-            elif isinstance( param, ParagraphPS    ) : self.Properties = param
-            elif isinstance( param, FramePS        ) : self.Frame      = param
-            elif isinstance( param, ShadingPS      ) : self.Shading    = param
-            else :
-                #    otherwise we add to it to our list of elements and let
-                #    the rendering custom handler sort it out itself.
-                self.append( param )
-
-    def append( self, *params ) :
-        #    filter out any that are explicitly None
-        [ self._append( param ) for param in params if param is not None ]
-
-    def insert( self, index, value ) :
-        if value is not None :
-            super( Paragraph, self ).insert( index, value )
 
 class Document :
     def __init__( self, style_sheet=None, default_language=None, view_kind=None, view_zoom_kind=None, view_scale=None ) :

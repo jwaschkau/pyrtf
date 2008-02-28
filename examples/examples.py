@@ -86,10 +86,10 @@ def MakeExample2() :
               'carriage returns, ie new line markers that do not cause a paragraph break.' )
     section.append( p )
 
-    #    ParagraphPS is an alias for ParagraphPropertySet
-    para_props = ParagraphPS( tabs = [ TabPS( width=TabPS.DEFAULT_WIDTH     ),
-                                       TabPS( width=TabPS.DEFAULT_WIDTH * 2 ),
-                                       TabPS( width=TabPS.DEFAULT_WIDTH     ) ] )
+    #    ParagraphPropertySet is an alias for ParagraphPropertySet
+    para_props = ParagraphPropertySet( tabs = [ TabPropertySet( width=TabPropertySet.DEFAULT_WIDTH     ),
+                                       TabPropertySet( width=TabPropertySet.DEFAULT_WIDTH * 2 ),
+                                       TabPropertySet( width=TabPropertySet.DEFAULT_WIDTH     ) ] )
     p = Paragraph( ss.ParagraphStyles.Normal, para_props )
     p.append( 'Left Word', TAB, 'Middle Word', TAB, 'Right Word', LINE,
               'Left Word', TAB, 'Middle Word', TAB, 'Right Word' )
@@ -99,9 +99,9 @@ def MakeExample2() :
                     'The following paragraph demonstrates how to use flush right tabs'
                     'and leader dots.' )
 
-    para_props = ParagraphPS( tabs = [ TabPS( section.TwipsToRightMargin(),
-                                              alignment = TabPS.RIGHT,
-                                              leader    = TabPS.DOTS  ) ] )
+    para_props = ParagraphPropertySet( tabs = [ TabPropertySet( section.TwipsToRightMargin(),
+                                              alignment = TabPropertySet.RIGHT,
+                                              leader    = TabPropertySet.DOTS  ) ] )
     p = Paragraph( ss.ParagraphStyles.Normal, para_props )
     p.append( 'Before Dots', TAB, 'After Dots' )
     section.append( p )
@@ -115,13 +115,13 @@ def MakeExample2() :
 
     section.append( 'The following text was copied from http://www.shakespeare-online.com/plots/1kh4ps.html.' )
 
-    para_props = ParagraphPS()
+    para_props = ParagraphPropertySet()
     para_props.SetLeftIndent( TabPropertySet.DEFAULT_WIDTH *  3 )
     p = Paragraph( ss.ParagraphStyles.Normal, para_props )
     p.append( SAMPLE_PARA )
     section.append( p )
 
-    para_props = ParagraphPS()
+    para_props = ParagraphPropertySet()
     para_props.SetFirstLineIndent( TabPropertySet.DEFAULT_WIDTH * -2 )
     para_props.SetLeftIndent( TabPropertySet.DEFAULT_WIDTH *  3 )
     p = Paragraph( ss.ParagraphStyles.Normal, para_props )
@@ -129,7 +129,7 @@ def MakeExample2() :
     section.append( p )
 
     #    do a page
-    para_props = ParagraphPS()
+    para_props = ParagraphPropertySet()
     para_props.SetPageBreakBefore( True )
     para_props.SetFirstLineIndent( TabPropertySet.DEFAULT_WIDTH )
     para_props.SetLeftIndent( TabPropertySet.DEFAULT_WIDTH )
@@ -163,9 +163,9 @@ def MakeExample3() :
                     'The widths chosen are arbitrary, they do not have to be '
                     'multiples of tab widths.' )
 
-    table = Table( TabPS.DEFAULT_WIDTH * 7,
-                   TabPS.DEFAULT_WIDTH * 3,
-                   TabPS.DEFAULT_WIDTH * 3 )
+    table = Table( TabPropertySet.DEFAULT_WIDTH * 7,
+                   TabPropertySet.DEFAULT_WIDTH * 3,
+                   TabPropertySet.DEFAULT_WIDTH * 3 )
     c1 = Cell( Paragraph( 'Row One, Cell One'   ) )
     c2 = Cell( Paragraph( 'Row One, Cell Two'   ) )
     c3 = Cell( Paragraph( 'Row One, Cell Three' ) )
@@ -185,14 +185,14 @@ def MakeExample3() :
     section.append( 'Different frames can also be specified for each cell in the table '
                     'and each frame can have a different width and style for each border.' )
 
-    thin_edge  = BorderPS( width=20, style=BorderPS.SINGLE )
-    thick_edge = BorderPS( width=80, style=BorderPS.SINGLE )
+    thin_edge  = BorderPropertySet( width=20, style=BorderPropertySet.SINGLE )
+    thick_edge = BorderPropertySet( width=80, style=BorderPropertySet.SINGLE )
 
-    thin_frame  = FramePS( thin_edge,  thin_edge,  thin_edge,  thin_edge )
-    thick_frame = FramePS( thick_edge, thick_edge, thick_edge, thick_edge )
-    mixed_frame = FramePS( thin_edge,  thick_edge, thin_edge,  thick_edge )
+    thin_frame  = FramePropertySet( thin_edge,  thin_edge,  thin_edge,  thin_edge )
+    thick_frame = FramePropertySet( thick_edge, thick_edge, thick_edge, thick_edge )
+    mixed_frame = FramePropertySet( thin_edge,  thick_edge, thin_edge,  thick_edge )
 
-    table = Table( TabPS.DEFAULT_WIDTH * 3, TabPS.DEFAULT_WIDTH * 3, TabPS.DEFAULT_WIDTH * 3 )
+    table = Table( TabPropertySet.DEFAULT_WIDTH * 3, TabPropertySet.DEFAULT_WIDTH * 3, TabPropertySet.DEFAULT_WIDTH * 3 )
     c1 = Cell( Paragraph( 'R1C1' ), thin_frame )
     c2 = Cell( Paragraph( 'R1C2' ) )
     c3 = Cell( Paragraph( 'R1C3' ), thick_frame )
@@ -229,7 +229,7 @@ def MakeExample4() :
     #
     #    text properties can be specified in two ways, either a
     #    Text object can have its text properties specified like:
-    tps = TextPS( colour=ss.Colours.Red )
+    tps = TextPropertySet( colour=ss.Colours.Red )
     text = Text( 'RED', tps )
     p = Paragraph()
     p.append( 'This next word should be in ', text )
@@ -320,7 +320,7 @@ def MakeExample7() :
               'If you insert a page break you should see a different header and footer.' )
     section.append( p )
 
-    p = Paragraph( ss.ParagraphStyles.Normal, ParagraphPS().SetPageBreakBefore( True ) )
+    p = Paragraph( ss.ParagraphStyles.Normal, ParagraphPropertySet().SetPageBreakBefore( True ) )
     p.append( 'This should be page 2 '
               'with the subsequent headers and footers.' )
     section.append( p )
@@ -338,7 +338,7 @@ def MakeExample7() :
 
     section.append( 'This is the first page' )
 
-    p = Paragraph( ParagraphPS().SetPageBreakBefore( True ), 'This is the second page' )
+    p = Paragraph( ParagraphPropertySet().SetPageBreakBefore( True ), 'This is the second page' )
     section.append( p )
 
     return doc

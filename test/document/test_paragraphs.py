@@ -65,10 +65,10 @@ def MakeExample2() :
               'carriage returns, ie new line markers that do not cause a paragraph break.' )
     section.append( p )
 
-    #    ParagraphPS is an alias for ParagraphPropertySet
-    para_props = ParagraphPS( tabs = [ TabPS( width=TabPS.DEFAULT_WIDTH     ),
-                                       TabPS( width=TabPS.DEFAULT_WIDTH * 2 ),
-                                       TabPS( width=TabPS.DEFAULT_WIDTH     ) ] )
+    #    ParagraphPropertySet is an alias for ParagraphPropertySet
+    para_props = ParagraphPropertySet( tabs = [ TabPropertySet( width=TabPropertySet.DEFAULT_WIDTH     ),
+                                       TabPropertySet( width=TabPropertySet.DEFAULT_WIDTH * 2 ),
+                                       TabPropertySet( width=TabPropertySet.DEFAULT_WIDTH     ) ] )
     p = Paragraph( ss.ParagraphStyles.Normal, para_props )
     p.append( 'Left Word', TAB, 'Middle Word', TAB, 'Right Word', LINE,
               'Left Word', TAB, 'Middle Word', TAB, 'Right Word' )
@@ -78,9 +78,9 @@ def MakeExample2() :
                     'The following paragraph demonstrates how to use flush right tabs'
                     'and leader dots.' )
 
-    para_props = ParagraphPS( tabs = [ TabPS( section.TwipsToRightMargin(),
-                                              alignment = TabPS.RIGHT,
-                                              leader    = TabPS.DOTS  ) ] )
+    para_props = ParagraphPropertySet( tabs = [ TabPropertySet( section.TwipsToRightMargin(),
+                                              alignment = TabPropertySet.RIGHT,
+                                              leader    = TabPropertySet.DOTS  ) ] )
     p = Paragraph( ss.ParagraphStyles.Normal, para_props )
     p.append( 'Before Dots', TAB, 'After Dots' )
     section.append( p )
@@ -94,13 +94,13 @@ def MakeExample2() :
 
     section.append( 'The following text was copied from http://www.shakespeare-online.com/plots/1kh4ps.html.' )
 
-    para_props = ParagraphPS()
+    para_props = ParagraphPropertySet()
     para_props.SetLeftIndent( TabPropertySet.DEFAULT_WIDTH *  3 )
     p = Paragraph( ss.ParagraphStyles.Normal, para_props )
     p.append( SAMPLE_PARA )
     section.append( p )
 
-    para_props = ParagraphPS()
+    para_props = ParagraphPropertySet()
     para_props.SetFirstLineIndent( TabPropertySet.DEFAULT_WIDTH * -2 )
     para_props.SetLeftIndent( TabPropertySet.DEFAULT_WIDTH *  3 )
     p = Paragraph( ss.ParagraphStyles.Normal, para_props )
@@ -108,7 +108,7 @@ def MakeExample2() :
     section.append( p )
 
     #    do a page
-    para_props = ParagraphPS()
+    para_props = ParagraphPropertySet()
     para_props.SetPageBreakBefore( True )
     para_props.SetFirstLineIndent( TabPropertySet.DEFAULT_WIDTH )
     para_props.SetLeftIndent( TabPropertySet.DEFAULT_WIDTH )

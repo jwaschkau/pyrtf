@@ -17,7 +17,7 @@ def MakeExample4() :
     #
     #    text properties can be specified in two ways, either a
     #    Text object can have its text properties specified like:
-    tps = TextPS( colour=ss.Colours.Red )
+    tps = TextPropertySet( colour=ss.Colours.Red )
     text = Text( 'RED', tps )
     p = Paragraph()
     p.append( 'This next word should be in ', text )

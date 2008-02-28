@@ -77,7 +77,7 @@ def MakeExample7() :
               'If you insert a page break you should see a different header and footer.' )
     section.append( p )
 
-    p = Paragraph( ss.ParagraphStyles.Normal, ParagraphPS().SetPageBreakBefore( True ) )
+    p = Paragraph( ss.ParagraphStyles.Normal, ParagraphPropertySet().SetPageBreakBefore( True ) )
     p.append( 'This should be page 2 '
               'with the subsequent headers and footers.' )
     section.append( p )
@@ -95,7 +95,7 @@ def MakeExample7() :
 
     section.append( 'This is the first page' )
 
-    p = Paragraph( ParagraphPS().SetPageBreakBefore( True ), 'This is the second page' )
+    p = Paragraph( ParagraphPropertySet().SetPageBreakBefore( True ), 'This is the second page' )
     section.append( p )
 
     return doc

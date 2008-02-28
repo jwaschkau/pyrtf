@@ -1,3 +1,36 @@
+from rtfng.Styles import ParagraphStyle
+from rtfng.PropertySets import (
+    ParagraphPropertySet, FramePropertySet, ShadingPropertySet)
+
+class Paragraph( list ) :
+    def __init__( self, *params ) :
+        super( Paragraph, self ).__init__()
+
+        self.Style      = None
+        self.Properties = None
+        self.Frame      = None
+        self.Shading    = None
+
+        self._append = super( Paragraph, self ).append
+
+        for param in params :
+            if   isinstance( param, ParagraphStyle ) : self.Style      = param
+            elif isinstance( param, ParagraphPropertySet    ) : self.Properties = param
+            elif isinstance( param, FramePropertySet        ) : self.Frame      = param
+            elif isinstance( param, ShadingPropertySet      ) : self.Shading    = param
+            else :
+                #    otherwise we add to it to our list of elements and let
+                #    the rendering custom handler sort it out itself.
+                self.append( param )
+
+    def append( self, *params ) :
+        #    filter out any that are explicitly None
+        [ self._append( param ) for param in params if param is not None ]
+
+    def insert( self, index, value ) :
+        if value is not None :
+            super( Paragraph, self ).insert( index, value )
+
 class Table :
     LEFT    = 1
     RIGHT   = 2
@@ -93,8 +126,8 @@ class Cell( list ) :
         for param in params :
             if   isinstance( param, StringType ) : self.append    ( param )
             elif isinstance( param, Paragraph  ) : self.append    ( param )
-            elif isinstance( param, FramePS    ) : self.SetFrame  ( param )
-            elif isinstance( param, MarginsPS  ) : self.SetMargins( param )
+            elif isinstance( param, FramePropertySet    ) : self.SetFrame  ( param )
+            elif isinstance( param, MarginsPropertySet  ) : self.SetMargins( param )
 
     def SetFrame( self, value ) :
         self.Frame = value
