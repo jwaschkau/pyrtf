@@ -14,6 +14,10 @@ usability/reusablity.
 * Added the next reference RTF file and finished up the last section test.
 * Moved common test case code into utils.RTFTestCase and updated the sections
 test case.
+* Cleaned up imports in section test file.
+* Cleaned up some whitespace in the paragraph file.
+* Started on the paragraph tests.
+* Did some more RTFTestCase abstraction.
 
 2008.02.27
 

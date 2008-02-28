@@ -54,12 +54,15 @@ class RTFTestCase(TestCase):
         result.close()
         return testData
 
+    def callMake(self):
+        return getattr(self, 'make_%s' % self.getTestName())()
+
     def getData(self):
-        """
-        Each TestCase needs to implement this, returning the
-        (testData, refData) tuple.
-        """
-        raise NotImplemented
+        name = self.getTestName()
+        doc = self.callMake()
+        testData = self.getTestData(doc)
+        refData = self.getReferenceData(name)
+        return (testData, refData)
 
     def doTest(self):
         testData, refData = self.getData()
