@@ -2,6 +2,7 @@ from types import IntType, FloatType, LongType, StringTypes
 from copy import deepcopy
 from binascii import hexlify
 
+from Renderer import Renderer
 from Constants import *
 from Styles import *
 
@@ -634,6 +635,16 @@ class Document :
         result.Sections = self.Sections.Copy()
 
         return result
+
+    # XXX this is a temporary fix until I figure out the best way to refactor
+    # the renderer
+    def write(self, fhOrFilename):
+        if isinstance(fhOrFilename, str):
+            fh = open(fhOrFilename, 'w+')
+        else:
+            fh = fhOrFilename
+        r = Renderer()
+        r.Write(self, fh)
 
 def TEXT( *params, **kwargs ) :
     text_props = TextPropertySet()
