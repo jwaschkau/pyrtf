@@ -1,3 +1,12 @@
+2008.02.28
+
+* Added a stubbed script for the generation of test RTF docs.
+* Created a place in test/sources for test RTF docs.
+* Made changes to test_all so that it can be imported by other scripts.
+* Made generalizations to test_all, reducing redundancy and increasing
+usability/reusablity.
+* Generated and checked the first reference RTF file.
+
 2008.02.27
 
 * Moved examples into test dir to serve as the basis for unit tests.
