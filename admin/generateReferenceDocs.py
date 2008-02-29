@@ -50,6 +50,7 @@ for startDir in searchDirs:
                         filename = attrName.split('make_')[1] + '.rtf'
                         doc = getattr(obj, attrName)()
                         fh = open(os.path.join(pendingDir, filename), 'w+')
+                        print "Writing %s ..." % filename
                         doc.write(fh)
                         fh.close()
 

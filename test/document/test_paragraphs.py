@@ -31,35 +31,55 @@ class ParagraphTestCase(RTFTestCase):
 
     def make_paraHeading():
         doc, section, styles = initializeDoc()
-        p = Paragraph(styles.ParagraphStyles.Heading1)
-        p.append('Heading 1')
-        section.append(p)
+        p1 = Paragraph(styles.ParagraphStyles.Heading1)
+        p1.append('Heading 1')
+        section.append(p1)
         return doc
     make_paraHeading = staticmethod(make_paraHeading)
 
     def test_paraHeading(self):
         self.doTest()
 
-    def make_para():
+    def make_paraNormal():
         doc, section, styles = initializeDoc()
-        p = Paragraph(styles.ParagraphStyles.Normal)
-        p.append(
-            'In this case we have used a two styles. The first paragraph is '
-            'marked with the Heading1 style.')
-        section.append(p)
+        p1 = Paragraph(styles.ParagraphStyles.Heading1)
+        p1.append('Heading 1')
+        section.append(p1)
+        p2 = Paragraph(styles.ParagraphStyles.Normal)
+        p2.append(
+            'In this case we have used two styles. The first paragraph is '
+            'marked with the Heading1 style, and this one is marked with the '
+            'Normal style.')
+        section.append(p2)
         return doc
-    make_para = staticmethod(make_para)
+    make_paraNormal = staticmethod(make_paraNormal)
 
-    def make_para():
+    def test_paraNormal(self):
+        self.doTest()
+
+    def make_paraDefaultPreviousStyle():
         doc, section, styles = initializeDoc()
-        p = Paragraph()
-        p.append(
-            'Notice that after changing the style of the paragraph all '
-            'subsequent paragraphs have that style automatically. This saves '
-            'typing and is the default behaviour for RTF documents.')
-        section.append(p)
+        p1 = Paragraph(styles.ParagraphStyles.Heading1)
+        p1.append('Heading 1')
+        section.append(p1)
+        p2 = Paragraph(styles.ParagraphStyles.Normal)
+        p2.append(
+            'In this case we have used two styles. The first paragraph is '
+            'marked with the Heading1 style, and this one is marked with the '
+            'Normal style.')
+        section.append(p2)
+        p3 = Paragraph()
+        p3.append(
+            'Notice that after changing the style of the paragraph to Normal '
+            '(in the previous paragraph), all subsequent paragraphs have '
+            'that style automatically. This saves typing and is actually the '
+            'default native behaviour for RTF documents.')
+        section.append(p3)
         return doc
-    make_para = staticmethod(make_para)
+    make_paraDefaultPreviousStyle = staticmethod(make_paraDefaultPreviousStyle)
+
+    def test_paraDefaultPreviousStyle(self):
+        self.doTest()
 
     def make_para():
         doc, section, styles = initializeDoc()

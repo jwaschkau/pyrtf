@@ -20,6 +20,8 @@ test case.
 * Did some more RTFTestCase abstraction.
 * Updated the generate script.
 * Finished the first para test.
+* Added two more paragraph tests.
+* Added a print statement to the generate script.
 
 2008.02.27
 
