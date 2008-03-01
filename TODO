@@ -71,6 +71,7 @@ Plan
 * Unify the codes in constants.Languages to eliminate redundancy.
 * Increment to version 1.0.1.
 
+* Sort out the character TEXT and Text redundancy.
 * Simplify rendering along the lines of the "write" idiom.
 * Increment to version 1.0.2.
 
