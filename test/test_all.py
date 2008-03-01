@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import os
 from unittest import TestCase, TestSuite
 from unittest import TestLoader, TextTestRunner

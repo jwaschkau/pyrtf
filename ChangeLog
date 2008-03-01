@@ -1,3 +1,11 @@
+2008.02.29
+
+* Added a print statement to the generate script.
+* Moved Elements.TAB, .LINE and .RawCode into document.base.
+* Moved Elements.Text and .Inline into document.character.
+* Updated Renderer with these changes.
+* Added a paragraph test.
+
 2008.02.28
 
 * Added a stubbed script for the generation of test RTF docs.
@@ -21,7 +29,6 @@ test case.
 * Updated the generate script.
 * Finished the first para test.
 * Added two more paragraph tests.
-* Added a print statement to the generate script.
 
 2008.02.27
 

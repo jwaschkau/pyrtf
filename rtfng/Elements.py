@@ -7,7 +7,9 @@ from Constants import *
 from Styles import *
 from PropertySets import StandardColours, StandardFonts, StandardPaper
 
+from rtfng.document.base import TAB, LINE, RawCode
 from rtfng.document.section import Section
+from rtfng.document.character import Text, Inline
 
 class UnhandledParamError( Exception ) :
     def __init__( self, param ) :
@@ -84,13 +86,6 @@ def MakeDefaultStyleSheet( ) :
         result.ParagraphStyles.append( ps )
 
     return result
-
-class TAB  : pass
-class LINE : pass
-
-class RawCode :
-    def __init__( self, data ) :
-        self.Data = data
 
 PAGE_NUMBER   = RawCode( r'{\field{\fldinst page}}'   )
 TOTAL_PAGES   = RawCode( r'{\field{\fldinst numpages}}' )
@@ -231,47 +226,6 @@ class Image( RawCode ) :
 
     def ToRawCode( self, var_name ) :
         return '%s = RawCode( """%s""" )' % ( var_name, self.Data )
-
-class Text :
-    def __init__( self, *params ) :
-        self.Data       = None
-        self.Style      = None
-        self.Properties = None
-        self.Shading    = None
-
-        for param in params :
-            if   isinstance( param, TextStyle  ) : self.Style      = param
-            elif isinstance( param, TextPropertySet     ) : self.Properties = param
-            elif isinstance( param, ShadingPropertySet  ) : self.Shading    = param
-            else :
-                #    otherwise let the rendering custom handler sort it out itself
-                self.Data = param
-
-    def SetData( self, value ) :
-        self.Data = value
-
-class Inline( list ) :
-    def __init__( self, *params ) :
-        super( Inline, self ).__init__()
-
-        self.Style      = None
-        self.Properties = None
-        self.Shading    = None
-
-        self._append = super( Inline, self ).append
-
-        for param in params :
-            if   isinstance( param, TextStyle  ) : self.Style      = param
-            elif isinstance( param, TextPropertySet     ) : self.Properties = param
-            elif isinstance( param, ShadingPropertySet  ) : self.Shading    = param
-            else :
-                #    otherwise we add to it to our list of elements and let
-                #    the rendering custom handler sort it out itself.
-                self.append( param )
-
-    def append( self, *params ) :
-        #    filter out any that are explicitly None
-        [ self._append( param ) for param in params if param is not None ]
 
 class Document :
     def __init__( self, style_sheet=None, default_language=None, view_kind=None, view_zoom_kind=None, view_scale=None ) :

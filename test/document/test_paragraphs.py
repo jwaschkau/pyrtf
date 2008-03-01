@@ -3,6 +3,7 @@ from rtfng.utils import RTFTestCase
 from rtfng.Elements import Document
 from rtfng.PropertySets import ParagraphPropertySet, TabPropertySet
 
+from rtfng.document.base import TAB, LINE
 from rtfng.document.section import Section
 from rtfng.document.paragraph import Paragraph
 
@@ -81,6 +82,7 @@ class ParagraphTestCase(RTFTestCase):
     def test_paraDefaultPreviousStyle(self):
         self.doTest()
 
+    # XXX this probably need to go in the character tests...?
     def make_para():
         doc, section, styles = initializeDoc()
         p = Paragraph()
@@ -94,36 +96,40 @@ class ParagraphTestCase(RTFTestCase):
         return doc
     make_para = staticmethod(make_para)
 
-    def make_para():
+    def make_paraTabs():
         doc, section, styles = initializeDoc()
         p = Paragraph()
-        p.append('The paragraph itself can also be overridden in lots of ways, tabs, '
-                  'borders, alignment, etc can all be modified either in the style or as an '
-                  'override during the creation of the paragraph. '
-                  'The next paragraph demonstrates custom tab widths and embedded '
-                  'carriage returns, ie new line markers that do not cause a paragraph break.')
+        p.append(
+            'The paragraph itself can also be overridden in lots of ways: '
+            'tabs, borders, alignment, etc., can all be modified either in '
+            'the style or as an override during the creation of the '
+            'paragraph. This is demonstrated below with custom tab widths '
+            'and embedded carriage returns (i.e., new line markers that do '
+            'not cause a paragraph break).')
+        section.append(p)
+        tabs = [
+            TabPropertySet(width=TabPropertySet.DEFAULT_WIDTH),
+            TabPropertySet(width=TabPropertySet.DEFAULT_WIDTH * 2),
+            TabPropertySet(width=TabPropertySet.DEFAULT_WIDTH)]
+        para_props = ParagraphPropertySet(tabs=tabs)
+        p = Paragraph(styles.ParagraphStyles.Normal, para_props)
+        p.append(
+            'Phrase at Left Tab', TAB, 'Middle Phrase One', TAB, 'Right Phrase',
+            LINE, 'Second Left Phrase', TAB, 'Middle Phrase Two', TAB,
+            'Another Right Phrase')
         section.append(p)
         return doc
-    make_para = staticmethod(make_para)
+    make_paraTabs = staticmethod(make_paraTabs)
+
+    def test_paraTabs(self):
+        self.doTest()
 
     def make_para():
         doc, section, styles = initializeDoc()
-        para_props = ParagraphPropertySet(tabs = [ TabPropertySet(width=TabPropertySet.DEFAULT_WIDTH    ),
-                                       TabPropertySet(width=TabPropertySet.DEFAULT_WIDTH * 2),
-                                       TabPropertySet(width=TabPropertySet.DEFAULT_WIDTH    ) ])
-        p = Paragraph(styles.ParagraphStyles.Normal, para_props)
-        p.append('Left Word', TAB, 'Middle Word', TAB, 'Right Word', LINE,
-                  'Left Word', TAB, 'Middle Word', TAB, 'Right Word')
-        section.append(p)
-
         section.append('The alignment of tabs and style can also be controlled. '
                         'The following paragraph demonstrates how to use flush right tabs'
                         'and leader dots.')
-        return doc
-    make_para = staticmethod(make_para)
 
-    def make_para():
-        doc, section, styles = initializeDoc()
         para_props = ParagraphPropertySet(tabs = [ TabPropertySet(section.TwipsToRightMargin(),
                                                   alignment = TabPropertySet.RIGHT,
                                                   leader    = TabPropertySet.DOTS ) ])
@@ -132,11 +138,11 @@ class ParagraphTestCase(RTFTestCase):
         section.append(p)
 
         section.append('Paragraphs can also be indented, the following is all at the '
-                        'same indent level and the one after it has the first line '
-                        'at a different indent to the rest.  The third has the '
-                        'first line going in the other direction and is also separated '
-                        'by a page break.  Note that the '
-                        'FirstLineIndent is defined as being the difference from the LeftIndent.')
+                       'same indent level and the one after it has the first line '
+                       'at a different indent to the rest.  The third has the '
+                       'first line going in the other direction and is also separated '
+                       'by a page break.  Note that the '
+                       'FirstLineIndent is defined as being the difference from the LeftIndent.')
 
         section.append('The following text was copied from http://www.shakespeare-online.com/plots/1kh4ps.html.')
         return doc
