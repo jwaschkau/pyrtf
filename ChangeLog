@@ -8,6 +8,7 @@
 * Moved character functions out of Elements and into document.character.
 * Moved character test out of paragraphs tests.
 * Added last paragraph test.
+* First-run clean-up of the character tests.
 
 2008.02.28
 
