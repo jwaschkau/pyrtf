@@ -79,6 +79,10 @@ Plan
   only need to do doc.append(section)).
 * Increment to version 1.0.3.
 
+* Refactor TabPropertySet leader types into a single attribute.
+* Replace use of apply() with extended call syntax.
+* Increment to version 1.0.4.
+
 * Get parser to the point where it can parse everything the current code can
   generate.
 * Increment to version 1.1.0.

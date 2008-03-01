@@ -1,9 +1,19 @@
 #!/usr/bin/env python
-
-import sys
-sys.path.append( '../' )
-
 from rtfng import *
+
+class CharacterTestCase(TestCase):
+    def make_para():
+        doc, section, styles = initializeDoc()
+        p = Paragraph()
+        p.append('It is also postylesible to provide overrides for element of a style. ',
+                  'For example I can change just the font ',
+                  TEXT('size', size=48),
+                  ' or ',
+                  TEXT('typeface', font=styles.Fonts.Impact) ,
+                  '.')
+        section.append(p)
+        return doc
+    make_para = staticmethod(make_para)
 
 def MakeExample4() :
     doc     = Document()

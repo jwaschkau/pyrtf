@@ -5,6 +5,9 @@
 * Moved Elements.Text and .Inline into document.character.
 * Updated Renderer with these changes.
 * Added a paragraph test.
+* Moved character functions out of Elements and into document.character.
+* Moved character test out of paragraphs tests.
+* Added last paragraph test.
 
 2008.02.28
 
