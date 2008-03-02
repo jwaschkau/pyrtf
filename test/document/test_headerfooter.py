@@ -1,13 +1,18 @@
-#!/usr/bin/env python
+from rtfng.utils import RTFTestCase
+from rtfng.Elements import Document
 
-import sys
-sys.path.append( '../' )
+from rtfng.document.section import Section
 
-from rtfng import *
+def initializeDoc():
+    doc = Document()
+    section = Section()
+    doc.Sections.append(section)
+    return (doc, section, doc.StyleSheet)
 
+	class ParagraphTestCase(RTFTestCase):
 
-#
-#  DO SOME WITH HEADERS AND FOOTERS
+	    def make_():
+	
 def MakeExample5() :
     doc     = Document()
     ss      = doc.StyleSheet
@@ -100,18 +105,4 @@ def MakeExample7() :
 
     return doc
 
-def OpenFile( name ) :
-    return file( '%s.rtf' % name, 'w' )
 
-if __name__ == '__main__' :
-    DR = Renderer()
-
-    doc5 = MakeExample5()
-    doc6 = MakeExample6()
-    doc7 = MakeExample7()
-
-    DR.Write( doc5, OpenFile( '5' ) )
-    DR.Write( doc6, OpenFile( '6' ) )
-    DR.Write( doc7, OpenFile( '7' ) )
-
-    print "Finished"

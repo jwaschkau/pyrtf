@@ -1,3 +1,7 @@
+2008.03.01
+
+* Started getting the rest of the tests ready.
+
 2008.02.29
 
 * Added a print statement to the generate script.
@@ -10,7 +14,7 @@
 * Added last paragraph test.
 * First-run clean-up of the character tests.
 * Added the charater tests.
-* Made some initial changes to theh table tests.
+* Made some initial changes to the table tests.
 
 2008.02.28
 

@@ -1,8 +1,13 @@
-import os
-import sys
-sys.path.append( '../' )
+from rtfng.utils import RTFTestCase
+from rtfng.Elements import Document
 
-from rtfng import *
+from rtfng.document.section import Section
+
+def initializeDoc():
+    doc = Document()
+    section = Section()
+    doc.Sections.append(section)
+    return (doc, section, doc.StyleSheet)
 
 def MakeExample1() :
     doc     = Document()
@@ -10,8 +15,7 @@ def MakeExample1() :
     section = Section()
     doc.Sections.append( section )
 
-    #    text can be added directly to the section
-    #    a paragraph object is create as needed
+    # text can be added directly to the section a paragraph object is create as needed
     section.append( 'Image Example 1' )
 
     section.append( 'You can add images in one of two ways, either converting the '
@@ -42,15 +46,5 @@ def MakeExample1() :
 
     return doc
 
-def OpenFile( name ) :
-    return file( '%s.rtf' % name, 'w' )
 
-if __name__ == '__main__' :
-    DR = Renderer()
-
-    doc1 = MakeExample1()
-
-    DR.Write( doc1, OpenFile( 'Image1' ) )
-
-    print "Finished"
 

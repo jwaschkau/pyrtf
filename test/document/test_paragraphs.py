@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 import re
 
 from rtfng.utils import RTFTestCase
