@@ -1,3 +1,19 @@
+function abort {
+    echo "*** Commit aborting! Test suite failed ***"
+}
+
+function error {
+    echo "There was an error committing; message preserved."
+}
+
+function succeed {
+    rm commit-msg
+    echo -n "Commit succeeded; sync Google and SourceForge? [y/n] "; read CHECK
+    if [[ "$CHECK" == "y" ]]; then
+        ./admin/syncRepos.sh
+    fi
+}
+
 svn diff ChangeLog | \
     egrep '^\+' | \
     sed -e 's/^\+//g'| \
@@ -22,9 +38,7 @@ if [[ "$STATUS" == 'OK' ]];then
         echo "All tests passed."
     fi
     echo "Committing to Subversion now..."
-    svn commit --file commit-msg && \
-        rm commit-msg || \
-        echo "There was an error committing; message preserved."
+    svn commit --file commit-msg && succeed || error
 else
-    echo "*** Commit aborting! Test suite failed ***"
+    abort
 fi
