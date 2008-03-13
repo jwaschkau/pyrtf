@@ -6,6 +6,9 @@
 * Added two more values to be passed to the python script.
 * Set the repo vars to production (non-testing) values.
 * Minor code tweaks.
+* Fixed some typos in unfinished code just to get the tests passing.
+* Added support for getting the test name in Python 2.5.
+* Updated the commit script so that tests can actually run.
 
 2008.03.12
 

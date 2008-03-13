@@ -6,7 +6,7 @@ echo "Committing with this message:"
 cat commit-msg
 echo
 if [[ "$1" == 'run_tests' ]];then
-    python tests/test_all.py &> test.out
+    python test/test_all.py &> test.out
 else
     echo 'OK' > test.out
 fi

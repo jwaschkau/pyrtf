@@ -9,10 +9,11 @@ def initializeDoc():
     doc.Sections.append(section)
     return (doc, section, doc.StyleSheet)
 
-	class ParagraphTestCase(RTFTestCase):
+class ParagraphTestCase(RTFTestCase):
 
-	    def make_():
-	
+    def make_():
+        pass
+
 def MakeExample5() :
     doc     = Document()
     ss      = doc.StyleSheet

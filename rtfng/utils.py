@@ -45,6 +45,9 @@ class RTFTestCase(TestCase):
         return data
 
     def getTestName(self):
+        #import pdb;pdb.set_trace()
+        if hasattr(self, '_testMethodName'):
+            return self._testMethodName.split('test_')[1]
         return self._TestCase__testMethodName.split('test_')[1]
 
     def getTestData(self, doc):
