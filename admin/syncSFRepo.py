@@ -17,7 +17,7 @@ if os.path.exists(pickleFile):
     if (now - lastSync).days < minDays:
         print "A migration was performed less than %s day(s) ago." % minDays
         print "Aborting ... "
-        sys.exit(1)
+        sys.exit()
 
 # define some URLs
 host = 'https://sourceforge.net'
@@ -42,13 +42,13 @@ elif form.getControl(name='action').value == 'migration_progress':
     # still waiting ...
     print "Migration still in progress; please try later."
     print "Aborting ... "
-    sys.exit(1)
+    sys.exit()
 else:
     # wtf?
     print "Got unexpected form!"
     print "\taction: %s" % form.getControl(name='action').value
     print "Aborting ... "
-    sys.exit(1)
+    sys.exit()
 
 # submit the uploaded svn dump file
 form.getControl(name='src_path_type3').value = filename
