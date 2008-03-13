@@ -9,6 +9,8 @@
 * Fixed some typos in unfinished code just to get the tests passing.
 * Added support for getting the test name in Python 2.5.
 * Updated the commit script so that tests can actually run.
+* Changed default behaviour for commit script to run tests, skipping if a flag
+is passed (as opposed to only running tests if a flag is passed).
 
 2008.03.12
 
