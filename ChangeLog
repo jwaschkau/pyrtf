@@ -11,6 +11,11 @@
 * Updated the commit script so that tests can actually run.
 * Changed default behaviour for commit script to run tests, skipping if a flag
 is passed (as opposed to only running tests if a flag is passed).
+* Added functions to the commit script for better organziation as well as a
+check for syncing Google code to SourceForge.
+* Removed exit code 1s from python script for convenience of use/parsing by
+other scripts.
+* Removed extraneous trailing slash from scp command.
 
 2008.03.12
 
