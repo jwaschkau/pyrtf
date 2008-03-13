@@ -16,6 +16,7 @@ check for syncing Google code to SourceForge.
 * Removed exit code 1s from python script for convenience of use/parsing by
 other scripts.
 * Removed extraneous trailing slash from scp command.
+* Updated sync script to remove gzip file when done.
 
 2008.03.12
 
