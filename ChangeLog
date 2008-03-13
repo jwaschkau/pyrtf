@@ -2,6 +2,10 @@
 
 * Lots of changes to the automation script.
 * Fixed a syntax error in the script.
+* Moved date var out of python script and into repo vars "script".
+* Added two more values to be passed to the python script.
+* Set the repo vars to production (non-testing) values.
+* Minor code tweaks.
 
 2008.03.12
 

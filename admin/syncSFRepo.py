@@ -7,12 +7,9 @@ from datetime import datetime
 from adytum.util.sourceforge.base import login
 
 # do a date check
-filename, sfID = sys.argv[1:]
+filename, sfID, minDays, pickleFile = sys.argv[1:]
 now = datetime.now()
-minDays = 7
-datePickle = 'lastSync.pickle'
-picklePath = os.path.dirname(filename)
-pickleFile = os.path.join(picklePath, datePickle)
+minDays = int(minDays)
 if os.path.exists(pickleFile):
     fh = open(pickleFile)
     lastSync = pickle.load(fh)
