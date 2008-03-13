@@ -19,6 +19,7 @@ other scripts.
 * Updated sync script to remove gzip file when done.
 * Updated sync script with messages to stdout as well as the functionality of
 creating a local mirror if one does not already exist.
+* Commented out some testing code.
 
 2008.03.12
 

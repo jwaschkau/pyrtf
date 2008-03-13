@@ -25,7 +25,8 @@ loginURL = '%s/account/login.php' % host
 formURL = '%s/project/admin/svn_migration.php?group_id=%s' % (host, sfID)
 
 # login and go to the migration page
-browser = login(loginURL, credFile='sourceforge_creds_test')
+#browser = login(loginURL, credFile='sourceforge_creds_test')
+browser = login(loginURL, credFile='sourceforge_creds')
 browser.open(formURL)
 form = browser.getForm(name='migration')
 
