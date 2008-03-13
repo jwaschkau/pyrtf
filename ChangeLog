@@ -5,6 +5,8 @@ google.
 * Removed extraneous slashes from scripts.
 * Added more variables for use by other scripts (and changed some values for
 testing purposes).
+* Added more scripts for 1) uploading to SF.net, 2) automating the
+form-processing, and 3) controlling the whole process.
 
 2008.03.01
 
