@@ -2,6 +2,9 @@
 
 * Added scripts for creating a local mirror and syncing that mirror from
 google.
+* Removed extraneous slashes from scripts.
+* Added more variables for use by other scripts (and changed some values for
+testing purposes).
 
 2008.03.01
 
