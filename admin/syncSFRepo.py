@@ -65,5 +65,5 @@ fh.close()
 
 # last words
 print "To view the results, visit the following URL:"
-print "\t%s\n" formURL
+print "\t%s\n" % formURL
 print "\n"
