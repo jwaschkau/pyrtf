@@ -1,6 +1,7 @@
 2008.06.08
 
 * Added a dependencies file.
+* Added missing import in setup.py.
 
 2008.06.07
 

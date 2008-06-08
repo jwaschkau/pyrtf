@@ -1,10 +1,12 @@
-"""pyrtf-ng - The next generation in Rich Text Format documents for Python.
+"""
+pyrtf-ng - The next generation in Rich Text Format documents for Python.
 
 pyrtf-ng is a pure python module for the efficient creation and parsing of rich
 text format documents. Supports styles, tables, cell merging, jpg and png
 images and tries to maintain compatibility with as many RTF readers as
-possible. """
-
+possible. 
+"""
+import os
 from distutils.core import setup
 
 doclines = __doc__.split("\n")
