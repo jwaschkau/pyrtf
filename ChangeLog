@@ -1,3 +1,9 @@
+2008.06.07
+
+* Added a notice in the examples directory that the examples are going away.
+* Updated the README with a note about where to lool fofr examples (the test
+directory).
+
 2008.03.13
 
 * Lots of changes to the automation script.
