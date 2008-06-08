@@ -9,6 +9,15 @@ from distutils.core import setup
 
 doclines = __doc__.split("\n")
 
+packageName = 'rtfng'
+
+def findPackages():
+    packages = []
+    for directory, subdirectories, files in os.walk(packageName):
+        if '__init__.py' in files:
+            packages.append(directory.replace(os.sep, '.'))
+    return packages
+
 setup(name = 'pyrtf-ng',
     version = open('VERSION').read().strip(),
     author = 'Duncan McGreggor',
@@ -20,14 +29,7 @@ setup(name = 'pyrtf-ng',
     long_description = '\n'.join( doclines[2:]),
     keywords = ('RTF', 'Rich Text', 'Rich Text Format', 'documents',
         'word'),
-    packages = [
-        'rtfng',
-        'rtfng.parser',
-        'rtfng.writer',
-        ],
-    package_dir = {
-        'rtfng': 'rtfng'
-        },
+    packages = findPackages(),
     classifiers = [f.strip() for f in """
         Development Status :: 4 - Beta
         Topic :: Text Editors :: Text Processing
