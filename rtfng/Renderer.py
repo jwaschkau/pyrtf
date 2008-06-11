@@ -485,7 +485,7 @@ class Renderer :
             if isinstance(element, StringType):
                 self._write(element)
             elif isinstance(element, UnicodeType):
-                self._write(element)
+                self.writeUnicodeElement(element)
             elif isinstance(element, RawCode):
                 self._write(element.Data)
             elif isinstance(element, Text):

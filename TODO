@@ -9,6 +9,7 @@ Plan
 * Update the generate script to accept file names as parameters, thus only
   generating RTF files for the make_() methods in those files (as opposed to
   traversing the whole tree).
+* Add tests for the unicode support.
 * Increment to version 0.9.1
 
 * Rename varaibles to remove underscores (convert to camelCase).
