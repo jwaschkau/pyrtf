@@ -35,47 +35,47 @@ class Inline(Text):
 
 
 def TEXT(*params, **kwargs):
-    text_props = TextPropertySet()
-    text_props.SetFont(kwargs.get('font', None ))
-    text_props.SetSize(kwargs.get('size', None ))
-    text_props.SetBold(kwargs.get('bold', False))
-    text_props.SetItalic(kwargs.get('italic', False))
-    text_props.SetUnderline(kwargs.get('underline', False))
-    text_props.SetColour(kwargs.get('colour', None ))
+    textProps = TextPropertySet()
+    textProps.font = kwargs.get('font', None)
+    textProps.size = kwargs.get('size', None)
+    textProps.bold = kwargs.get('bold', False)
+    textProps.italic = kwargs.get('italic', False)
+    textProps.underline = kwargs.get('underline', False)
+    textProps.colour = kwargs.get('colour', None)
 
     if len(params) == 1:
-        return Text(params[0], text_props)
+        return Text(params[0], textProps)
 
-    result = Inline(text_props)
+    result = Inline(textProps)
     apply(result.append, params)
     return result
 
 def B(*params):
-    text_props = TextPropertySet(bold=True)
+    textProps = TextPropertySet(bold=True)
 
     if len(params) == 1:
-        return Text(params[0], text_props)
+        return Text(params[0], textProps)
 
-    result = Inline(text_props)
+    result = Inline(textProps)
     apply(result.append, params)
     return result
 
 def I(*params):
-    text_props = TextPropertySet(italic=True)
+    textProps = TextPropertySet(italic=True)
 
     if len(params) == 1:
-        return Text(params[0], text_props)
+        return Text(params[0], textProps)
 
-    result = Inline(text_props)
+    result = Inline(textProps)
     apply(result.append, params)
     return result
 
 def U(*params):
-    text_props = TextPropertySet(underline=True)
+    textProps = TextPropertySet(underline=True)
 
     if len(params) == 1:
-        return Text(params[0], text_props)
+        return Text(params[0], textProps)
 
-    result = Inline(text_props)
+    result = Inline(textProps)
     apply(result.append, params)
     return result

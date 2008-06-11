@@ -2,6 +2,7 @@
 
 * Added Juanjo Conti's patch to support unicode.
 * Fixed tons of spacing issues.
+* Started cleaning up some of the useless methods.
 
 2008.06.10
 

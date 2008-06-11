@@ -32,9 +32,9 @@ class AttributedList(list):
             if self.AcceptedType:
                 assert isinstance(value, self.AcceptedType)
             self._append(value)
-            name = getattr(value, 'Name', None)
+            name = getattr(value, 'name', None)
             if name:
-                name = MakeAttributeName(value.Name)
+                name = MakeAttributeName(value.name)
                 setattr(self, name, value)
 
     def __deepcopy__(self, memo):
@@ -44,14 +44,10 @@ class AttributedList(list):
 
 class Colour:
     def __init__(self, name, red, green, blue):
-        self.SetName(name)
+        self.name = name
         self.SetRed(red)
         self.SetGreen(green)
         self.SetBlue(blue)
-
-    def SetName(self, value):
-        self.Name = value
-        return self
 
     def SetRed(self, value):
         self.Red = value
@@ -72,16 +68,12 @@ class Colours(AttributedList):
 class Font:
     def __init__(self, name, family, character_set=0, pitch=None, panose=None,
                  alternate=None):
-        self.SetName(name)
+        self.name = name
         self.SetFamily(family)
         self.SetCharacterSet(character_set)
         self.SetPitch(pitch)
         self.SetPanose(panose)
         self.SetAlternate(alternate)
-
-    def SetName(self, value):
-        self.Name = value
-        return self
 
     def SetFamily(self, value):
         self.Family = value
@@ -109,15 +101,11 @@ class Fonts(AttributedList):
 
 class Paper:
     def __init__(self, name, code, description, width, height):
-        self.SetName(name)
+        self.name = name
         self.SetCode(code)
         self.SetDescription(description)
         self.SetWidth(width)
         self.SetHeight(height)
-
-    def SetName(self, value):
-        self.Name = value
-        return self
 
     def SetCode(self, value):
         self.Code = value
@@ -325,19 +313,19 @@ class TextPropertySet:
     def __init__(self, font=None, size=None, bold=False, italic=False,
                  underline=False, colour=None, frame=None, expansion=None,
                  unicodeText=False):
-        self.SetFont(font)
-        self.SetSize(size)
+        self.font = font
+        self.size = size
         self.unicode = unicodeText
-        self.SetBold(bold)
-        self.SetItalic(italic)
-        self.SetUnderline(underline)
-        self.SetColour(colour)
-        self.SetFrame(frame)
-        self.SetStrikeThrough(False)
-        self.SetDottedUnderline(False)
-        self.SetDoubleUnderline(False)
-        self.SetWordUnderline(False)
-        self.SetExpansion(expansion)
+        self.bold = bold
+        self.italic = italic
+        self.underline = underline
+        self.colour = colour
+        self.frame = frame
+        self.strikeThrough = False
+        self.dottedUnderline = False
+        self.doubleUnderline = False
+        self.wordUnderline = False
+        self.expansion = expansion
 
     def Copy(self):
         return deepcopy(self)
@@ -347,74 +335,10 @@ class TextPropertySet:
         # at so we want to stop the recursiveness at this point and return an
         # object with the right references.
         result = TextPropertySet(
-            self.Font, self.Size, self.Bold, self.Italic, self.Underline,
-            self.Colour, deepcopy(self.Frame, memo))
-        result.SetStrikeThrough(self.StrikeThrough)
+            self.font, self.size, self.bold, self.italic, self.underline,
+            self.colour, deepcopy(self.frame, memo))
+        result.strikeThrough = self.strikeThrough
         return result
-
-    def SetFont(self, value):
-        assert not value or isinstance(value, Font)
-        self.Font = value
-        return self
-
-    def SetSize(self, value):
-        self.Size = value
-        return self
-
-    def SetBold(self, value):
-        self.Bold = False
-        if value: self.Bold = True
-        return self
-
-    def SetItalic(self, value):
-        self.Italic = False
-        if value:
-            self.Italic = True
-        return self
-
-    def SetUnderline(self, value):
-        self.Underline = False
-        if value:
-            self.Underline = True
-        return self
-
-    def SetColour(self, value):
-        assert value is None or isinstance(value, Colour)
-        self.Colour = value
-        return self
-
-    def SetFrame(self, value):
-        assert value is None or isinstance(value, BorderPropertySet)
-        self.Frame = value
-        return self
-
-    def SetStrikeThrough(self, value):
-        self.StrikeThrough = False
-        if value:
-            self.StrikeThrough = True
-        return self
-
-    def SetDottedUnderline(self, value):
-        self.DottedUnderline = False
-        if value:
-            self.DottedUnderline = True
-        return self
-
-    def SetDoubleUnderline(self, value):
-        self.DoubleUnderline = False
-        if value:
-            self.DoubleUnderline = True
-        return self
-
-    def SetWordUnderline(self, value):
-        self.WordUnderline = False
-        if value:
-            self.WordUnderline = True
-        return self
-
-    def SetExpansion(self, value):
-        self.Expansion = value
-        return self
 
 class ParagraphPropertySet:
     LEFT = 1

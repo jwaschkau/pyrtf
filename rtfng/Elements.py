@@ -42,14 +42,15 @@ def MakeDefaultStyleSheet( ) :
                          NormalText.Copy() )
     result.ParagraphStyles.append( ps )
 
-    NormalText.TextPropertySet.SetSize( 32 )
+    NormalText.textProps.size = 32
     ps = ParagraphStyle( 'Heading 1',
                          NormalText.Copy(),
                          ParagraphPropertySet( space_before = 240,
                                                space_after  = 60 ) )
     result.ParagraphStyles.append( ps )
 
-    NormalText.TextPropertySet.SetSize( 24 ).SetBold( True )
+    NormalText.textProps.size = 24
+    NormalText.textProps.bold = True
     ps = ParagraphStyle( 'Heading 2',
                          NormalText.Copy(),
                          ParagraphPropertySet( space_before = 240,
@@ -59,14 +60,14 @@ def MakeDefaultStyleSheet( ) :
     #    Add some more in that are based on the normal template but that
     #    have some indenting set that makes them suitable for doing numbered
     normal_numbered = result.ParagraphStyles.Normal.Copy()
-    normal_numbered.SetName( 'Normal Numbered' )
+    normal_numbered.name = 'Normal Numbered'
     normal_numbered.ParagraphPropertySet.SetFirstLineIndent( TabPropertySet.DEFAULT_WIDTH * -1 )
     normal_numbered.ParagraphPropertySet.SetLeftIndent     ( TabPropertySet.DEFAULT_WIDTH )
 
     result.ParagraphStyles.append( normal_numbered )
 
     normal_numbered2 = result.ParagraphStyles.Normal.Copy()
-    normal_numbered2.SetName( 'Normal Numbered 2' )
+    normal_numbered2.name = 'Normal Numbered 2'
     normal_numbered2.ParagraphPropertySet.SetFirstLineIndent( TabPropertySet.DEFAULT_WIDTH * -1 )
     normal_numbered2.ParagraphPropertySet.SetLeftIndent     ( TabPropertySet.DEFAULT_WIDTH *  2 )
 

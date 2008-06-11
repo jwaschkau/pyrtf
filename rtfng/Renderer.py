@@ -203,27 +203,25 @@ class Renderer :
             else :
                 settings.append( paragraph_props.SpaceBetweenLines, r'sl%s\slmult1' )
 
-    def _RendTextPropertySet( self, text_props, settings ) :
-        if not text_props : return
+    def _RendTextPropertySet( self, textProps, settings ) :
+        if not textProps:
+            return
+        if textProps.expansion :
+            settings.append(textProps.expansion, 'expndtw%s')
+        settings.append(textProps.bold, 'b')
+        settings.append(textProps.italic, 'i')
+        settings.append(textProps.underline, 'ul')
+        settings.append(textProps.dottedUnderline, 'uld')
+        settings.append(textProps.doubleUnderline, 'uldb')
+        settings.append(textProps.wordUnderline, 'ulw')
+        settings.append(textProps.wordUnderline, 'ulw')
+        settings.append(textProps.unicode, 'u')
+        settings.append(self._font_map.get(textProps.font, False), 'f%s')
+        settings.append(textProps.size, 'fs%s')
+        settings.append(self._colour_map.get(textProps.colour, False), 'cf%s')
 
-        if text_props.Expansion :
-            settings.append( text_props.Expansion, 'expndtw%s' )
-
-        settings.append(text_props.Bold, 'b')
-        settings.append(text_props.Italic, 'i')
-        settings.append(text_props.Underline, 'ul')
-        settings.append(text_props.DottedUnderline, 'uld')
-        settings.append(text_props.DoubleUnderline, 'uldb')
-        settings.append(text_props.WordUnderline, 'ulw')
-        settings.append(text_props.WordUnderline, 'ulw')
-        settings.append(text_props.unicode, 'u')
-
-        settings.append( self._font_map.get( text_props.Font, False ), 'f%s' )
-        settings.append( text_props.Size, 'fs%s' )
-        settings.append( self._colour_map.get( text_props.Colour, False ), 'cf%s' )
-
-        if text_props.Frame :
-            frame = text_props.Frame
+        if textProps.frame :
+            frame = textProps.frame
             settings.append( 'chbrdr' )
             settings.append( BorderStyleMap[ frame.Style ] )
             settings.append( frame.Width                                , 'brdrw%s' )
@@ -325,7 +323,7 @@ class Renderer :
             alternate = ''
             if font.Pitch     : pitch     = r'\fprq%s'    % font.Pitch
             if font.Panose    : panose    = r'{\*\panose %s}' % font.Panose
-            if font.Alternate : alternate = r'{\*\falt %s}'   % font.Alternate.Name
+            if font.Alternate : alternate = r'{\*\falt %s}'   % font.Alternate.name
 
             self._write( r'{\f%s\f%s%s\fcharset%s%s %s%s;}',
                          offset,
@@ -333,7 +331,7 @@ class Renderer :
                          pitch,
                          font.CharacterSet,
                          panose,
-                         font.Name,
+                         font.name,
                          alternate )
 
             self._font_map[ font ] = offset
@@ -367,7 +365,7 @@ class Renderer :
             self._RendShadingPropertySet  ( style.ShadingPropertySet,   settings )
 
             #    text properties
-            self._RendTextPropertySet   ( style.TextStyle.TextPropertySet,     settings )
+            self._RendTextPropertySet   ( style.TextStyle.textProps,     settings )
             self._RendShadingPropertySet( style.TextStyle.ShadingPropertySet,  settings )
 
             #    have to take
@@ -375,7 +373,7 @@ class Renderer :
             next     = '\\snext%s'    % offset_map.get( style.Next,    0 )
 
             inln = '\\s%s%s' % ( idx, settings )
-            self._write( "{%s%s%s %s;}", inln, based_on, next, style.Name )
+            self._write( "{%s%s%s %s;}", inln, based_on, next, style.name )
 
             self.paragraph_style_map[ style ] = inln
 
