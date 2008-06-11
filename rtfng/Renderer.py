@@ -1,4 +1,4 @@
-from types import StringType, ListType, TupleType
+from types import StringType, ListType, TupleType, UnicodeType
 from copy import deepcopy
 
 from PropertySets import (
@@ -209,12 +209,14 @@ class Renderer :
         if text_props.Expansion :
             settings.append( text_props.Expansion, 'expndtw%s' )
 
-        settings.append( text_props.Bold,            'b'    )
-        settings.append( text_props.Italic,          'i'    )
-        settings.append( text_props.Underline,       'ul'   )
-        settings.append( text_props.DottedUnderline, 'uld'  )
-        settings.append( text_props.DoubleUnderline, 'uldb' )
-        settings.append( text_props.WordUnderline,   'ulw'  )
+        settings.append(text_props.Bold, 'b')
+        settings.append(text_props.Italic, 'i')
+        settings.append(text_props.Underline, 'ul')
+        settings.append(text_props.DottedUnderline, 'uld')
+        settings.append(text_props.DoubleUnderline, 'uldb')
+        settings.append(text_props.WordUnderline, 'ulw')
+        settings.append(text_props.WordUnderline, 'ulw')
+        settings.append(text_props.unicode, 'u')
 
         settings.append( self._font_map.get( text_props.Font, False ), 'f%s' )
         settings.append( text_props.Size, 'fs%s' )
@@ -481,33 +483,30 @@ class Renderer :
 
         self._write( r'%s\pard\plain%s %s%s ' % ( opening, tag_prefix, self._CurrentStyle, overrides ) )
 
-        for element in paragraph_elem :
-
-            if isinstance( element, StringType ) :
-                self._write( element )
-
-            elif isinstance( element, RawCode ) :
-                self._write( element.Data )
-
-            elif isinstance( element, Text ) :
-                self.WriteTextElement( element )
-
-            elif isinstance( element, Inline ) :
-                self.WriteInlineElement( element )
-
-            elif element == TAB :
-                self._write( r'\tab ' )
-
-            elif element == LINE :
-                self._write( r'\line ' )
-
+        for element in paragraph_elem:
+            if isinstance(element, StringType):
+                self._write(element)
+            elif isinstance(element, UnicodeType):
+                self._write(element)
+            elif isinstance(element, RawCode):
+                self._write(element.Data)
+            elif isinstance(element, Text):
+                self.WriteTextElement( element)
+            elif isinstance(element, Inline):
+                self.WriteInlineElement(element)
+            elif element == TAB:
+                self._write(r'\tab ')
+            elif element == LINE:
+                self._write(r'\line ')
             elif self.WriteCustomElement :
-                self.WriteCustomElement( self, element )
+                self.WriteCustomElement(self, element)
+            else:
+                raise Exception('Don\'t know how to handle %s' % element)
+        self._write(tag_suffix + closing)
 
-            else :
-                raise Exception( 'Don\'t know how to handle %s' % element )
-
-        self._write( tag_suffix + closing )
+    def writeUnicodeElement(self, element):
+        text = ''.join(['\u%s?' % str(ord(e)) for e in element])
+        self._write(text or '')
 
     def WriteRawCode( self, raw_elem ) :
         self._write( raw_elem.Data )

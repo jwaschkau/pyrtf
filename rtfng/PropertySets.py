@@ -319,24 +319,24 @@ class TabPropertySet :
         self.Leader = value
         return self
 
-class TextPropertySet :
+class TextPropertySet:
 
-    def __init__( self, font=None, size=None, bold=None, italic=None, underline=None, colour=None, frame=None, expansion=None ) :
-        self.SetFont         ( font )
-        self.SetSize         ( size )
-
-        self.SetBold         ( bold      or False )
-        self.SetItalic       ( italic    or False )
-        self.SetUnderline    ( underline or False )
-
-        self.SetColour( colour )
-        self.SetFrame ( frame  )
-
-        self.SetStrikeThrough  ( False )
-        self.SetDottedUnderline( False )
-        self.SetDoubleUnderline( False )
-        self.SetWordUnderline  ( False )
-        self.SetExpansion      ( expansion )
+    def __init__(self, font=None, size=None, bold=False, italic=False,
+                 underline=False, colour=None, frame=None, expansion=None,
+                 unicodeText=False):
+        self.SetFont(font)
+        self.SetSize(size)
+        self.unicode = unicodeText
+        self.SetBold(bold)
+        self.SetItalic(italic)
+        self.SetUnderline(underline)
+        self.SetColour(colour)
+        self.SetFrame(frame)
+        self.SetStrikeThrough(False)
+        self.SetDottedUnderline(False)
+        self.SetDoubleUnderline(False)
+        self.SetWordUnderline(False)
+        self.SetExpansion(expansion)
 
     def Copy( self ) :
         return deepcopy( self )
