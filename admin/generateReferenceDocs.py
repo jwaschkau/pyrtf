@@ -28,6 +28,7 @@ base = ['test', 'sources', 'rtfng']
 pending = base + ['pending']
 baseDir = os.path.join(*base)
 pendingDir = os.path.join(*pending)
+doneList = []
 
 # iterate through the test files
 for startDir in searchDirs:
@@ -47,6 +48,10 @@ for startDir in searchDirs:
                 # methods
                 for attrName in dir(obj):
                     if attrName.startswith('make_'):
+                        if attrName in doneList:
+                            raise Exception('Duplicate test method found: %s' % attrName)
+                        else:
+                            doneList.append(attrName)
                         filename = attrName.split('make_')[1] + '.rtf'
                         doc = getattr(obj, attrName)()
                         fh = open(os.path.join(pendingDir, filename), 'w+')
