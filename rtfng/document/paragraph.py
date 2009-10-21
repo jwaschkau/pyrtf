@@ -1,3 +1,4 @@
+from types import IntType, FloatType, LongType, StringType
 from rtfng.Styles import ParagraphStyle
 from rtfng.PropertySets import (
     ParagraphPropertySet, FramePropertySet, ShadingPropertySet)

@@ -4,7 +4,8 @@ from rtfng.utils import RTFTestCase
 from rtfng.Elements import Document
 
 from rtfng.document.section import Section
-from rtfng.document.paragraph import Paragraph
+from rtfng.document.paragraph import Cell, Paragraph, Table
+from rtfng.PropertySets import BorderPropertySet, FramePropertySet, TabPropertySet
 
 def initializeDoc():
     doc = Document()
@@ -14,14 +15,14 @@ def initializeDoc():
 
 class TableTestCase(RTFTestCase):
  
-    def make_paraHeading():
+    def make_tables():
         doc, section, styles = initializeDoc()
-        p = Paragraph( ss.ParagraphStyles.Heading1 )
+        p = Paragraph( styles.ParagraphStyles.Heading1 )
         p.append( 'Example 3' )
         section.append( p )
 
         # changes what is now the default style of Heading1 back to Normal
-        p = Paragraph( ss.ParagraphStyles.Normal )
+        p = Paragraph( styles.ParagraphStyles.Normal )
         p.append( 'Example 3 demonstrates tables, tables represent one of the '
                   'harder things to control in RTF as they offer alot of '
                   'flexibility in formatting and layout.' )
@@ -41,13 +42,13 @@ class TableTestCase(RTFTestCase):
         c3 = Cell( Paragraph( 'Row One, Cell Three' ) )
         table.AddRow( c1, c2, c3 )
 
-        c1 = Cell( Paragraph( ss.ParagraphStyles.Heading2, 'Heading2 Style'   ) )
-        c2 = Cell( Paragraph( ss.ParagraphStyles.Normal, 'Back to Normal Style'   ) )
+        c1 = Cell( Paragraph( styles.ParagraphStyles.Heading2, 'Heading2 Style'   ) )
+        c2 = Cell( Paragraph( styles.ParagraphStyles.Normal, 'Back to Normal Style'   ) )
         c3 = Cell( Paragraph( 'More Normal Style' ) )
         table.AddRow( c1, c2, c3 )
 
-        c1 = Cell( Paragraph( ss.ParagraphStyles.Heading2, 'Heading2 Style'   ) )
-        c2 = Cell( Paragraph( ss.ParagraphStyles.Normal, 'Back to Normal Style'   ) )
+        c1 = Cell( Paragraph( styles.ParagraphStyles.Heading2, 'Heading2 Style'   ) )
+        c2 = Cell( Paragraph( styles.ParagraphStyles.Normal, 'Back to Normal Style'   ) )
         c3 = Cell( Paragraph( 'More Normal Style' ) )
         table.AddRow( c1, c2, c3 )
 
@@ -82,8 +83,13 @@ class TableTestCase(RTFTestCase):
 
         section.append( 'In fact frames can be applied to paragraphs too, not just cells.' )
 
-        p = Paragraph( ss.ParagraphStyles.Normal, thin_frame )
+        p = Paragraph( styles.ParagraphStyles.Normal, thin_frame )
         p.append( 'This whole paragraph is in a frame.' )
         section.append( p )
         return doc
+
+    make_tables = staticmethod(make_tables)
+
+    def test_tables(self):
+        self.doTest()
 
