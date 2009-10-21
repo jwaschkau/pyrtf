@@ -9,10 +9,10 @@ def initializeDoc():
     doc.Sections.append(section)
     return (doc, section, doc.StyleSheet)
 
-class ParagraphTestCase(RTFTestCase):
-
-    def make_():
-        pass
+#class ParagraphTestCase(RTFTestCase):  TODO reinstate when ready to convert rest of below
+#
+#    def make_():
+#        pass
 
 def MakeExample5() :
     doc     = Document()
