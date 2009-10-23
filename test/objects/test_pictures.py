@@ -13,10 +13,7 @@ def initializeDoc():
 class PictureTestCase(RTFTestCase):
     
     def make_pictures():
-        doc     = Document()
-        ss      = doc.StyleSheet
-        section = Section()
-        doc.Sections.append( section )
+        doc, section, styles = initializeDoc()
 
         # text can be added directly to the section a paragraph object is create as needed
         section.append( 'Image Example 1' )
