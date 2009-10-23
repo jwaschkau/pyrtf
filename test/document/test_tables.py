@@ -5,7 +5,7 @@ from rtfng.Elements import Document
 
 from rtfng.document.section import Section
 from rtfng.document.paragraph import Cell, Paragraph, Table
-from rtfng.PropertySets import BorderPropertySet, FramePropertySet, TabPropertySet
+from rtfng.PropertySets import BorderPropertySet, FramePropertySet, ParagraphPropertySet, TabPropertySet
 
 def initializeDoc():
     doc = Document()
@@ -15,6 +15,11 @@ def initializeDoc():
 
 class TableTestCase(RTFTestCase):
  
+    col1 = 1000
+    col2 = 1000
+    col3 = 1000
+    col4 = 2000
+    
     def make_tables():
         doc, section, styles = initializeDoc()
         p = Paragraph( styles.ParagraphStyles.Heading1 )
@@ -87,9 +92,85 @@ class TableTestCase(RTFTestCase):
         p.append( 'This whole paragraph is in a frame.' )
         section.append( p )
         return doc
-
     make_tables = staticmethod(make_tables)
 
     def test_tables(self):
+        self.doTest()
+
+
+    def make_tableHorizontalCellMerge():
+        doc, section, styles = initializeDoc()
+        section.append( 'Table with Horizontal Cells Merged' )
+
+        table = Table( TableTestCase.col1, TableTestCase.col2, TableTestCase.col3 )
+        table.AddRow( Cell( 'A-one'   ), Cell( 'A-two'                   ), Cell( 'A-three' ) )
+        table.AddRow( Cell( 'A-one'   ), Cell( 'A-two', span=2 ) )
+        table.AddRow( Cell( 'A-one', span=3 ) )
+        table.AddRow( Cell( 'A-one'   ), Cell( 'A-two'                   ), Cell( 'A-three' ) )
+        table.AddRow( Cell( 'A-one', span=2 ), Cell( 'A-two' ) )
+        section.append( table )
+        return doc
+    make_tableHorizontalCellMerge = staticmethod(make_tableHorizontalCellMerge)
+
+    def test_tableHorizontalCellMerge(self):
+        self.doTest()
+
+    def make_tableVerticalCellMerge():
+        doc, section, styles = initializeDoc()
+        section.append( 'Table with Vertical Cells Merged' )
+
+        table = Table( TableTestCase.col1, TableTestCase.col2, TableTestCase.col3 )
+        table.AddRow( Cell( 'A-one'   ), Cell( 'A-two', vertical_merge=True ), Cell( 'A-three' ) )
+        table.AddRow( Cell( 'A-one'   ), Cell( vertical_merge=True ), Cell( 'A-three' ) )
+        table.AddRow( Cell( 'A-one'   ), Cell( 'A-two', start_vertical_merge=True ), Cell( 'A-three' ) )
+        table.AddRow( Cell( 'A-one'   ), Cell( vertical_merge=True ), Cell( 'A-three' ) )
+
+        table.AddRow( Cell( Paragraph( ParagraphPropertySet( alignment=ParagraphPropertySet.CENTER ), 'SPREAD' ),
+                            span=3 ) )
+
+        table.AddRow( Cell( 'A-one'   ), Cell( 'A-two', vertical_merge=True ), Cell( 'A-three' ) )
+        table.AddRow( Cell( 'A-one'   ), Cell( vertical_merge=True ), Cell( 'A-three' ) )
+        table.AddRow( Cell( 'A-one'   ), Cell( 'A-two', start_vertical_merge=True ), Cell( 'A-three' ) )
+        table.AddRow( Cell( 'A-one'   ), Cell( vertical_merge=True ), Cell( 'A-three' ) )
+
+        section.append( table )
+        return doc
+    make_tableVerticalCellMerge = staticmethod(make_tableVerticalCellMerge)
+
+    def test_tableVerticalCellMerge(self):
+        self.doTest()
+
+    def make_tableFlowLeftToRight():
+        doc, section, styles = initializeDoc()
+        section.append( 'Table with content flowing left to right' )
+        table = Table( TableTestCase.col1, TableTestCase.col2, TableTestCase.col3, TableTestCase.col4 )
+        table.AddRow( Cell( 'This is pretty amazing', flow=Cell.FLOW_LR_BT, start_vertical_merge=True ),
+                      Cell( 'one' ), Cell( 'two' ), Cell( 'three' ) )
+
+        for i in range( 10 ) :	
+            table.AddRow( Cell( vertical_merge=True ),
+                          Cell( 'one' ), Cell( 'two' ), Cell( 'three' ) )
+        section.append( table )
+        return doc
+    make_tableFlowLeftToRight = staticmethod(make_tableFlowLeftToRight)
+
+    def test_tableFlowLeftToRight(self):
+        self.doTest()
+
+    def make_tableFlowRightToLeft():
+        doc, section, styles = initializeDoc()
+        section.append( 'Table with content flowing right to left' )
+        table = Table( TableTestCase.col4, TableTestCase.col1, TableTestCase.col2, TableTestCase.col3 )
+        table.AddRow( Cell( 'one' ), Cell( 'two' ), Cell( 'three' ),
+                      Cell( 'This is pretty amazing', flow=Cell.FLOW_RL_TB, start_vertical_merge=True ) )
+
+        for i in range( 10 ) :	
+            table.AddRow( Cell( 'one' ), Cell( 'two' ), Cell( 'three' ),
+                          Cell( vertical_merge=True ))
+        section.append( table )
+        return doc
+    make_tableFlowRightToLeft = staticmethod(make_tableFlowRightToLeft)
+
+    def test_tableFlowRightToLeft(self):
         self.doTest()
 
