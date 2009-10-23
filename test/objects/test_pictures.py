@@ -1,6 +1,7 @@
 from rtfng.utils import RTFTestCase
 from rtfng.Elements import Document, Image
 
+from rtfng.document.base import RawCode
 from rtfng.document.paragraph import Paragraph
 from rtfng.document.section import Section
 
@@ -27,15 +28,14 @@ class PictureTestCase(RTFTestCase):
         section.append( 'Or you can use the image object to convert the image and then '
                         'save it to a raw code element that can be included later.' )
 
-        fout = file( 'image_tmp.py', 'w' )
-        print >> fout, 'from rtfng.document.base import RawCode'
-        print >> fout
-        fout.write( image.ToRawCode( 'TEST_IMAGE' ) )
-        fout.close()
-
-        import image_tmp
-        section.append( Paragraph( image_tmp.TEST_IMAGE ) )
-        section.append( 'Have a look in image_tmp.py for the converted RawCode.' )
+        # Test RawCode -- split into separate test?
+        rawCodeDecl = image.ToRawCode('TEST_IMAGE')
+        assert rawCodeDecl.startswith('TEST_IMAGE = RawCode( """')
+        assert rawCodeDecl.endswith('""" )')
+        
+        rawCode = RawCode(image.Data)
+        section.append(Paragraph(rawCode))
+        section.append('The above picture was displayed from a RawCode object.')
 
         section.append( 'here are some png files' )
         for f in [ 'examples/img1.png',
@@ -45,7 +45,6 @@ class PictureTestCase(RTFTestCase):
             section.append( Paragraph( Image( f ) ) )
 
         return doc
-    
     make_pictures = staticmethod(make_pictures)
 
     def test_pictures(self):
