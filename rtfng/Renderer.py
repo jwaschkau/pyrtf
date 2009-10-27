@@ -485,6 +485,7 @@ class Renderer:
             if isinstance(element, StringType):
                 self._write(element)
             elif isinstance(element, UnicodeType):
+                import pdb; pdb.set_trace()
                 self.writeUnicodeElement(element)
             elif isinstance(element, RawCode):
                 self._write(element.Data)
