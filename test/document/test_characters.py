@@ -61,3 +61,23 @@ class CharacterTestCase(RTFTestCase):
     def test_charColours(self):
         self.doTest()
 
+    def make_charUnicode():
+        doc, section, styles = initializeDoc()
+        section.append('This tests unicode.')
+        
+        p = Paragraph()
+        p.append(u'32\u00B0 Fahrenheit is 0\u00B0 Celsuis')
+        section.append(p)
+        
+        p = Paragraph()
+        p.append(u'Henry \u2163 is Henry IV in unicode.')
+        section.append(p)
+        
+
+        return doc
+    make_charUnicode = staticmethod(make_charUnicode)
+
+    def test_charUnicode(self):
+        self.doTest()
+
+
