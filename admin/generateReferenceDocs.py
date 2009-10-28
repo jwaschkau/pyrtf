@@ -61,10 +61,8 @@ for startDir in searchDirs:
                         
                         # Skip if not requested.
                         rootName = attrName.split('make_')[1]
-                        if requestedList:
-                            # Make sure this is requested.
-                            if rootName not in requestedList:
-                                continue
+                        if requestedList and rootName not in requestedList:
+                            continue
 
                         # Save file.
                         filename = '%s.rtf' % rootName
