@@ -11,9 +11,9 @@ from rtfng.document.base import TAB, LINE, RawCode
 from rtfng.document.section import Section
 from rtfng.document.character import Text, Inline
 
-class UnhandledParamError( Exception ) :
-    def __init__( self, param ) :
-        Exception.__init__( self, "Don't know what to do with param %s" % param )
+#class UnhandledParamError( Exception ) :  # Currently unused.
+#    def __init__( self, param ) :
+#        Exception.__init__( self, "Don't know what to do with param %s" % param )
 
 #
 #    Finally a StyleSheet in which all of this stuff is put together
