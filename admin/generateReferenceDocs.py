@@ -17,7 +17,7 @@ place. For new features, we need to update the unit tests, verify that they
 create the correct output, and then regenerate the reference RTF files with
 this script.
 """
-import os
+import os, sys
 from unittest import TestCase
 
 from rtfng.utils import findTests, importModule
@@ -29,6 +29,10 @@ pending = base + ['pending']
 baseDir = os.path.join(*base)
 pendingDir = os.path.join(*pending)
 doneList = []
+
+requestedList = sys.argv[1:]
+if requestedList:
+    print 'Only writing these methods: %s' % ', '.join(requestedList)
 
 # iterate through the test files
 for startDir in searchDirs:
@@ -48,11 +52,20 @@ for startDir in searchDirs:
                 # methods
                 for attrName in dir(obj):
                     if attrName.startswith('make_'):
+                        
+                        # Make sure this is not a duplicate.
                         if attrName in doneList:
                             raise Exception('Duplicate test method found: %s' % attrName)
                         else:
                             doneList.append(attrName)
-                        filename = attrName.split('make_')[1] + '.rtf'
+                        
+                        # Skip if not requested.
+                        rootName = attrName.split('make_')[1]
+                        if requestedList and rootName not in requestedList:
+                            continue
+
+                        # Save file.
+                        filename = '%s.rtf' % rootName
                         doc = getattr(obj, attrName)()
                         fh = open(os.path.join(pendingDir, filename), 'w+')
                         print "Writing %s ..." % filename
