@@ -27,6 +27,9 @@ class StyleSheet :
         self.TextStyles      = AttributedList()
         self.ParagraphStyles = AttributedList()
 
+    def Copy(self):
+        return deepcopy(self)
+
 def MakeDefaultStyleSheet( ) :
     result = StyleSheet()
 

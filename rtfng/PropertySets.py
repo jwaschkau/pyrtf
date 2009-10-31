@@ -37,6 +37,9 @@ class AttributedList(list):
                 name = MakeAttributeName(value.name)
                 setattr(self, name, value)
 
+    def Copy(self):
+        return deepcopy(self)
+
     def __deepcopy__(self, memo):
         result = self.__class__()
         result.append(*self[:])

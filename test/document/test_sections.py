@@ -62,3 +62,15 @@ class SectionTestCase(RTFTestCase):
     def test_secondSection(self):
         self.doTest()
         
+    def make_docCopy():
+        doc, section, styles = RTFTestCase.initializeDoc()
+        section.append('First section')
+        secondSection = doc.NewSection()
+        secondSection.append('Second section.')
+        copyDoc = doc.Copy()
+        return doc
+    make_docCopy = staticmethod(make_docCopy)
+
+    def test_docCopy(self):
+        self.doTest()
+        
