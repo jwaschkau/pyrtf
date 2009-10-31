@@ -5,6 +5,8 @@ import os
 from unittest import TestCase
 from StringIO import StringIO
 
+from rtfng.Elements import Document, Section
+
 def importModule(name):
     mod = __import__(name)
     components = name.split('.')
@@ -54,6 +56,13 @@ class RTFTestCase(TestCase):
           doTest() call (the only thing that changes is the name, and only the
           name is needed to generate/get the necessary data).
     """
+
+    def initializeDoc():
+        doc = Document()
+        section = Section()
+        doc.Sections.append(section)
+        return (doc, section, doc.StyleSheet)
+    initializeDoc = staticmethod(initializeDoc)
 
     def setUp(self):
         base = ('test', 'sources', 'rtfng')

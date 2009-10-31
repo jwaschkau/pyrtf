@@ -5,16 +5,10 @@ from rtfng.document.base import RawCode
 from rtfng.document.paragraph import Paragraph
 from rtfng.document.section import Section
 
-def initializeDoc():
-    doc = Document()
-    section = Section()
-    doc.Sections.append(section)
-    return (doc, section, doc.StyleSheet)
-
 class PictureTestCase(RTFTestCase):
     
     def make_pictures():
-        doc, section, styles = initializeDoc()
+        doc, section, styles = RTFTestCase.initializeDoc()
 
         # text can be added directly to the section a paragraph object is create as needed
         section.append( 'Image Example 1' )

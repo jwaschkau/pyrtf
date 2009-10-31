@@ -7,16 +7,10 @@ from rtfng.document.character import TEXT, Text
 from rtfng.document.section import Section
 from rtfng.document.paragraph import Paragraph
 
-def initializeDoc():
-    doc = Document()
-    section = Section()
-    doc.Sections.append(section)
-    return (doc, section, doc.StyleSheet)
-
 class CharacterTestCase(RTFTestCase):
 
     def make_charStyleOverride():
-        doc, section, styles = initializeDoc()
+        doc, section, styles = RTFTestCase.initializeDoc()
         p = Paragraph()
         p.append('This is a standard paragraph with the default style.')
         p = Paragraph()
@@ -34,7 +28,7 @@ class CharacterTestCase(RTFTestCase):
         self.doTest()
 
     def make_charColours():
-        doc, section, styles = initializeDoc()
+        doc, section, styles = RTFTestCase.initializeDoc()
         section.append('This example test changing the colour of fonts.')
         # Text properties can be specified in two ways, either a text object
         # can have its text properties specified via the TextPropertySet
@@ -62,7 +56,7 @@ class CharacterTestCase(RTFTestCase):
         self.doTest()
 
     def make_charUnicode():
-        doc, section, styles = initializeDoc()
+        doc, section, styles = RTFTestCase.initializeDoc()
         section.append('This tests unicode.')
         
         p = Paragraph()

@@ -7,12 +7,6 @@ from rtfng.document.section import Section
 from rtfng.document.paragraph import Cell, Paragraph, Table
 from rtfng.PropertySets import BorderPropertySet, FramePropertySet, ParagraphPropertySet, TabPropertySet
 
-def initializeDoc():
-    doc = Document()
-    section = Section()
-    doc.Sections.append(section)
-    return (doc, section, doc.StyleSheet)
-
 class TableTestCase(RTFTestCase):
  
     col1 = 1000
@@ -21,7 +15,7 @@ class TableTestCase(RTFTestCase):
     col4 = 2000
     
     def make_tables():
-        doc, section, styles = initializeDoc()
+        doc, section, styles = RTFTestCase.initializeDoc()
         p = Paragraph( styles.ParagraphStyles.Heading1 )
         p.append( 'Example 3' )
         section.append( p )
@@ -99,7 +93,7 @@ class TableTestCase(RTFTestCase):
 
 
     def make_tableHorizontalCellMerge():
-        doc, section, styles = initializeDoc()
+        doc, section, styles = RTFTestCase.initializeDoc()
         section.append( 'Table with Horizontal Cells Merged' )
 
         table = Table( TableTestCase.col1, TableTestCase.col2, TableTestCase.col3 )
@@ -116,7 +110,7 @@ class TableTestCase(RTFTestCase):
         self.doTest()
 
     def make_tableVerticalCellMerge():
-        doc, section, styles = initializeDoc()
+        doc, section, styles = RTFTestCase.initializeDoc()
         section.append( 'Table with Vertical Cells Merged' )
 
         table = Table( TableTestCase.col1, TableTestCase.col2, TableTestCase.col3 )
@@ -141,7 +135,7 @@ class TableTestCase(RTFTestCase):
         self.doTest()
 
     def make_tableFlowLeftToRight():
-        doc, section, styles = initializeDoc()
+        doc, section, styles = RTFTestCase.initializeDoc()
         section.append( 'Table with content flowing left to right' )
         table = Table( TableTestCase.col1, TableTestCase.col2, TableTestCase.col3, TableTestCase.col4 )
         table.AddRow( Cell( 'This is pretty amazing', flow=Cell.FLOW_LR_BT, start_vertical_merge=True ),
@@ -158,7 +152,7 @@ class TableTestCase(RTFTestCase):
         self.doTest()
 
     def make_tableFlowRightToLeft():
-        doc, section, styles = initializeDoc()
+        doc, section, styles = RTFTestCase.initializeDoc()
         section.append( 'Table with content flowing right to left' )
         table = Table( TableTestCase.col4, TableTestCase.col1, TableTestCase.col2, TableTestCase.col3 )
         table.AddRow( Cell( 'one' ), Cell( 'two' ), Cell( 'three' ),
