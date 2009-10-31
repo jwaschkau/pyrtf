@@ -50,3 +50,15 @@ class SectionTestCase(RTFTestCase):
 
     def test_sectionWithParas(self):
         self.doTest()
+
+    def make_secondSection():
+        doc, section, styles = RTFTestCase.initializeDoc()
+        section.append('First section')
+        secondSection = doc.NewSection()
+        secondSection.append('Second section.')
+        return doc
+    make_secondSection = staticmethod(make_secondSection)
+
+    def test_secondSection(self):
+        self.doTest()
+        
