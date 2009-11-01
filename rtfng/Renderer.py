@@ -10,6 +10,7 @@ from rtfng.document.base import TAB, LINE, RawCode
 from rtfng.document.section import Section
 from rtfng.document.character import Text, Inline
 from rtfng.document.paragraph import Paragraph, Table, Cell
+from rtfng.object.picture import Image
 
 DEFAULT_TAB_WIDTH = 720
 
