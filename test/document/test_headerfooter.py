@@ -6,12 +6,6 @@ from rtfng.document.base import LINE
 from rtfng.document.paragraph import Paragraph
 from rtfng.document.section import Section
 
-def initializeDoc():
-    doc = Document()
-    section = Section()
-    doc.Sections.append(section)
-    return (doc, section, doc.StyleSheet)
-
 class HeaderFooterTestCase(RTFTestCase):
 
     def make_headerFooterSimple():

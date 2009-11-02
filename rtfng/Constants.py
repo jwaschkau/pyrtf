@@ -153,5 +153,3 @@ class Languages :
         return value in cls.Codes
     IsValid = classmethod( _IsValid )
 
-if __name__ == '__main__' :
-    PrintHexTable()

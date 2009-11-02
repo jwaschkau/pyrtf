@@ -9,16 +9,10 @@ from rtfng.document.section import Section
 from rtfng.document.character import TEXT
 from rtfng.document.paragraph import Paragraph
 
-def initializeDoc():
-    doc = Document()
-    section = Section()
-    doc.Sections.append(section)
-    return (doc, section, doc.StyleSheet)
-
 class ParagraphTestCase(RTFTestCase):
 
     def make_paraHeading():
-        doc, section, styles = initializeDoc()
+        doc, section, styles = RTFTestCase.initializeDoc()
         p1 = Paragraph(styles.ParagraphStyles.Heading1)
         p1.append('Heading 1')
         section.append(p1)
@@ -29,7 +23,7 @@ class ParagraphTestCase(RTFTestCase):
         self.doTest()
 
     def make_paraNormal():
-        doc, section, styles = initializeDoc()
+        doc, section, styles = RTFTestCase.initializeDoc()
         p1 = Paragraph(styles.ParagraphStyles.Heading1)
         p1.append('Heading 1')
         section.append(p1)
@@ -46,7 +40,7 @@ class ParagraphTestCase(RTFTestCase):
         self.doTest()
 
     def make_paraDefaultPreviousStyle():
-        doc, section, styles = initializeDoc()
+        doc, section, styles = RTFTestCase.initializeDoc()
         p1 = Paragraph(styles.ParagraphStyles.Heading1)
         p1.append('Heading 1')
         section.append(p1)
@@ -70,7 +64,7 @@ class ParagraphTestCase(RTFTestCase):
         self.doTest()
 
     def make_paraTabs():
-        doc, section, styles = initializeDoc()
+        doc, section, styles = RTFTestCase.initializeDoc()
         p = Paragraph()
         p.append(
             'The paragraph itself can also be overridden in lots of ways: '
@@ -98,7 +92,7 @@ class ParagraphTestCase(RTFTestCase):
         self.doTest()
 
     def make_paraTabLeaders():
-        doc, section, styles = initializeDoc()
+        doc, section, styles = RTFTestCase.initializeDoc()
         section.append(
             'The alignment of tabs and style can also be controlled. The '
             'following demonstrates how to use flush right tabs and the '
@@ -122,7 +116,7 @@ class ParagraphTestCase(RTFTestCase):
         self.doTest()
 
     def make_paraIndents():
-        doc, section, styles = initializeDoc()
+        doc, section, styles = RTFTestCase.initializeDoc()
         section.append(
             'The paragraphs below demonstrate the flexibility , the following is all at the '
             'same indent level and the one after it has the first line at a '
