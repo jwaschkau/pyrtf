@@ -170,3 +170,27 @@ class ParagraphTestCase(RTFTestCase):
     def test_paraIndents(self):
         self.doTest()
 
+    def test_paraAsList(self):
+        text1 = 'First line'
+        text2 = 'Second line'
+        text3 = 'Third line'
+
+        # Build paragraph using constructor.
+        p1 = Paragraph(text1, text2, text3)
+
+        # Build paragraph using append.
+        p2 = Paragraph()
+        p2.append(text1)
+        p2.append(text2)
+        p2.append(text3)
+
+        # Build paragraph using insert.
+        p3 = Paragraph()
+        p3.insert(0, text1)
+        p3.insert(1, text2)
+        p3.insert(2, text3)
+        
+        # Confirm contents are same.
+        assert p1[0:-1] == p2[0:-1]
+        assert p2[0:-1] == p3[0:-1]
+
