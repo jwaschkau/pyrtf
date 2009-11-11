@@ -4,7 +4,7 @@ from rtfng.Elements import Document, StyleSheet
 from rtfng.PropertySets import ShadingPropertySet, TextPropertySet
 from rtfng.Styles import TextStyle
 
-from rtfng.document.character import TEXT, Text
+from rtfng.document.character import B, I, U, TEXT, Text
 from rtfng.document.section import Section
 from rtfng.document.paragraph import Paragraph
 
@@ -90,4 +90,13 @@ class CharacterAPITestCase(RTFTestCase):
     def test_textConvenience(self):
         t = TEXT('abc')
         t = TEXT('abc', 'def')
+
+        t = B('abc')
+        t = B('abc', 'def')
+
+        t = I('abc')
+        t = I('abc', 'def')
+
+        t = U('abc')
+        t = U('abc', 'def')
 
