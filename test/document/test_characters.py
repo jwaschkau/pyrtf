@@ -87,3 +87,7 @@ class CharacterAPITestCase(RTFTestCase):
         shading = ShadingPropertySet()
         t = Text(normalText, blue, shading, 'abc')
 
+    def test_textConvenience(self):
+        t = TEXT('abc')
+        t = TEXT('abc', 'def')
+

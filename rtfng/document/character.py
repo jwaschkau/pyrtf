@@ -22,10 +22,26 @@ class Text(object):
     def SetData(self, value):
         self.Data = value
 
-class Inline(Text):
+class Inline(list):
+    ''' A Text object but with a list of data. Perhaps unify Text and Inline classes? '''
 
-    def SetData(self, value):
-        self.append(value)
+    def __init__(self, *params):  # Method copied from above
+        super( Inline, self ).__init__()
+
+        self.Style = None
+        self.Properties = None
+        self.Shading = None
+
+        for param in params:
+            if isinstance(param, TextStyle):
+                self.Style = param
+            elif isinstance(param, TextPropertySet):
+                self.Properties = param
+            elif isinstance(param, ShadingPropertySet):
+                self.Shading = param
+            else:
+                # otherwise let the rendering custom handler sort it out itself
+                self.append(param)
 
     def append(self, *params):
         # filter out any that are explicitly None
