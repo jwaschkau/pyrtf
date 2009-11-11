@@ -5,7 +5,7 @@ from rtfng.Elements import Document
 
 from rtfng.document.section import Section
 from rtfng.document.paragraph import Cell, Paragraph, Table
-from rtfng.PropertySets import BorderPropertySet, FramePropertySet, ParagraphPropertySet, TabPropertySet
+from rtfng.PropertySets import BorderPropertySet, FramePropertySet, MarginsPropertySet, ParagraphPropertySet, TabPropertySet
 
 class TableTestCase(RTFTestCase):
  
@@ -171,6 +171,11 @@ class TableTestCase(RTFTestCase):
 
 class TableAPITestCase(RTFTestCase):
 
+    def test_cell(self):
+        cell = Cell('one')
+        cell = Cell(MarginsPropertySet(top=1000, left=1200, bottom=1000, right=1200), 'one')
+        
+    
     def test_tableAddRow(self):
         table = Table(1000)
         self.assertRaises(Exception, table.AddRow) # no params at all
