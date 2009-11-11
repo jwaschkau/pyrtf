@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 from rtfng.utils import RTFTestCase
-from rtfng.Elements import Document
-from rtfng.PropertySets import TextPropertySet
+from rtfng.Elements import Document, StyleSheet
+from rtfng.PropertySets import ShadingPropertySet, TextPropertySet
+from rtfng.Styles import TextStyle
 
 from rtfng.document.character import TEXT, Text
 from rtfng.document.section import Section
@@ -74,4 +75,15 @@ class CharacterTestCase(RTFTestCase):
     def test_charUnicode(self):
         self.doTest()
 
+
+class CharacterAPITestCase(RTFTestCase):
+
+    def test_text(self):
+        t = Text()
+        t = Text('abc')
+        style = StyleSheet()
+        normalText = TextStyle(TextPropertySet(style.Fonts.Arial, 22))
+        blue = TextPropertySet(colour=style.Colours.Blue)
+        shading = ShadingPropertySet()
+        t = Text(normalText, blue, shading, 'abc')
 
