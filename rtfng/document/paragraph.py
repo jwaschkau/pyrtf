@@ -74,6 +74,8 @@ class Table:
         return self
 
     def AddRow(self, *cells):
+        if len(cells) == 0:
+            raise Exception('A row must have at least one cell')
         height = None
         if isinstance(cells[ 0 ], (IntType, FloatType, LongType)):
             height = int(cells[ 0 ])
