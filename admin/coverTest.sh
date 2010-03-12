@@ -1,1 +1,1 @@
-nosetests --with-doctest --with-coverage --cover-inclusive
+nosetests --with-doctest --with-coverage --cover-inclusive  --cover-package=rtfng

@@ -1,7 +1,7 @@
 from types import IntType, FloatType, LongType, StringType
 from rtfng.Styles import ParagraphStyle
 from rtfng.PropertySets import (
-    ParagraphPropertySet, FramePropertySet, ShadingPropertySet)
+    ParagraphPropertySet, FramePropertySet, MarginsPropertySet, ShadingPropertySet)
 
 class Paragraph(list):
     def __init__(self, *params):
@@ -74,6 +74,8 @@ class Table:
         return self
 
     def AddRow(self, *cells):
+        if len(cells) == 0:
+            raise Exception('A row must have at least one cell')
         height = None
         if isinstance(cells[ 0 ], (IntType, FloatType, LongType)):
             height = int(cells[ 0 ])

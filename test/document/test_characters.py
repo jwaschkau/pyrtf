@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 from rtfng.utils import RTFTestCase
-from rtfng.Elements import Document
-from rtfng.PropertySets import TextPropertySet
+from rtfng.Elements import Document, StyleSheet
+from rtfng.PropertySets import ShadingPropertySet, TextPropertySet
+from rtfng.Styles import TextStyle
 
-from rtfng.document.character import TEXT, Text
+from rtfng.document.character import B, I, U, TEXT, Text
 from rtfng.document.section import Section
 from rtfng.document.paragraph import Paragraph
 
@@ -74,4 +75,28 @@ class CharacterTestCase(RTFTestCase):
     def test_charUnicode(self):
         self.doTest()
 
+
+class CharacterAPITestCase(RTFTestCase):
+
+    def test_text(self):
+        t = Text()
+        t = Text('abc')
+        style = StyleSheet()
+        normalText = TextStyle(TextPropertySet(style.Fonts.Arial, 22))
+        blue = TextPropertySet(colour=style.Colours.Blue)
+        shading = ShadingPropertySet()
+        t = Text(normalText, blue, shading, 'abc')
+
+    def test_textConvenience(self):
+        t = TEXT('abc')
+        t = TEXT('abc', 'def')
+
+        t = B('abc')
+        t = B('abc', 'def')
+
+        t = I('abc')
+        t = I('abc', 'def')
+
+        t = U('abc')
+        t = U('abc', 'def')
 

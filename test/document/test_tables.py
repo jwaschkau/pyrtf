@@ -5,7 +5,7 @@ from rtfng.Elements import Document
 
 from rtfng.document.section import Section
 from rtfng.document.paragraph import Cell, Paragraph, Table
-from rtfng.PropertySets import BorderPropertySet, FramePropertySet, ParagraphPropertySet, TabPropertySet
+from rtfng.PropertySets import BorderPropertySet, FramePropertySet, MarginsPropertySet, ParagraphPropertySet, TabPropertySet
 
 class TableTestCase(RTFTestCase):
  
@@ -168,3 +168,21 @@ class TableTestCase(RTFTestCase):
     def test_tableFlowRightToLeft(self):
         self.doTest()
 
+
+class TableAPITestCase(RTFTestCase):
+
+    def test_cell(self):
+        cell = Cell('one')
+        cell = Cell(MarginsPropertySet(top=1000, left=1200, bottom=1000, right=1200), 'one')
+        
+    
+    def test_tableAddRow(self):
+        table = Table(1000)
+        self.assertRaises(Exception, table.AddRow) # no params at all
+        table.AddRow(Cell('1'))  # one cell, ok
+        self.assertRaises(Exception, table.AddRow, Cell('1'), Cell('1'))  # 2 cells, error
+        self.assertRaises(Exception, table.AddRow, 1) # height but no cell, error
+        table.AddRow(1, Cell('1'))  # height plus one cell, ok
+        self.assertRaises(Exception, table.AddRow, 1, Cell('1'), Cell('1'))  # height with 2 cells, error
+        
+    
