@@ -15,7 +15,8 @@ License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)
 """
 
 import	sys
-from distutils.core import setup
+
+from setuptools import setup, find_packages
 
 if sys.version_info < (2, 3):
     _setup = setup
@@ -27,19 +28,18 @@ if sys.version_info < (2, 3):
 doclines = __doc__.split("\n")
 
 setup(name='PyRTF3',
-      version	        = '0.45',
+      version='0.46',
       author='Mars Galactic',
       author_email='xoviat@noreply.users.github.com',
-      url              = 'http://pyrtf.sourceforge.net/',
-      license	        = 'http://www.gnu.org/licenses/gpl.html',
+      url='http://pyrtf.sourceforge.net/',
+      license='http://www.gnu.org/licenses/gpl.html',
       platforms	= [ 'Any' ],
-      description	= doclines[0],
-      classifiers	= filter( None, classifiers.split( '\n' ) ),
+      description=doclines[0],
+      classifiers=filter(None, classifiers.split('\n')),
       long_description = '\n'.join( doclines[2:] ),
-      keywords         = ( 'RTF',
-                            'Rich Text',
-                            'Rich Text Format',
-                            'documentation',
-                            'reports' ),
-      packages         = [ 'PyRTF', ],
-      package_dir      = { '' : '.' })
+      keywords=('RTF',
+                'Rich Text',
+                'Rich Text Format',
+                'documentation',
+                'reports'),
+      packages=find_packages())
