@@ -26,20 +26,20 @@ if sys.version_info < (2, 3):
 
 doclines = __doc__.split("\n")
 
-setup( name		= 'PyRTF',
-       version	        = '0.45',
-       author           = 'Simon Cusack',
-       author_email     = 'scusack@sourceforge.net',
-       url              = 'http://pyrtf.sourceforge.net/',
-       license	        = 'http://www.gnu.org/licenses/gpl.html',
-       platforms	= [ 'Any' ],
-       description	= doclines[0],
-       classifiers	= filter( None, classifiers.split( '\n' ) ),
-       long_description = '\n'.join( doclines[2:] ),
-       keywords         = ( 'RTF',
+setup(name='PyRTF3',
+      version	        = '0.45',
+      author='Mars Galactic',
+      author_email='xoviat@noreply.users.github.com',
+      url              = 'http://pyrtf.sourceforge.net/',
+      license	        = 'http://www.gnu.org/licenses/gpl.html',
+      platforms	= [ 'Any' ],
+      description	= doclines[0],
+      classifiers	= filter( None, classifiers.split( '\n' ) ),
+      long_description = '\n'.join( doclines[2:] ),
+      keywords         = ( 'RTF',
                             'Rich Text',
                             'Rich Text Format',
                             'documentation',
                             'reports' ),
-       packages         = [ 'PyRTF', ],
-       package_dir      = { '' : '.' } )
+      packages         = [ 'PyRTF', ],
+      package_dir      = { '' : '.' })
