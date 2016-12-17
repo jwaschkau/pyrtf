@@ -1,9 +1,7 @@
-from	types		import	IntType, FloatType, LongType, StringTypes
-from	copy		import	deepcopy
 from    binascii    import  hexlify
 
-from    Constants   import  *
-from	Styles		import	*
+from .Constants import *
+from .Styles import *
 
 class UnhandledParamError( Exception ) :
 	def __init__( self, param ) :
@@ -364,7 +362,7 @@ class Image( RawCode ) :
 
 	def __init__( self, file_name, **kwargs ) :
 
-		fin = file( file_name, 'rb' )
+		fin = open(file_name, 'rb')
 
 		pict_type = self.PICT_TYPES[ file_name[ -3 : ].lower() ]
 		if pict_type == self.PNG_LIB :
@@ -513,7 +511,7 @@ class Table :
 
 	def AddRow( self, *cells ) :
 		height = None
-		if isinstance( cells[ 0 ], (IntType, FloatType, LongType) ):
+		if isinstance(cells[0], (int, float)):
 			height = int( cells[ 0 ] )
 			cells  = cells[ 1 : ]
 
@@ -562,7 +560,8 @@ class Cell( list ) :
 		self._append = super( Cell, self ).append
 
 		for param in params :
-			if   isinstance( param, StringType ) : self.append    ( param )
+			if isinstance(param, str):
+				self.append(param)
 			elif isinstance( param, Paragraph  ) : self.append    ( param )
 			elif isinstance( param, FramePS    ) : self.SetFrame  ( param )
 			elif isinstance( param, MarginsPS  ) : self.SetMargins( param )
@@ -648,7 +647,7 @@ def TEXT( *params, **kwargs ) :
 		return Text( params[ 0 ], text_props )
 
 	result = Inline( text_props )
-	apply( result.append, params )
+	result.append(*params)
 	return result
 
 def B( *params ) :
@@ -658,7 +657,7 @@ def B( *params ) :
 		return Text( params[ 0 ], text_props )
 
 	result = Inline( text_props )
-	apply( result.append, params )
+	result.append(*params)
 	return result
 
 def I( *params ) :
@@ -668,7 +667,7 @@ def I( *params ) :
 		return Text( params[ 0 ], text_props )
 
 	result = Inline( text_props )
-	apply( result.append, params )
+	result.append(*params)
 	return result
 
 def U( *params ) :
@@ -678,5 +677,5 @@ def U( *params ) :
 		return Text( params[ 0 ], text_props )
 
 	result = Inline( text_props )
-	apply( result.append, params )
+	result.append(*params)
 	return result

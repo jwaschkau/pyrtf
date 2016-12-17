@@ -1,4 +1,5 @@
-from	PropertySets	import	*
-from	Elements	import	*
-from	Styles		import	*
-from	Renderer	import	*
+from .Elements import *
+from .PropertySets import *
+from .Renderer import *
+from .Styles import *
+
