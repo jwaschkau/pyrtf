@@ -1,4 +1,4 @@
-"""PyRTF - Rich Text Format Document Generation
+"""PyRTF - Rich Text Format Document Generation 
 
 PyRTF is a pure python module for the efficient generation of rich text format
 documents. Supports styles, tables, cell merging, jpg and png images and tries
