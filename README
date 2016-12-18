@@ -1,7 +1,9 @@
 Version 0.45
 
+pip install pyrtf3
+
 Finally, image support!!!  Handles PNGs and JPGs.
 
 See examples2.py for the gory details.
 
-Simon Cusack, scusack@sourceforge.net
+Original Author: Simon Cusack, scusack@sourceforge.net
