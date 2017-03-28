@@ -5,7 +5,7 @@ Plan
 * DONE - Add prototype parsing code and test sources.
 * DONE - Move exceptions out of parser code into dedicated exceptions file.
 * DONE - Split grammar out of parser base and into its own module.
-* DONE - Rename package from pyrtfng to rtfng.
+* DONE - Rename package from pyPyRTF to PyRTF.
 * DONE - Update the generate script to accept file names as parameters, thus only
   generating RTF files for the make_() methods in those files (as opposed to
   traversing the whole tree).
@@ -25,7 +25,7 @@ Plan
 * Rename modules to accord with PEP-8/Twisted coding standard.
 * Rename class methods to accord with PEP-8/Twisted coding standard.
 * Reorganize package to something along the following lines:
-    rtfng
+    PyRTF
         header
             Version
             Character Set
@@ -94,7 +94,7 @@ Plan
 Completed
 ---------
 
-* DONE - Rename package to pyrtfng.
+* DONE - Rename package to pyPyRTF.
 * DONE - Clean up basic white space issues (mixed tab/space, file encodings,
     DOS characters, etc.)
 * DONE - Increment to version 0.9.0

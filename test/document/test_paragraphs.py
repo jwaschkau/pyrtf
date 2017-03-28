@@ -1,22 +1,23 @@
 import re
 
-from rtfng.utils import RTFTestCase
-from rtfng.Elements import Document
-from rtfng.PropertySets import ParagraphPropertySet, TabPropertySet
+from PyRTF.utils import RTFTestCase
+from PyRTF.Elements import Document
+from PyRTF.PropertySets import ParagraphPropertySet, TabPropertySet
 
-from rtfng.document.base import TAB, LINE
-from rtfng.document.section import Section
-from rtfng.document.character import TEXT
-from rtfng.document.paragraph import Paragraph
+from PyRTF.document.base import TAB, LINE
+from PyRTF.document.section import Section
+from PyRTF.document.character import TEXT
+from PyRTF.document.paragraph import Paragraph
+
 
 class ParagraphTestCase(RTFTestCase):
-
     def make_paraHeading():
         doc, section, styles = RTFTestCase.initializeDoc()
         p1 = Paragraph(styles.ParagraphStyles.Heading1)
         p1.append('Heading 1')
         section.append(p1)
         return doc
+
     make_paraHeading = staticmethod(make_paraHeading)
 
     def test_paraHeading(self):
@@ -34,6 +35,7 @@ class ParagraphTestCase(RTFTestCase):
             'Normal style.')
         section.append(p2)
         return doc
+
     make_paraNormal = staticmethod(make_paraNormal)
 
     def test_paraNormal(self):
@@ -58,6 +60,7 @@ class ParagraphTestCase(RTFTestCase):
             'default native behaviour for RTF documents.')
         section.append(p3)
         return doc
+
     make_paraDefaultPreviousStyle = staticmethod(make_paraDefaultPreviousStyle)
 
     def test_paraDefaultPreviousStyle(self):
@@ -75,17 +78,18 @@ class ParagraphTestCase(RTFTestCase):
             'not cause a paragraph break).')
         section.append(p)
         tabs = [
-            TabPropertySet(width=TabPropertySet.DEFAULT_WIDTH),
-            TabPropertySet(width=TabPropertySet.DEFAULT_WIDTH * 2),
-            TabPropertySet(width=TabPropertySet.DEFAULT_WIDTH)]
+            TabPropertySet(width=TabPropertySet.DEFAULT_WIDTH), TabPropertySet(
+                width=TabPropertySet.DEFAULT_WIDTH * 2), TabPropertySet(
+                    width=TabPropertySet.DEFAULT_WIDTH)
+        ]
         para_props = ParagraphPropertySet(tabs=tabs)
         p = Paragraph(styles.ParagraphStyles.Normal, para_props)
-        p.append(
-            'Phrase at Left Tab', TAB, 'Middle Phrase One', TAB, 'Right Phrase',
-            LINE, 'Second Left Phrase', TAB, 'Middle Phrase Two', TAB,
-            'Another Right Phrase')
+        p.append('Phrase at Left Tab', TAB, 'Middle Phrase One', TAB,
+                 'Right Phrase', LINE, 'Second Left Phrase', TAB,
+                 'Middle Phrase Two', TAB, 'Another Right Phrase')
         section.append(p)
         return doc
+
     make_paraTabs = staticmethod(make_paraTabs)
 
     def test_paraTabs(self):
@@ -97,6 +101,7 @@ class ParagraphTestCase(RTFTestCase):
             'The alignment of tabs and style can also be controlled. The '
             'following demonstrates how to use flush right tabs and the '
             'supported leaders.')
+
         def _makePara(name):
             tabs = TabPropertySet(
                 section.TwipsToRightMargin(),
@@ -104,12 +109,15 @@ class ParagraphTestCase(RTFTestCase):
                 leader=getattr(TabPropertySet, name.upper().replace(' ', '_')))
             para_props = ParagraphPropertySet(tabs=[tabs])
             return Paragraph(styles.ParagraphStyles.Normal, para_props)
-        for name in ['Dots', 'Hyphens', 'Underline', 'Thick Line',
-                     'Equal Sign']:
+
+        for name in [
+                'Dots', 'Hyphens', 'Underline', 'Thick Line', 'Equal Sign'
+        ]:
             p = _makePara(name)
             p.append('Before %s' % name, TAB, 'After %s' % name)
             section.append(p)
         return doc
+
     make_paraTabLeaders = staticmethod(make_paraTabLeaders)
 
     def test_paraTabLeaders(self):
@@ -146,14 +154,14 @@ class ParagraphTestCase(RTFTestCase):
             defying authority runs in the family."""
         sampleParagraph = re.sub('\s+', ' ', sampleParagraph)
         para_props = ParagraphPropertySet()
-        para_props.SetLeftIndent(TabPropertySet.DEFAULT_WIDTH *  3)
+        para_props.SetLeftIndent(TabPropertySet.DEFAULT_WIDTH * 3)
         p = Paragraph(styles.ParagraphStyles.Normal, para_props)
         p.append(sampleParagraph)
         section.append(p)
 
         para_props = ParagraphPropertySet()
         para_props.SetFirstLineIndent(TabPropertySet.DEFAULT_WIDTH * -2)
-        para_props.SetLeftIndent(TabPropertySet.DEFAULT_WIDTH *  3)
+        para_props.SetLeftIndent(TabPropertySet.DEFAULT_WIDTH * 3)
         p = Paragraph(styles.ParagraphStyles.Normal, para_props)
         p.append(sampleParagraph)
         section.append(p)
@@ -165,6 +173,7 @@ class ParagraphTestCase(RTFTestCase):
         p.append(sampleParagraph)
         section.append(p)
         return doc
+
     make_paraIndents = staticmethod(make_paraIndents)
 
     def test_paraIndents(self):
@@ -189,8 +198,7 @@ class ParagraphTestCase(RTFTestCase):
         p3.insert(0, text1)
         p3.insert(1, text2)
         p3.insert(2, text3)
-        
+
         # Confirm contents are same.
         assert p1[0:-1] == p2[0:-1]
         assert p2[0:-1] == p3[0:-1]
-

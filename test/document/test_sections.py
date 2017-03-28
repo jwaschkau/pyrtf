@@ -1,7 +1,8 @@
 #!/usr/bin/env python
-from rtfng.utils import RTFTestCase
-from rtfng.Elements import Document
-from rtfng.document.section import Section
+from PyRTF.utils import RTFTestCase
+from PyRTF.Elements import Document
+from PyRTF.document.section import Section
+
 
 class SectionTestCase(RTFTestCase):
     def make_sectionEmpty():
@@ -9,6 +10,7 @@ class SectionTestCase(RTFTestCase):
         Used by a script to generate docs.
         """
         return RTFTestCase.initializeDoc()[0]
+
     make_sectionEmpty = staticmethod(make_sectionEmpty)
 
     def test_sectionEmpty(self):
@@ -20,6 +22,7 @@ class SectionTestCase(RTFTestCase):
         # create as needed
         section.append('Small paragraph.')
         return doc
+
     make_sectionWithSmallPara = staticmethod(make_sectionWithSmallPara)
 
     def test_sectionWithSmallPara(self):
@@ -31,6 +34,7 @@ class SectionTestCase(RTFTestCase):
         # blank paragraphs are just empty strings
         section.append('')
         return doc
+
     make_sectionWithBlankPara = staticmethod(make_sectionWithBlankPara)
 
     def test_sectionWithBlankPara(self):
@@ -46,6 +50,7 @@ class SectionTestCase(RTFTestCase):
             'advanced formatting is available, but a lot of users just want '
             'to see their data in something other than a text file.')
         return doc
+
     make_sectionWithParas = staticmethod(make_sectionWithParas)
 
     def test_sectionWithParas(self):
@@ -57,11 +62,12 @@ class SectionTestCase(RTFTestCase):
         secondSection = doc.NewSection()
         secondSection.append('Second section.')
         return doc
+
     make_secondSection = staticmethod(make_secondSection)
 
     def test_secondSection(self):
         self.doTest()
-        
+
     def make_docCopy():
         doc, section, styles = RTFTestCase.initializeDoc()
         section.append('First section')
@@ -69,8 +75,8 @@ class SectionTestCase(RTFTestCase):
         secondSection.append('Second section.')
         copyDoc = doc.Copy()
         return doc
+
     make_docCopy = staticmethod(make_docCopy)
 
     def test_docCopy(self):
         self.doTest()
-        

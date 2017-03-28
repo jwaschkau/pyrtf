@@ -1,7 +1,7 @@
-from rtfng.parser.grammar import grammar
+from PyRTF.parser.grammar import grammar
+
 
 class RTFParser(object):
-
     def __init__(self, rtfData=None):
         if rtfData:
             self.parse(rtfData)
@@ -34,10 +34,12 @@ class RTFParser(object):
         """
         self.tokens = grammar.parseString(rtfData)
 
+
 class RTFFile(object):
     """
 
     """
+
     def __init__(self, filename):
         self.filename = filename
         self._fonts = {}
@@ -76,10 +78,11 @@ class RTFFile(object):
 
         """
 
+
 def _test():
     import doctest
     doctest.testmod()
 
+
 if __name__ == '__main__':
     _test()
-

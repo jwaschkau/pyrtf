@@ -1,5 +1,6 @@
-from rtfng.Styles import TextStyle
-from rtfng.PropertySets import TextPropertySet, ShadingPropertySet
+from PyRTF.Styles import TextStyle
+from PyRTF.PropertySets import TextPropertySet, ShadingPropertySet
+
 
 class Text(object):
     def __init__(self, *params):
@@ -21,6 +22,7 @@ class Text(object):
 
     def SetData(self, value):
         self.Data = value
+
 
 class Inline(list):
     ''' A Text object but with a list of data. Perhaps unify Text and Inline classes? '''
@@ -49,7 +51,6 @@ class Inline(list):
         self.extend(values)
 
 
-
 def TEXT(*params, **kwargs):
     textProps = TextPropertySet()
     textProps.font = kwargs.get('font', None)
@@ -66,6 +67,7 @@ def TEXT(*params, **kwargs):
     apply(result.append, params)
     return result
 
+
 def B(*params):
     textProps = TextPropertySet(bold=True)
 
@@ -76,6 +78,7 @@ def B(*params):
     apply(result.append, params)
     return result
 
+
 def I(*params):
     textProps = TextPropertySet(italic=True)
 
@@ -85,6 +88,7 @@ def I(*params):
     result = Inline(textProps)
     apply(result.append, params)
     return result
+
 
 def U(*params):
     textProps = TextPropertySet(underline=True)

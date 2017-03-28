@@ -3,12 +3,13 @@ import os
 from unittest import TestCase, TestSuite
 from unittest import TestLoader, TextTestRunner
 
-from rtfng.utils import findTests, importModule
+from PyRTF.utils import findTests, importModule
 
 from test_doctests import suite as doctestSuite
 
-searchDirs = ['rtfng', 'test']
+searchDirs = ['PyRTF', 'test']
 skipFiles = ['test_doctests.py', 'test_all.py']
+
 
 def getSuites():
     suites = [doctestSuite]
@@ -31,6 +32,7 @@ def getSuites():
                 # append to suites list
                 suites.append(suite)
     return suites
+
 
 if __name__ == '__main__':
     suites = getSuites()

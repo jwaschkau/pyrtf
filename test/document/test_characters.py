@@ -1,28 +1,27 @@
 #!/usr/bin/env python
-from rtfng.utils import RTFTestCase
-from rtfng.Elements import Document, StyleSheet
-from rtfng.PropertySets import ShadingPropertySet, TextPropertySet
-from rtfng.Styles import TextStyle
+from PyRTF.utils import RTFTestCase
+from PyRTF.Elements import Document, StyleSheet
+from PyRTF.PropertySets import ShadingPropertySet, TextPropertySet
+from PyRTF.Styles import TextStyle
 
-from rtfng.document.character import B, I, U, TEXT, Text
-from rtfng.document.section import Section
-from rtfng.document.paragraph import Paragraph
+from PyRTF.document.character import B, I, U, TEXT, Text
+from PyRTF.document.section import Section
+from PyRTF.document.paragraph import Paragraph
+
 
 class CharacterTestCase(RTFTestCase):
-
     def make_charStyleOverride():
         doc, section, styles = RTFTestCase.initializeDoc()
         p = Paragraph()
         p.append('This is a standard paragraph with the default style.')
         p = Paragraph()
         p.append('It is also possible to manully override a style. ',
-                  'This is a change of just the font ',
-                  TEXT('size', size=48),
-                  ' an this is for just the font ',
-                  TEXT('typeface', font=styles.Fonts.Impact) ,
-                  '.')
+                 'This is a change of just the font ',
+                 TEXT('size', size=48), ' an this is for just the font ',
+                 TEXT('typeface', font=styles.Fonts.Impact), '.')
         section.append(p)
         return doc
+
     make_charStyleOverride = staticmethod(make_charStyleOverride)
 
     def test_charStyleOverride(self):
@@ -51,6 +50,7 @@ class CharacterTestCase(RTFTestCase):
         # up other documents that might be based on the same basic stylesheet.
         section.append(p)
         return doc
+
     make_charColours = staticmethod(make_charColours)
 
     def test_charColours(self):
@@ -59,17 +59,17 @@ class CharacterTestCase(RTFTestCase):
     def make_charUnicode():
         doc, section, styles = RTFTestCase.initializeDoc()
         section.append('This tests unicode.')
-        
+
         p = Paragraph()
         p.append(u'32\u00B0 Fahrenheit is 0\u00B0 Celsuis')
         section.append(p)
-        
+
         p = Paragraph()
         p.append(u'Henry \u2163 is Henry IV in unicode.')
         section.append(p)
-        
 
         return doc
+
     make_charUnicode = staticmethod(make_charUnicode)
 
     def test_charUnicode(self):
@@ -77,7 +77,6 @@ class CharacterTestCase(RTFTestCase):
 
 
 class CharacterAPITestCase(RTFTestCase):
-
     def test_text(self):
         t = Text()
         t = Text('abc')
@@ -99,4 +98,3 @@ class CharacterAPITestCase(RTFTestCase):
 
         t = U('abc')
         t = U('abc', 'def')
-

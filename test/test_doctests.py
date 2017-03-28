@@ -1,12 +1,12 @@
 import unittest
 import doctest
 
-from rtfng.utils import importModule
+from PyRTF.utils import importModule
 
 # to add a new module to the test runner, simply include is in the list below:
 modules = [
-    'rtfng.parser.grammar',
-    'rtfng.parser.base',
+    'PyRTF.parser.grammar',
+    'PyRTF.parser.base',
 ]
 
 suite = unittest.TestSuite()
@@ -18,5 +18,3 @@ for modname in modules:
 if __name__ == '__main__':
     runner = unittest.TextTestRunner(verbosity=2)
     runner.run(suite)
-
-

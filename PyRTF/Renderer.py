@@ -1,76 +1,98 @@
 from types import StringType, ListType, TupleType, UnicodeType
 from copy import deepcopy
 
-from PropertySets import (
-    ParagraphPropertySet, TabPropertySet, ShadingPropertySet,
-    BorderPropertySet)
+from PropertySets import (ParagraphPropertySet, TabPropertySet,
+                          ShadingPropertySet, BorderPropertySet)
 from Constants import Languages, ViewKind, ViewZoomKind, ViewScale
 
-from rtfng.document.base import TAB, LINE, RawCode
-from rtfng.document.section import Section
-from rtfng.document.character import Text, Inline
-from rtfng.document.paragraph import Paragraph, Table, Cell
-from rtfng.object.picture import Image
+from PyRTF.document.base import TAB, LINE, RawCode
+from PyRTF.document.section import Section
+from PyRTF.document.character import Text, Inline
+from PyRTF.document.paragraph import Paragraph, Table, Cell
+from PyRTF.object.picture import Image
 
 DEFAULT_TAB_WIDTH = 720
 
-ParagraphAlignmentMap = { ParagraphPropertySet.LEFT: 'ql',
-                          ParagraphPropertySet.RIGHT: 'qr',
-                          ParagraphPropertySet.CENTER: 'qc',
-                          ParagraphPropertySet.JUSTIFY: 'qj',
-                          ParagraphPropertySet.DISTRIBUTE: 'qd' }
+ParagraphAlignmentMap = {
+    ParagraphPropertySet.LEFT: 'ql',
+    ParagraphPropertySet.RIGHT: 'qr',
+    ParagraphPropertySet.CENTER: 'qc',
+    ParagraphPropertySet.JUSTIFY: 'qj',
+    ParagraphPropertySet.DISTRIBUTE: 'qd'
+}
 
-TabAlignmentMap = { TabPropertySet.LEFT: '',
-                    TabPropertySet.RIGHT: 'tqr',
-                    TabPropertySet.CENTER: 'tqc',
-                    TabPropertySet.DECIMAL: 'tqdec' }
+TabAlignmentMap = {
+    TabPropertySet.LEFT: '',
+    TabPropertySet.RIGHT: 'tqr',
+    TabPropertySet.CENTER: 'tqc',
+    TabPropertySet.DECIMAL: 'tqdec'
+}
 
-TableAlignmentMap = { Table.LEFT: 'trql',
-                      Table.RIGHT: 'trqr',
-                      Table.CENTER: 'trqc' }
+TableAlignmentMap = {
+    Table.LEFT: 'trql',
+    Table.RIGHT: 'trqr',
+    Table.CENTER: 'trqc'
+}
 
-CellAlignmentMap = { Cell.ALIGN_TOP: '', # clvertalt
-                     Cell.ALIGN_CENTER: 'clvertalc',
-                     Cell.ALIGN_BOTTOM: 'clvertalb' }
+CellAlignmentMap = {
+    Cell.ALIGN_TOP: '',  # clvertalt
+    Cell.ALIGN_CENTER: 'clvertalc',
+    Cell.ALIGN_BOTTOM: 'clvertalb'
+}
 
-CellFlowMap = {    Cell.FLOW_LR_TB: '', # cltxlrtb, Text in a cell flows from left to right and top to bottom (default)
-                Cell.FLOW_RL_TB: 'cltxtbrl', # Text in a cell flows right to left and top to bottom
-                Cell.FLOW_LR_BT: 'cltxbtlr', # Text in a cell flows left to right and bottom to top
-                Cell.FLOW_VERTICAL_LR_TB: 'cltxlrtbv', # Text in a cell flows left to right and top to bottom, vertical
-                Cell.FLOW_VERTICAL_TB_RL: 'cltxtbrlv' } # Text in a cell flows top to bottom and right to left, vertical
+CellFlowMap = {
+    Cell.FLOW_LR_TB:
+    '',  # cltxlrtb, Text in a cell flows from left to right and top to bottom (default)
+    Cell.FLOW_RL_TB:
+    'cltxtbrl',  # Text in a cell flows right to left and top to bottom
+    Cell.FLOW_LR_BT:
+    'cltxbtlr',  # Text in a cell flows left to right and bottom to top
+    Cell.FLOW_VERTICAL_LR_TB:
+    'cltxlrtbv',  # Text in a cell flows left to right and top to bottom, vertical
+    Cell.FLOW_VERTICAL_TB_RL: 'cltxtbrlv'
+}  # Text in a cell flows top to bottom and right to left, vertical
 
-ShadingPatternMap = { ShadingPropertySet.HORIZONTAL: 'bghoriz',
-                      ShadingPropertySet.VERTICAL: 'bgvert',
-                      ShadingPropertySet.FORWARD_DIAGONAL: 'bgfdiag',
-                      ShadingPropertySet.BACKWARD_DIAGONAL: 'bgbdiag',
-                      ShadingPropertySet.VERTICAL_CROSS: 'bgcross',
-                      ShadingPropertySet.DIAGONAL_CROSS: 'bgdcross',
-                      ShadingPropertySet.DARK_HORIZONTAL: 'bgdkhoriz',
-                      ShadingPropertySet.DARK_VERTICAL: 'bgdkvert',
-                      ShadingPropertySet.DARK_FORWARD_DIAGONAL: 'bgdkfdiag',
-                      ShadingPropertySet.DARK_BACKWARD_DIAGONAL: 'bgdkbdiag',
-                      ShadingPropertySet.DARK_VERTICAL_CROSS: 'bgdkcross',
-                      ShadingPropertySet.DARK_DIAGONAL_CROSS: 'bgdkdcross' }
+ShadingPatternMap = {
+    ShadingPropertySet.HORIZONTAL: 'bghoriz',
+    ShadingPropertySet.VERTICAL: 'bgvert',
+    ShadingPropertySet.FORWARD_DIAGONAL: 'bgfdiag',
+    ShadingPropertySet.BACKWARD_DIAGONAL: 'bgbdiag',
+    ShadingPropertySet.VERTICAL_CROSS: 'bgcross',
+    ShadingPropertySet.DIAGONAL_CROSS: 'bgdcross',
+    ShadingPropertySet.DARK_HORIZONTAL: 'bgdkhoriz',
+    ShadingPropertySet.DARK_VERTICAL: 'bgdkvert',
+    ShadingPropertySet.DARK_FORWARD_DIAGONAL: 'bgdkfdiag',
+    ShadingPropertySet.DARK_BACKWARD_DIAGONAL: 'bgdkbdiag',
+    ShadingPropertySet.DARK_VERTICAL_CROSS: 'bgdkcross',
+    ShadingPropertySet.DARK_DIAGONAL_CROSS: 'bgdkdcross'
+}
 
-TabLeaderMap = { TabPropertySet.DOTS: 'tldot',
-                 TabPropertySet.HYPHENS: 'tlhyph',
-                 TabPropertySet.UNDERLINE: 'tlul',
-                 TabPropertySet.THICK_LINE: 'tlth',
-                 TabPropertySet.EQUAL_SIGN: 'tleq' }
+TabLeaderMap = {
+    TabPropertySet.DOTS: 'tldot',
+    TabPropertySet.HYPHENS: 'tlhyph',
+    TabPropertySet.UNDERLINE: 'tlul',
+    TabPropertySet.THICK_LINE: 'tlth',
+    TabPropertySet.EQUAL_SIGN: 'tleq'
+}
 
-BorderStyleMap = { BorderPropertySet.SINGLE: 'brdrs',
-                   BorderPropertySet.DOUBLE: 'brdrth',
-                   BorderPropertySet.SHADOWED: 'brdrsh',
-                   BorderPropertySet.DOUBLED: 'brdrdb',
-                   BorderPropertySet.DOTTED: 'brdrdot',
-                   BorderPropertySet.DASHED: 'brdrdash',
-                   BorderPropertySet.HAIRLINE: 'brdrhair' }
+BorderStyleMap = {
+    BorderPropertySet.SINGLE: 'brdrs',
+    BorderPropertySet.DOUBLE: 'brdrth',
+    BorderPropertySet.SHADOWED: 'brdrsh',
+    BorderPropertySet.DOUBLED: 'brdrdb',
+    BorderPropertySet.DOTTED: 'brdrdot',
+    BorderPropertySet.DASHED: 'brdrdash',
+    BorderPropertySet.HAIRLINE: 'brdrhair'
+}
 
-SectionBreakTypeMap = { Section.NONE: 'sbknone',
-                        Section.COLUMN: 'sbkcol',
-                        Section.PAGE: 'sbkpage',
-                        Section.EVEN: 'sbkeven',
-                        Section.ODD: 'sbkodd' }
+SectionBreakTypeMap = {
+    Section.NONE: 'sbknone',
+    Section.COLUMN: 'sbkcol',
+    Section.PAGE: 'sbkpage',
+    Section.EVEN: 'sbkeven',
+    Section.ODD: 'sbkodd'
+}
+
 
 class Settings(list):
     def __init__(self):
@@ -78,7 +100,7 @@ class Settings(list):
         self._append = super(Settings, self).append
 
     def append(self, value, mask=None, fallback=None):
-        if (value is not 0) and value in [ False, None, '' ]:
+        if (value is not 0) and value in [False, None, '']:
             if fallback: self._append(self, fallback)
 
         else:
@@ -96,11 +118,12 @@ class Settings(list):
     def __repr__(self):
         return self.Join()
 
+
 class Renderer:
     def __init__(self, write_custom_element_callback=None):
         self.character_style_map = {}
         self.paragraph_style_map = {}
-        self.WriteCustomElement  = write_custom_element_callback
+        self.WriteCustomElement = write_custom_element_callback
 
     #
     #    All of the Rend* Functions populate a Settings object with values
@@ -109,17 +132,17 @@ class Renderer:
         #  this one is different from the others as it takes the settings from a
         if in_section:
             #paper_size_code   = 'psz%s'
-            paper_width_code  = 'pgwsxn%s'
+            paper_width_code = 'pgwsxn%s'
             paper_height_code = 'pghsxn%s'
-            landscape         = 'lndscpsxn'
-            margin_suffix     = 'sxn'
+            landscape = 'lndscpsxn'
+            margin_suffix = 'sxn'
 
         else:
             #paper_size_code   = 'psz%s'
-            paper_width_code  = 'paperw%s'
+            paper_width_code = 'paperw%s'
             paper_height_code = 'paperh%s'
-            landscape         = 'landscape'
-            margin_suffix     = ''
+            landscape = 'landscape'
+            margin_suffix = ''
 
         #settings.append(section.Paper.Code, paper_size_code)
         settings.append(section.Paper.Width, paper_width_code)
@@ -140,13 +163,18 @@ class Renderer:
         settings.append(shading_props.Shading, prefix + 'shading%s')
         settings.append(ShadingPatternMap.get(shading_props.Pattern, False))
 
-        settings.append(self._colour_map.get(shading_props.Foreground, False), prefix + 'cfpat%s')
-        settings.append(self._colour_map.get(shading_props.Background, False), prefix + 'cbpat%s')
+        settings.append(
+            self._colour_map.get(shading_props.Foreground, False),
+            prefix + 'cfpat%s')
+        settings.append(
+            self._colour_map.get(shading_props.Background, False),
+            prefix + 'cbpat%s')
 
     def _RendBorderPropertySet(self, edge_props, settings):
-        settings.append(BorderStyleMap[ edge_props.Style ])
+        settings.append(BorderStyleMap[edge_props.Style])
         settings.append(edge_props.Width, 'brdrw%s')
-        settings.append(self._colour_map.get(edge_props.Colour, False), 'brdrcf%s')
+        settings.append(
+            self._colour_map.get(edge_props.Colour, False), 'brdrcf%s')
         settings.append(edge_props.Spacing or False, 'brsp%s')
 
     def _RendFramePropertySet(self, frame_props, settings, tag_prefix=''):
@@ -178,7 +206,7 @@ class Renderer:
 
     def _RendParagraphPropertySet(self, paragraph_props, settings):
         if not paragraph_props: return
-        settings.append(ParagraphAlignmentMap[ paragraph_props.Alignment ])
+        settings.append(ParagraphAlignmentMap[paragraph_props.Alignment])
 
         settings.append(paragraph_props.SpaceBefore, 'sb%s')
         settings.append(paragraph_props.SpaceAfter, 'sa%s')
@@ -186,7 +214,7 @@ class Renderer:
         #    then we have to find out all of the tabs
         width = 0
         for tab in paragraph_props.Tabs:
-            settings.append(TabAlignmentMap[ tab.Alignment ])
+            settings.append(TabAlignmentMap[tab.Alignment])
             settings.append(TabLeaderMap.get(tab.Leader, ''))
 
             width += tab.Width or DEFAULT_TAB_WIDTH
@@ -200,9 +228,11 @@ class Renderer:
 
         if paragraph_props.SpaceBetweenLines:
             if paragraph_props.SpaceBetweenLines < 0:
-                settings.append(paragraph_props.SpaceBetweenLines, r'sl%s\slmult0')
+                settings.append(paragraph_props.SpaceBetweenLines,
+                                r'sl%s\slmult0')
             else:
-                settings.append(paragraph_props.SpaceBetweenLines, r'sl%s\slmult1')
+                settings.append(paragraph_props.SpaceBetweenLines,
+                                r'sl%s\slmult1')
 
     def _RendTextPropertySet(self, textProps, settings):
         if not textProps:
@@ -224,9 +254,10 @@ class Renderer:
         if textProps.frame:
             frame = textProps.frame
             settings.append('chbrdr')
-            settings.append(BorderStyleMap[ frame.Style ])
+            settings.append(BorderStyleMap[frame.Style])
             settings.append(frame.Width, 'brdrw%s')
-            settings.append(self._colour_map.get(frame.Colour, False), 'brdrcf%s')
+            settings.append(
+                self._colour_map.get(frame.Colour, False), 'brdrcf%s')
 
     #
     #    All of the Write* functions will write to the internal file object
@@ -236,28 +267,28 @@ class Renderer:
     #    callback.
     def Write(self, document, fout):
         #  write all of the standard stuff based upon the first document
-        self._doc  = document
+        self._doc = document
         self._fout = fout
-        self._WriteDocument  ()
-        self._WriteColours   ()
-        self._WriteFonts     ()
+        self._WriteDocument()
+        self._WriteColours()
+        self._WriteFonts()
         self._WriteStyleSheet()
 
         settings = Settings()
-        self._RendPageProperties(self._doc.Sections[ 0 ], settings, in_section=False)
+        self._RendPageProperties(
+            self._doc.Sections[0], settings, in_section=False)
         self._write(repr(settings))
 
         #  handle the simplest case first, we don't need to do anymore mucking around
         #  with section headers, etc we can just rip the document out
         if len(document.Sections) == 1:
-            self._WriteSection(document.Sections[ 0 ],
-                                is_first   = True,
-                                add_header = False)
+            self._WriteSection(
+                document.Sections[0], is_first=True, add_header=False)
 
         else:
             for section_idx, section in enumerate(document.Sections):
-                is_first       = section_idx == 0
-                add_header     = True
+                is_first = section_idx == 0
+                add_header = True
                 self._WriteSection(section, is_first, add_header)
 
         self._write('}')
@@ -290,10 +321,10 @@ class Renderer:
     def _WriteDocument(self):
         settings = Settings()
 
-        assert Languages.IsValid   (self._doc.DefaultLanguage)
-        assert ViewKind.IsValid    (self._doc.ViewKind)
+        assert Languages.IsValid(self._doc.DefaultLanguage)
+        assert ViewKind.IsValid(self._doc.ViewKind)
         assert ViewZoomKind.IsValid(self._doc.ViewZoomKind)
-        assert ViewScale.IsValid   (self._doc.ViewScale)
+        assert ViewScale.IsValid(self._doc.ViewScale)
 
         settings.append(self._doc.DefaultLanguage, 'deflang%s')
         settings.append(self._doc.ViewKind, 'viewkind%s')
@@ -308,8 +339,9 @@ class Renderer:
         self._colour_map = {}
         offset = 0
         for colour in self._doc.StyleSheet.Colours:
-            self._write(r'\red%s\green%s\blue%s;', colour.Red, colour.Green, colour.Blue)
-            self._colour_map[ colour ] = offset + 1
+            self._write(r'\red%s\green%s\blue%s;', colour.Red, colour.Green,
+                        colour.Blue)
+            self._colour_map[colour] = offset + 1
             offset += 1
         self._write("}\n")
 
@@ -319,23 +351,19 @@ class Renderer:
         self._font_map = {}
         offset = 0
         for font in self._doc.StyleSheet.Fonts:
-            pitch     = ''
-            panose    = ''
+            pitch = ''
+            panose = ''
             alternate = ''
-            if font.Pitch: pitch     = r'\fprq%s'    % font.Pitch
-            if font.Panose: panose    = r'{\*\panose %s}' % font.Panose
-            if font.Alternate: alternate = r'{\*\falt %s}'   % font.Alternate.name
+            if font.Pitch: pitch = r'\fprq%s' % font.Pitch
+            if font.Panose: panose = r'{\*\panose %s}' % font.Panose
+            if font.Alternate:
+                alternate = r'{\*\falt %s}' % font.Alternate.name
 
-            self._write(r'{\f%s\f%s%s\fcharset%s%s %s%s;}',
-                         offset,
-                         font.Family,
-                         pitch,
-                         font.CharacterSet,
-                         panose,
-                         font.name,
-                         alternate)
+            self._write(r'{\f%s\f%s%s\fcharset%s%s %s%s;}', offset,
+                        font.Family, pitch, font.CharacterSet, panose,
+                        font.name, alternate)
 
-            self._font_map[ font ] = offset
+            self._font_map[font] = offset
             offset += 1
 
         self._write("}\n")
@@ -347,7 +375,7 @@ class Renderer:
 
         offset_map = {}
         for idx, style in enumerate(self._doc.StyleSheet.ParagraphStyles):
-            offset_map[ style ] = idx
+            offset_map[style] = idx
 
         #    paragraph styles
         self.paragraph_style_map = {}
@@ -361,31 +389,32 @@ class Renderer:
             settings = Settings()
 
             #    paragraph properties
-            self._RendParagraphPropertySet(style.ParagraphPropertySet, settings)
-            self._RendFramePropertySet    (style.FramePropertySet, settings)
-            self._RendShadingPropertySet  (style.ShadingPropertySet, settings)
+            self._RendParagraphPropertySet(style.ParagraphPropertySet,
+                                           settings)
+            self._RendFramePropertySet(style.FramePropertySet, settings)
+            self._RendShadingPropertySet(style.ShadingPropertySet, settings)
 
             #    text properties
-            self._RendTextPropertySet   (style.TextStyle.textProps, settings)
-            self._RendShadingPropertySet(style.TextStyle.ShadingPropertySet, settings)
+            self._RendTextPropertySet(style.TextStyle.textProps, settings)
+            self._RendShadingPropertySet(style.TextStyle.ShadingPropertySet,
+                                         settings)
 
             #    have to take
             based_on = '\\sbasedon%s' % offset_map.get(style.BasedOn, 0)
-            next     = '\\snext%s'    % offset_map.get(style.Next, 0)
+            next = '\\snext%s' % offset_map.get(style.Next, 0)
 
             inln = '\\s%s%s' % (idx, settings)
             self._write("{%s%s%s %s;}", inln, based_on, next, style.name)
 
-            self.paragraph_style_map[ style ] = inln
+            self.paragraph_style_map[style] = inln
 
         #    if now style is specified for the first paragraph to be written, this one
         #    will be used
-        self._CurrentStyle = self.paragraph_style_map[ default ]
+        self._CurrentStyle = self.paragraph_style_map[default]
 
         self._write("}\n")
 
     def _WriteSection(self, section, is_first, add_header):
-
         def WriteHF(hf, rtfword):
             #if not hf: return
 
@@ -393,7 +422,7 @@ class Renderer:
             #  a blank paragraph, this stops it from picking up the header/footer
             #  from the previous section
             # if not hf:    hf = [ Paragraph('') ]
-            if not hf:    hf = []
+            if not hf: hf = []
 
             self._write('{\\%s' % rtfword)
             self._WriteElements(hf)
@@ -410,7 +439,7 @@ class Renderer:
         settings.append('sectd')
 
         if add_header:
-            settings.append(SectionBreakTypeMap[ section.BreakType ])
+            settings.append(SectionBreakTypeMap[section.BreakType])
             self._RendPageProperties(section, settings, in_section=True)
 
         settings.append(section.HeaderY, 'headery%s')
@@ -451,7 +480,7 @@ class Renderer:
             elif clss == StringType:
                 self.WriteParagraphElement(Paragraph(element))
 
-            elif clss in [ RawCode, Image ]:
+            elif clss in [RawCode, Image]:
                 self.WriteRawCode(element)
 
             #elif clss == List:
@@ -461,9 +490,15 @@ class Renderer:
                 self.WriteCustomElement(self, element)
 
             else:
-                raise Exception("Don't know how to handle elements of type %s" % clss)
+                raise Exception(
+                    "Don't know how to handle elements of type %s" % clss)
 
-    def WriteParagraphElement(self, paragraph_elem, tag_prefix='', tag_suffix=r'\par', opening='{', closing='}'):
+    def WriteParagraphElement(self,
+                              paragraph_elem,
+                              tag_prefix='',
+                              tag_suffix=r'\par',
+                              opening='{',
+                              closing='}'):
 
         #    the tag_prefix and the tag_suffix take care of paragraphs in tables.  A
         #    paragraph in a table requires and extra tag at the front (intbl) and we
@@ -472,15 +507,17 @@ class Renderer:
 
         overrides = Settings()
         self._RendParagraphPropertySet(paragraph_elem.Properties, overrides)
-        self._RendFramePropertySet    (paragraph_elem.Frame, overrides)
-        self._RendShadingPropertySet  (paragraph_elem.Shading, overrides)
+        self._RendFramePropertySet(paragraph_elem.Frame, overrides)
+        self._RendShadingPropertySet(paragraph_elem.Shading, overrides)
 
         #    when writing the RTF the style is carried from the previous paragraph to the next,
         #    so if the currently written paragraph has a style then make it the current one,
         #    otherwise leave it as it was
-        self._CurrentStyle = self.paragraph_style_map.get(paragraph_elem.Style, self._CurrentStyle)
+        self._CurrentStyle = self.paragraph_style_map.get(
+            paragraph_elem.Style, self._CurrentStyle)
 
-        self._write(r'%s\pard\plain%s %s%s ' % (opening, tag_prefix, self._CurrentStyle, overrides))
+        self._write(r'%s\pard\plain%s %s%s ' % (opening, tag_prefix,
+                                                self._CurrentStyle, overrides))
 
         for element in paragraph_elem:
             if isinstance(element, StringType):
@@ -513,7 +550,7 @@ class Renderer:
     def WriteTextElement(self, text_elem):
         overrides = Settings()
 
-        self._RendTextPropertySet   (text_elem.Properties, overrides)
+        self._RendTextPropertySet(text_elem.Properties, overrides)
         self._RendShadingPropertySet(text_elem.Shading, overrides, 'ch')
 
         #    write the wrapper and then let the custom handler have a go
@@ -534,7 +571,7 @@ class Renderer:
     def WriteInlineElement(self, inline_elem):
         overrides = Settings()
 
-        self._RendTextPropertySet   (inline_elem.Properties, overrides)
+        self._RendTextPropertySet(inline_elem.Properties, overrides)
         self._RendShadingPropertySet(inline_elem.Shading, overrides, 'ch')
 
         #    write the wrapper and then let the custom handler have a go
@@ -564,15 +601,16 @@ class Renderer:
 
     def WriteTableElement(self, table_elem):
 
-        vmerge = [ False ] * table_elem.ColumnCount
+        vmerge = [False] * table_elem.ColumnCount
         for height, cells in table_elem.Rows:
 
             #    calculate the right hand edge of the cells taking into account the spans
-            offset   = table_elem.LeftOffset or 0
-            cellx    = []
+            offset = table_elem.LeftOffset or 0
+            cellx = []
             cell_idx = 0
             for cell in cells:
-                cellx.append(offset + sum(table_elem.ColumnWidths[: cell_idx + cell.Span ]))
+                cellx.append(offset + sum(
+                    table_elem.ColumnWidths[:cell_idx + cell.Span]))
                 cell_idx += cell.Span
 
             self._write(r'{\trowd')
@@ -582,13 +620,13 @@ class Renderer:
             #    the spec says that this value is mandatory and I think that 108 is the default value
             #    so I'll take care of it here
             settings.append(table_elem.GapBetweenCells or 108, 'trgaph%s')
-            settings.append(TableAlignmentMap[ table_elem.Alignment ])
+            settings.append(TableAlignmentMap[table_elem.Alignment])
             settings.append(height, 'trrh%s')
             settings.append(table_elem.LeftOffset, 'trleft%s')
 
             width = table_elem.LeftOffset or 0
             for idx, cell in enumerate(cells):
-                self._RendFramePropertySet  (cell.Frame, settings, 'cl')
+                self._RendFramePropertySet(cell.Frame, settings, 'cl')
 
                 #  cells don't have margins so I don't know why I was doing this
                 #  I think it might have an affect in some versions of some WPs.
@@ -596,9 +634,10 @@ class Renderer:
 
                 #  if we are starting to merge or if this one is the first in what is
                 #  probably a series of merges then start the vertical merging
-                if cell.StartVerticalMerge or (cell.VerticalMerge and not vmerge[ idx ]):
+                if cell.StartVerticalMerge or (cell.VerticalMerge and
+                                               not vmerge[idx]):
                     settings.append('clvmgf')
-                    vmerge[ idx ] = True
+                    vmerge[idx] = True
 
                 elif cell.VerticalMerge:
                     #..continuing a merge
@@ -606,19 +645,19 @@ class Renderer:
 
                 else:
                     #..no merging going on so make sure that it is off
-                    vmerge[ idx ] = False
+                    vmerge[idx] = False
 
                 #  for any cell in the next row that is covered by this span we
                 #  need to run off the vertical merging as we don't want them
                 #  merging up into this spanned cell
                 for vmerge_idx in range(idx + 1, idx + cell.Span - 1):
-                    vmerge[ vmerge_idx ] = False
+                    vmerge[vmerge_idx] = False
 
-                settings.append(CellAlignmentMap[ cell.Alignment ])
-                settings.append(CellFlowMap[ cell.Flow ])
+                settings.append(CellAlignmentMap[cell.Alignment])
+                settings.append(CellFlowMap[cell.Flow])
 
                 #  this terminates the definition of a cell and represents the right most edge of the cell from the left margin
-                settings.append(cellx[ idx ], 'cellx%s')
+                settings.append(cellx[idx], 'cellx%s')
 
             self._write(repr(settings))
 
@@ -632,10 +671,19 @@ class Renderer:
 
                         #    don't forget the prefix or else word crashes and does all sorts of strange things
                         if element_idx == last_idx:
-                            self.WriteParagraphElement(element, tag_prefix=r'\intbl', tag_suffix='', opening='', closing='')
+                            self.WriteParagraphElement(
+                                element,
+                                tag_prefix=r'\intbl',
+                                tag_suffix='',
+                                opening='',
+                                closing='')
 
                         else:
-                            self.WriteParagraphElement(element, tag_prefix=r'\intbl', opening='', closing='')
+                            self.WriteParagraphElement(
+                                element,
+                                tag_prefix=r'\intbl',
+                                opening='',
+                                closing='')
 
                     self._write(r'\cell')
 

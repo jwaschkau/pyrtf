@@ -5,7 +5,8 @@ import os
 from unittest import TestCase
 from StringIO import StringIO
 
-from rtfng.Elements import Document, Section
+from PyRTF.Elements import Document, Section
+
 
 def importModule(name):
     mod = __import__(name)
@@ -13,6 +14,7 @@ def importModule(name):
     for comp in components[1:]:
         mod = getattr(mod, comp)
     return mod
+
 
 def fileIsTest(path, skipFiles=[]):
     if not os.path.isfile(path):
@@ -23,6 +25,7 @@ def fileIsTest(path, skipFiles=[]):
     if filename.startswith('test') and filename.endswith('.py'):
         return True
 
+
 def find(start, func, skip=[]):
     for item in [os.path.join(start, x) for x in os.listdir(start)]:
         if func(item, skip):
@@ -31,8 +34,10 @@ def find(start, func, skip=[]):
             for subItem in find(item, func, skip):
                 yield subItem
 
+
 def findTests(startDir, skipFiles=[]):
     return find(startDir, fileIsTest, skipFiles)
+
 
 class RTFTestCase(TestCase):
     """
@@ -66,7 +71,7 @@ class RTFTestCase(TestCase):
     initializeDoc = staticmethod(initializeDoc)
 
     def setUp(self):
-        base = ('test', 'sources', 'rtfng')
+        base = ('test', 'sources', 'PyRTF')
         self.sourceDir = os.path.join(*base)
 
     def getReferenceData(self, name):
@@ -100,4 +105,3 @@ class RTFTestCase(TestCase):
     def doTest(self):
         testData, refData = self.getData()
         self.assertEqual(testData, refData)
-
