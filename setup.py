@@ -1,43 +1,43 @@
-"""
-pyrtf-ng - The next generation in Rich Text Format documents for Python.
 
-pyrtf-ng is a pure python module for the efficient creation and parsing of rich
-text format documents. Supports styles, tables, cell merging, jpg and png
-images and tries to maintain compatibility with as many RTF readers as
-possible. 
+"""PyRTF - Rich Text Format Document Generation 
+
+PyRTF is a pure python module for the efficient generation of rich text format
+documents. Supports styles, tables, cell merging, jpg and png images and tries
+to maintain compatibility with as many RTF readers as possible. """
+
+classifiers = """\
+Development Status :: 4 - Beta
+Topic :: Text Editors :: Text Processing
+Topic :: Software Development :: Libraries :: Python Modules
+Intended Audience :: Developers
+Programming Language :: Python
+License :: OSI Approved :: GNU General Public License (GPL)
+License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)
+=======
+
 """
+
+import sys
 import os
+
+from setuptools import setup, find_packages
 from distutils.core import setup
 
 doclines = __doc__.split("\n")
 
-packageName = 'rtfng'
-
-def findPackages():
-    packages = []
-    for directory, subdirectories, files in os.walk(packageName):
-        if '__init__.py' in files:
-            packages.append(directory.replace(os.sep, '.'))
-    return packages
-
-setup(name = 'pyrtf-ng',
-    version = open('VERSION').read().strip(),
-    author = 'Duncan McGreggor',
-    author_email = 'oubiwann@adytum.us',
-    url = 'http://code.google.com/p/pyrtf-ng/',
-    license = 'MIT',
-    platforms = ['Any'],
-    description = doclines[0],
-    long_description = '\n'.join( doclines[2:]),
-    keywords = ('RTF', 'Rich Text', 'Rich Text Format', 'documents',
-        'word'),
-    packages = findPackages(),
-    classifiers = [f.strip() for f in """
-        Development Status :: 4 - Beta
-        Topic :: Text Editors :: Text Processing
-        Topic :: Software Development :: Libraries :: Python Modules
-        Intended Audience :: Developers
-        Programming Language :: Python
-        License :: OSI Approved :: MIT
-        """]
-    )
+setup(name='PyRTF3',
+      version='0.47',
+      author='Mars Galactic',
+      author_email='xoviat@noreply.users.github.com',
+      url='https://github.com/xoviat/pyrtf',
+      license='http://www.gnu.org/licenses/gpl.html',
+      platforms	= [ 'Any' ],
+      description=doclines[0],
+      classifiers=filter(None, classifiers.split('\n')),
+      long_description = '\n'.join( doclines[2:] ),
+      keywords=('RTF',
+                'Rich Text',
+                'Rich Text Format',
+                'documentation',
+                'reports'),
+      packages=find_packages())
