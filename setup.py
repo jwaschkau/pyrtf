@@ -18,6 +18,7 @@ License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)
 
 import sys
 import os
+import versioneer
 
 from setuptools import setup, find_packages
 from distutils.core import setup
@@ -26,7 +27,6 @@ doclines = __doc__.split("\n")
 
 setup(
     name='PyRTF3',
-    version='0.47',
     author='Mars Galactic',
     author_email='xoviat@noreply.users.github.com',
     url='https://github.com/xoviat/pyrtf',
@@ -38,4 +38,6 @@ setup(
     long_description='\n'.join(doclines[2:]),
     keywords=('RTF', 'Rich Text', 'Rich Text Format', 'documentation',
               'reports'),
-    packages=find_packages())
+    packages=find_packages(),
+    version=versioneer.get_version(),
+    cmdclass=versioneer.get_cmdclass())
