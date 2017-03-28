@@ -3,6 +3,8 @@ its subdirectories.
 
 pip install pyrtf3
 
+github: xoviat/pyrtf
+
 Finally, image support!!!  Handles PNGs and JPGs.
 
 To run all tests:
