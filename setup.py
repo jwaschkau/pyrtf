@@ -1,3 +1,4 @@
+
 """PyRTF - Rich Text Format Document Generation 
 
 PyRTF is a pure python module for the efficient generation of rich text format
@@ -12,23 +13,20 @@ Intended Audience :: Developers
 Programming Language :: Python
 License :: OSI Approved :: GNU General Public License (GPL)
 License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)
+=======
+
 """
 
-import	sys
+import sys
+import os
 
 from setuptools import setup, find_packages
-
-if sys.version_info < (2, 3):
-    _setup = setup
-    def setup(**kwargs):
-        if kwargs.has_key("classifiers"):
-            del kwargs["classifiers"]
-        _setup(**kwargs)
+from distutils.core import setup
 
 doclines = __doc__.split("\n")
 
 setup(name='PyRTF3',
-      version='0.46',
+      version='0.47',
       author='Mars Galactic',
       author_email='xoviat@noreply.users.github.com',
       url='https://github.com/xoviat/pyrtf',

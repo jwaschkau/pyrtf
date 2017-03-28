@@ -1,9 +1,15 @@
-Version 0.45
+For example usage, see the code in the unit tests in the 'test' directory and
+its subdirectories.
 
 pip install pyrtf3
 
 Finally, image support!!!  Handles PNGs and JPGs.
 
-See examples2.py for the gory details.
+To run all tests:
+
+
+    python test/test_all.py
+    python test/test_doctests.py
+
 
 Original Author: Simon Cusack, scusack@sourceforge.net

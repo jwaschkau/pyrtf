@@ -34,7 +34,7 @@ def MergedCells( ) :
 	table.AddRow( Cell( 'A-one'   ), Cell( 'A-two', start_vertical_merge=True ), Cell( 'A-three' ) )
 	table.AddRow( Cell( 'A-one'   ), Cell( vertical_merge=True ), Cell( 'A-three' ) )
 
-	table.AddRow( Cell( Paragraph( ParagraphPS( alignment=ParagraphPS.CENTER ), 'SPREAD' ),
+	table.AddRow( Cell( Paragraph( ParagraphPropertySet( alignment=ParagraphPropertySet.CENTER ), 'SPREAD' ),
 					    span=3 ) )
 
 	table.AddRow( Cell( 'A-one'   ), Cell( 'A-two', vertical_merge=True ), Cell( 'A-three' ) )
