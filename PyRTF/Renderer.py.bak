@@ -1,9 +1,9 @@
 from types import StringType, ListType, TupleType, UnicodeType
 from copy import deepcopy
 
-from .PropertySets import (ParagraphPropertySet, TabPropertySet,
+from PropertySets import (ParagraphPropertySet, TabPropertySet,
                           ShadingPropertySet, BorderPropertySet)
-from .Constants import Languages, ViewKind, ViewZoomKind, ViewScale
+from Constants import Languages, ViewKind, ViewZoomKind, ViewScale
 
 from PyRTF.document.base import TAB, LINE, RawCode
 from PyRTF.document.section import Section
@@ -246,7 +246,7 @@ class Renderer:
         settings.append(textProps.doubleUnderline, 'uldb')
         settings.append(textProps.wordUnderline, 'ulw')
         settings.append(textProps.wordUnderline, 'ulw')
-        settings.append(textProps.str, 'u')
+        settings.append(textProps.unicode, 'u')
         settings.append(self._font_map.get(textProps.font, False), 'f%s')
         settings.append(textProps.size, 'fs%s')
         settings.append(self._colour_map.get(textProps.colour, False), 'cf%s')
@@ -541,7 +541,7 @@ class Renderer:
         self._write(tag_suffix + closing)
 
     def writeUnicodeElement(self, element):
-        text = ''.join(['\\u%s?' % str(ord(e)) for e in element])
+        text = ''.join(['\u%s?' % str(ord(e)) for e in element])
         self._write(text or '')
 
     def WriteRawCode(self, raw_elem):

@@ -2,10 +2,10 @@ from types import IntType, FloatType, LongType, StringTypes
 from copy import deepcopy
 from binascii import hexlify
 
-from .Renderer import Renderer
-from .Constants import *
-from .Styles import *
-from .PropertySets import StandardColours, StandardFonts, StandardPaper
+from Renderer import Renderer
+from Constants import *
+from Styles import *
+from PropertySets import StandardColours, StandardFonts, StandardPaper
 
 from PyRTF.document.base import TAB, LINE, RawCode
 from PyRTF.document.section import Section

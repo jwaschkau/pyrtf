@@ -15,8 +15,8 @@ if os.path.exists(pickleFile):
     lastSync = pickle.load(fh)
     fh.close()
     if (now - lastSync).days < minDays:
-        print("A migration was performed less than %s day(s) ago." % minDays)
-        print("Aborting ... ")
+        print "A migration was performed less than %s day(s) ago." % minDays
+        print "Aborting ... "
         sys.exit()
 
 # define some URLs
@@ -41,14 +41,14 @@ elif form.getControl(name='action').value == 'migration_form':
     form = browser.getForm(name='migration')
 elif form.getControl(name='action').value == 'migration_progress':
     # still waiting ...
-    print("Migration still in progress; please try later.")
-    print("Aborting ... ")
+    print "Migration still in progress; please try later."
+    print "Aborting ... "
     sys.exit()
 else:
     # wtf?
-    print("Got unexpected form!")
-    print("\taction: %s" % form.getControl(name='action').value)
-    print("Aborting ... ")
+    print "Got unexpected form!"
+    print "\taction: %s" % form.getControl(name='action').value
+    print "Aborting ... "
     sys.exit()
 
 # submit the uploaded svn dump file
@@ -62,6 +62,6 @@ pickle.dump(now, fh)
 fh.close()
 
 # last words
-print("To view the results, visit the following URL:")
-print("\t%s\n" % formURL)
-print("\n")
+print "To view the results, visit the following URL:"
+print "\t%s\n" % formURL
+print "\n"

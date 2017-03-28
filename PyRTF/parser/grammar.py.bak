@@ -55,7 +55,7 @@ Each section in the RTF file has the following syntax:
 1 swiss ArialMT
 
 # font table, RTF v1.2+
->>> doc = r'''{\\rtf1\\ansi\\ansicpg1252\\uc1
+>>> doc = r'''{\\rtf1\\ansi\\ansicpg1252\uc1
 ...   {\\fonttbl{\\f0\\froman\\fcharset0\\fprq2{\*\panose 02020603050405020304}Times New Roman;}
 ...   {\\f1\\fmodern\\fcharset0\\fprq1{\*\panose 02070309020205020404}Courier New;}
 ...   {\\f2\\froman\\fcharset2\\fprq2{\*\panose 05050102010706020507}Symbol;}}
@@ -68,7 +68,7 @@ Each section in the RTF file has the following syntax:
 2 roman Symbol 05050102010706020507
 
 # font table with panose optional
->>> doc = r'''{\\rtf1\\ansi\\ansicpg1252\\uc1
+>>> doc = r'''{\\rtf1\\ansi\\ansicpg1252\uc1
 ...   {\\fonttbl{\\f0\\froman\\fcharset0\\fprq2{\*\panose 02020603050405020304}Times New Roman;}
 ...   {\\f1\\fmodern\\fcharset0\\fprq1{\*\panose 02070309020205020404}Courier New;}
 ...   {\\f2\\froman\\fcharset2\\fprq2{\*\panose 05050102010706020507}Symbol;}

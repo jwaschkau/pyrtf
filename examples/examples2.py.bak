@@ -27,8 +27,8 @@ def MakeExample1():
         'save it to a raw code element that can be included later.')
 
     fout = file('image_tmp.py', 'w')
-    print('from PyRTF import RawCode', file=fout)
-    print(file=fout)
+    print >> fout, 'from PyRTF import RawCode'
+    print >> fout
     fout.write(image.ToRawCode('TEST_IMAGE'))
     fout.close()
 
@@ -57,4 +57,4 @@ if __name__ == '__main__':
 
     DR.Write(doc1, OpenFile('Image1'))
 
-    print("Finished")
+    print "Finished"

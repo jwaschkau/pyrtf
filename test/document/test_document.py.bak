@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import os, io, tempfile
+import os, StringIO, tempfile
 
 from PyRTF.utils import RTFTestCase
 from PyRTF.Elements import Document
@@ -14,7 +14,7 @@ class DocumentTestCase(RTFTestCase):
         os.close(fd)
         doc.write(filename)
 
-        result = io.StringIO()
+        result = StringIO.StringIO()
         doc.write(result)
 
         assert open(filename, 'r').read() == result.getvalue()

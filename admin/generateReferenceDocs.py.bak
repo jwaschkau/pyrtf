@@ -32,7 +32,7 @@ doneList = []
 
 requestedList = sys.argv[1:]
 if requestedList:
-    print('Only writing these methods: %s' % ', '.join(requestedList))
+    print 'Only writing these methods: %s' % ', '.join(requestedList)
 
 # iterate through the test files
 for startDir in searchDirs:
@@ -69,6 +69,6 @@ for startDir in searchDirs:
                     filename = '%s.rtf' % rootName
                     doc = getattr(obj, attrName)()
                     fh = open(os.path.join(pendingDir, filename), 'w+')
-                    print("Writing %s ..." % filename)
+                    print "Writing %s ..." % filename
                     doc.write(fh)
                     fh.close()

@@ -318,7 +318,7 @@ class TextPropertySet:
                  unicodeText=False):
         self.font = font
         self.size = size
-        self.str = unicodeText
+        self.unicode = unicodeText
         self.bold = bold
         self.italic = italic
         self.underline = underline
@@ -359,7 +359,7 @@ class ParagraphPropertySet:
         self.SetSpaceAfter (space_after)
         self.Tabs = []
         if tabs:
-            self.SetTabs(*tabs)
+            apply(self.SetTabs, tabs)
         self.SetFirstLineIndent(first_line_indent or None)
         self.SetLeftIndent(left_indent or None)
         self.SetRightIndent(right_indent or None)

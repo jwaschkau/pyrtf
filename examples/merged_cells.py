@@ -73,6 +73,6 @@ if __name__ == '__main__' :
 	
 	renderer.Write( MergedCells(), file( 'MergedCells.rtf', 'w' ) )
 	
-	print "Finished"	
+	print("Finished")	
 	
 	

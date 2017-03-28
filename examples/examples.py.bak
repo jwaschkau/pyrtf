@@ -411,4 +411,4 @@ if __name__ == '__main__':
     DR.Write(doc6, OpenFile('6'))
     DR.Write(doc7, OpenFile('7'))
 
-    print("Finished")
+    print "Finished"

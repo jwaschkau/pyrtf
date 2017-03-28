@@ -5,7 +5,7 @@ from unittest import TestLoader, TextTestRunner
 
 from PyRTF.utils import findTests, importModule
 
-from .test_doctests import suite as doctestSuite
+from test_doctests import suite as doctestSuite
 
 searchDirs = ['PyRTF', 'test']
 skipFiles = ['test_doctests.py', 'test_all.py']

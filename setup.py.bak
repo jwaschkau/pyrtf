@@ -32,7 +32,7 @@ setup(
     platforms=['Any'],
     install_requires=['PyParsing'],
     description=doclines[0],
-    classifiers=[_f for _f in classifiers.split('\n') if _f],
+    classifiers=filter(None, classifiers.split('\n')),
     long_description='\n'.join(doclines[2:]),
     keywords=('RTF', 'Rich Text', 'Rich Text Format', 'documentation',
               'reports'),

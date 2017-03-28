@@ -3,7 +3,7 @@ Utility functions for rtf-ng.
 """
 import os
 from unittest import TestCase
-from io import StringIO
+from StringIO import StringIO
 
 from PyRTF.Elements import Document, Section
 

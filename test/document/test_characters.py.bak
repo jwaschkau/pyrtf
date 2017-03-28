@@ -61,11 +61,11 @@ class CharacterTestCase(RTFTestCase):
         section.append('This tests unicode.')
 
         p = Paragraph()
-        p.append('32\u00B0 Fahrenheit is 0\u00B0 Celsuis')
+        p.append(u'32\u00B0 Fahrenheit is 0\u00B0 Celsuis')
         section.append(p)
 
         p = Paragraph()
-        p.append('Henry \u2163 is Henry IV in unicode.')
+        p.append(u'Henry \u2163 is Henry IV in unicode.')
         section.append(p)
 
         return doc
