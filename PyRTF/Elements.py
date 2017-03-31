@@ -1,4 +1,4 @@
-from types import IntType, FloatType, LongType, StringTypes
+
 from copy import deepcopy
 from binascii import hexlify
 

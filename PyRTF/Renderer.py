@@ -1,4 +1,4 @@
-from types import StringType, ListType, TupleType, UnicodeType
+
 from copy import deepcopy
 
 from .PropertySets import (ParagraphPropertySet, TabPropertySet,
@@ -477,7 +477,7 @@ class Renderer:
             elif clss == Table:
                 self.WriteTableElement(element)
 
-            elif clss == StringType:
+            elif clss == str:
                 self.WriteParagraphElement(Paragraph(element))
 
             elif clss in [RawCode, Image]:
@@ -520,9 +520,9 @@ class Renderer:
                                                 self._CurrentStyle, overrides))
 
         for element in paragraph_elem:
-            if isinstance(element, StringType):
+            if isinstance(element, str):
                 self._write(element)
-            elif isinstance(element, UnicodeType):
+            elif isinstance(element, str):
                 self.writeUnicodeElement(element)
             elif isinstance(element, RawCode):
                 self._write(element.Data)
@@ -557,7 +557,7 @@ class Renderer:
         if overrides: self._write('{%s ' % repr(overrides))
 
         #    if the data is just a string then we can now write it
-        if isinstance(text_elem.Data, StringType):
+        if isinstance(text_elem.Data, str):
             self._write(text_elem.Data or '')
 
         elif text_elem.Data == TAB:
@@ -579,7 +579,7 @@ class Renderer:
 
         for element in inline_elem:
             #    if the data is just a string then we can now write it
-            if isinstance(element, StringType):
+            if isinstance(element, str):
                 self._write(element)
 
             elif isinstance(element, RawCode):
@@ -666,7 +666,7 @@ class Renderer:
                     last_idx = len(cell) - 1
                     for element_idx, element in enumerate(cell):
                         #    wrap plain strings in paragraph tags
-                        if isinstance(element, StringType):
+                        if isinstance(element, str):
                             element = Paragraph(element)
 
                         #    don't forget the prefix or else word crashes and does all sorts of strange things

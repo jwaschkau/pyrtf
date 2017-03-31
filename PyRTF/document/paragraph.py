@@ -1,4 +1,4 @@
-from types import IntType, FloatType, LongType, StringType
+
 from PyRTF.Styles import ParagraphStyle
 from PyRTF.PropertySets import (ParagraphPropertySet, FramePropertySet,
                                 MarginsPropertySet, ShadingPropertySet)
@@ -132,7 +132,7 @@ class Cell(list):
         self._append = super(Cell, self).append
 
         for param in params:
-            if isinstance(param, StringType): self.append(param)
+            if isinstance(param, str): self.append(param)
             elif isinstance(param, Paragraph): self.append(param)
             elif isinstance(param, FramePropertySet): self.SetFrame(param)
             elif isinstance(param, MarginsPropertySet): self.SetMargins(param)
