@@ -99,8 +99,10 @@ test_script:
   # if we're just updating the cache.
   - ps: |
       If ($env:APPVEYOR_REPO_TAG -ne "true" -and $env:APPVEYOR_SCHEDULED_BUILD -ne "true") {
-          cmd /c "%CMD_IN_ENV% %TEST_CMD%"
+          $env:RUN_TEST = "true"
       }
+
+  - IF "%RUN_TEST%"=="true" (%CMD_IN_ENV% %TEST_CMD%)
 
 on_success:
   - ps: |
