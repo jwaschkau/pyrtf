@@ -1,4 +1,3 @@
-
 from PyRTF.Styles import ParagraphStyle
 from PyRTF.PropertySets import (ParagraphPropertySet, FramePropertySet,
                                 MarginsPropertySet, ShadingPropertySet)
@@ -82,7 +81,7 @@ class Table:
         if len(cells) == 0:
             raise Exception('A row must have at least one cell')
         height = None
-        if isinstance(cells[0], (IntType, FloatType, LongType)):
+        if isinstance(cells[0], (int, float)):
             height = int(cells[0])
             cells = cells[1:]
 
