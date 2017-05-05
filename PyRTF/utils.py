@@ -71,8 +71,9 @@ class RTFTestCase(TestCase):
     initializeDoc = staticmethod(initializeDoc)
 
     def setUp(self):
-        base = ('test', 'sources', 'PyRTF')
-        self.sourceDir = os.path.join(*base)
+        self.sourceDir = os.path.join(
+            os.path.dirname(os.path.dirname(__file__)), 'tests', 'sources',
+            'rtfng')
 
     def getReferenceData(self, name):
         fh = open(os.path.join(self.sourceDir, name + '.rtf'))

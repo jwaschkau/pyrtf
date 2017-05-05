@@ -105,7 +105,7 @@ class Image(RawCode):
 
     def __init__(self, file_name, **kwargs):
 
-        fin = file(file_name, 'rb')
+        fin = open(file_name, 'rb')
 
         pict_type = self.PICT_TYPES[file_name[-3:].lower()]
         if pict_type == self.PNG_LIB:

@@ -389,7 +389,7 @@ def MakeExample7():
 
 
 def OpenFile(name):
-    return file('%s.rtf' % name, 'w')
+    return open('%s.rtf' % name, 'w')
 
 
 if __name__ == '__main__':
