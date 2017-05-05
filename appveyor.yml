@@ -99,7 +99,7 @@ test_script:
   # if we're just updating the cache.
   - ps: |
       If ($env:APPVEYOR_REPO_TAG -ne "true" -and $env:APPVEYOR_SCHEDULED_BUILD -ne "true") {
-          Invoke-Command -ScriptBlock { & cmd /c "%CMD_IN_ENV% %TEST_CMD%" }
+          cmd /c "%CMD_IN_ENV% %TEST_CMD%"
       }
 
 on_success:
