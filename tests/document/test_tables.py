@@ -6,6 +6,7 @@ from PyRTF.Elements import Document
 from PyRTF.document.section import Section
 from PyRTF.document.paragraph import Cell, Paragraph, Table
 from PyRTF.PropertySets import BorderPropertySet, FramePropertySet, MarginsPropertySet, ParagraphPropertySet, TabPropertySet
+import pytest
 
 
 class TableTestCase(RTFTestCase):
@@ -226,12 +227,15 @@ class TableAPITestCase(RTFTestCase):
 
     def test_tableAddRow(self):
         table = Table(1000)
-        self.assertRaises(Exception, table.AddRow)  # no params at all
+        with pytest.raises(Exception):
+            table.AddRow()  # no params at all
         table.AddRow(Cell('1'))  # one cell, ok
-        self.assertRaises(Exception, table.AddRow, Cell('1'),
+        with pytest.raises(Exception):
+            table.AddRow(Cell('1'),
                           Cell('1'))  # 2 cells, error
-        self.assertRaises(Exception, table.AddRow,
-                          1)  # height but no cell, error
+        with pytest.raises(Exception):
+            table.AddRow(1)  # height but no cell, error
         table.AddRow(1, Cell('1'))  # height plus one cell, ok
-        self.assertRaises(Exception, table.AddRow, 1, Cell('1'),
+        with pytest.raises(Exception):
+            table.AddRow(1, Cell('1'),
                           Cell('1'))  # height with 2 cells, error
