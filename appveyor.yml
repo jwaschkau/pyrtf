@@ -11,7 +11,6 @@ environment:
     # See: http://stackoverflow.com/a/13751649/163740
     CMD_IN_ENV: "cmd /E:ON /V:ON /C .\\tests\\scripts\\appveyor\\run_with_env.cmd"
     TEST_CMD: "py.test -n3 --cov=./ --maxfail 5 --junitxml=junit-results.xml --durations=10 tests"
-    DISTUTILS_DEBUG: 1
     PYPI_USERNAME:
       secure: rl2zkdPpMWKuqh3paOKNhA==
     PYPI_PASSWORD:

@@ -1,1 +1,20 @@
+# For running tests
+pytest >= 2.7.3  # Testing framework.
+pytest-xdist  # Plugin allowing running tests in parallel.
+pytest-timeout # Plugin to abort hanging tests.
+pytest-catchlog  # Capture log output separately from stdout/stderr
+pytest-drop-dup-tests # allows specifying order without duplicates
+psutil  # Better subprocess alternative with implemented timeout.
+mock
+
+# Helper tools
+check-manifest  # Checks MANIFEST.in
+pyroma  # Checks if package follows best practices of Python packaging.
+chardet  # character encoding detector.
+readme  # Check PYPI description.
+pycmd  # Contains 'py.cleanup' that removes all .pyc files and similar.
+codecov
+pytest-cov
+packaging
+setuptools-markdown  # For building wheels
 twine
